@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="utf-8">
+    <title>Extraire des images de gif</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Images de tous les cadres extraits de gif, webp, apng">
+    <meta name="keywords" content=" Extraire des cadres de gif, extraire des cadres gif ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/fr/gif-extract-frame">
+    <meta property="og:site_name" content="Extraire des images de gif">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Extraire des images de gif">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Images de tous les cadres extraits de gif, webp, apng">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/fr/gif-extract-frame">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/gif-extract-frame">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/gif-extract-frame">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/gif-extract-frame">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/gif-extract-frame">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/gif-extract-frame">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/gif-extract-frame">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/gif-extract-frame">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Extraire des images de gif",
+  "url": "https://imagestool.com/fr/gif-extract-frame",
+  "description": "Images de tous les cadres extraits de gif, webp, apng",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> Désolé, imagestool.com ne fonctionnera pas correctement si javascript n'est pas activé. </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/fr/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> Tous les outils </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/fr/convert-images" target=""> Convertir des images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/splice-images" target=""> Images de couture </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/images-watermark" target=""> Filigrane d'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/resize-images" target=""> Ajuster la taille de l'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/crop-images" target=""> Recadrer l'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/compress-images" target=""> Compresser l'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/image-exif" target=""> Lire exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/split-images" target=""> Images fractionnées </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/video-to-gif" target=""> Vidéo en gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/video-clips-to-gif" target=""> Modifier la vidéo et convertir en gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/git-to-webp-to-apng" target=""> Gif à webp à apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  green flex_center2"><i class="iconfont icon-stack-overflow-line " style="transform: rotate(90deg);"></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> Extraire des images de gif </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> Images de tous les cadres extraits de gif, webp, apng </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> Faites glisser le fichier ici </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> Sélectionnez le fichier </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> Sélectionner le dossier </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> Coller l'image (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> À propos de cet outil </h2><div class="catImg"><img alt="" src="/images/about/10.webp"></div><br><br><br><h3 class="m_b_10"> Liste des formats pris en charge </h3><div class="m_r_5 size2 m_b_5 Tag red">Gif</div><div class="m_r_5 size2 m_b_5 Tag red">Apng</div><div class="m_r_5 size2 m_b_5 Tag red">Webp</div><br><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> Pas besoin de télécharger des fichiers, plus de confidentialité </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com tous les outils sont mis en œuvre à l'aide de la technologie du navigateur </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> Pas besoin de télécharger des fichiers </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Plus rapide avec javascript </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> Les fichiers sont 100% sécurisés </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0  "><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-up-down-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div><ul class="imageList w_100 p_0 flex wrap"></ul></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_20 "> Extraire des images de gif </h3><div class="flex_column"><div class="ConfigSelect in w_100 p_0  m_b_10"><div class="PopupContentMini noArrow" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex"><p class="text_opt4 f_s_14"> Format </p><h4 class="f_s_20 f_w_800 ellipsis01"> PNG </h4></div><div><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div><div class="hr m_t_20 m_b_20  "></div><div class="ConfigSelect in w_100 p_0  m_b_10 "><div class="PopupContentMini noArrow" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex"><p class="text_opt4 f_s_14"> Taille </p><h4 class="f_s_20 f_w_800 ellipsis01"> Constant </h4></div><div><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2      "> Démarrer <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> Glisser le fichier ici </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Peut lire plusieurs fichiers </div><input accept=".gif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> Glisser le dossier ici </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Lire un dossier à la fois </div><input accept=".gif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

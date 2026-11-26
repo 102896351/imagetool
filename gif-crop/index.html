@@ -1,0 +1,620 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>GIF cropper &amp; Batch crop GIFs - Free online GIF tool</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="ImagesTool cropper can crop multiple GIFs in a few seconds without loss of GIF image quality, customize the proportion, width and height (px) of the cropping frame, and you can also rotate and flip the Gif.">
+    <meta name="keywords" content=" Gif crop, crop gif ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/gif-crop">
+    <meta property="og:site_name" content="GIF cropper &amp; Batch crop GIFs - Free online GIF tool">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/assets/images/gif-crop/gif-crop.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="GIF cropper &amp; Batch crop GIFs - Free online GIF tool">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="ImagesTool cropper can crop multiple GIFs in a few seconds without loss of GIF image quality, customize the proportion, width and height (px) of the cropping frame, and you can also rotate and flip the Gif.">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/assets/images/gif-crop/gif-crop.jpg">
+    <link rel="shortcut icon" href="https://imagestool.com/assets/images/gif-crop/gif-crop.jpg">
+    <link rel="image_src" href="https://imagestool.com/assets/images/gif-crop/gif-crop.jpg">
+    <link rel="canonical" href="https://imagestool.com/gif-crop">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/gif-crop">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/gif-crop">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/gif-crop">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/gif-crop">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/gif-crop">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/gif-crop">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/gif-crop">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GIF cropper",
+  "url": "https://imagestool.com/gif-crop",
+  "description": "ImagesTool cropper can crop multiple GIFs in a few seconds without loss of GIF image quality, customize the proportion, width and height (px) of the cropping frame, and you can also rotate and flip the Gif.",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> Sorry, imagestool.com will not work properly without javascript enabled. </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> All tools </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/convert-images" target=""> Convert images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/splice-images" target=""> splice images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/images-watermark" target=""> Image watermarking </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/resize-images" target=""> Adjust image size </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/crop-images" target=""> Crop image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/compress-images" target=""> Compress image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/image-exif" target=""> Read exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/split-images" target=""> Split images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/video-to-gif" target=""> Video to gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/video-clips-to-gif" target=""> Edit video and convert to gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  green flex_center2"><i class="iconfont icon-crop-line "></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> GIF cropper </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> ImagesTool cropper can crop multiple GIFs in a few seconds without loss of GIF image quality, customize the proportion, width and height (px) of the cropping frame, and you can also rotate and flip the Gif. </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> Drag file here </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> Select the file </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> Select folder </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> Paste image (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> About this tool </h2><div class="f_s_18 f_h_20 flex_column p_30"><div class="flex_center2"> Gif crop <div class="m_5 Tag red">Rotate 306x177</div></div><button type="button" class="Button  full m_10     ">View the comparison of before and after compression</button></div><br><br><div class="f_s_18 f_h_20 flex_column p_30"><div class="flex_center2"> Gif crop <div class="m_5 Tag red">205x365(9:16)</div></div><button type="button" class="Button  full m_10     ">View the comparison of before and after compression</button></div><br><br><h3 class="m_b_10"> List of supported formats </h3><div class="m_r_5 size2 m_b_5 Tag red">Gif</div><br><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> No need to upload files, more privacy </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com all tools are implemented using browser browser technology </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> No need to upload files </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Faster with javascript </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> Files are 100% secure </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0 p_r_20"><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round  disabled    "><i class="iconfont icon-arrow-left-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-right-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-delete-bin--line5 f_s_18 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_10 "> Gif crop </h3><div><div class="flex_column"><p class="m_b_5"> Preview </p><div class="flex_center2 czi" style="height: 150px; width: 100%;"><div class="img-preview fs0"></div></div></div><div class="f_s_12 m_t_10 m_t_10 b_r_6 greenA3_bg p_10 green" style="display: none;"><div class="flex_between"><i class="iconfont icon-lightbulb-flash-line fs0 p_10 f_s_20"></i><span> All images are the same size, you can click "start synchronous cropping" to make all images output using the cropping configuration of the current image. </span><button type="button" class="Button  size round      "><i class="iconfont icon-close-line fs0 p_10 f_s_20"></i></button></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2      "> Start <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> File drag here </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Can read multiple files </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> Folder drag here </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Read one folder at a time </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+
+    <style>
+        @import url("/assets/css/newC.css");
+      </style>
+      <div class="newContentBox_94kd5l_93">
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>Related tools</h2>
+          <br>
+          <ul>
+            <li><a target="_blank" href="/gif-compress">GIF compressor</a></li>
+            <li>
+              <a target="_blank" href="/git-to-webp-to-apng">GIF to WEBP</a>
+            </li>
+            <li><a target="_blank" href="/video-to-gif">MP4 to GIF</a></li>
+            <li><a target="_blank" href="/gif-merge">GIF combiner</a></li>
+            <li><a target="_blank" href="/gif-reverse">reverse gif</a></li>
+          </ul>
+        </div>
+        <div class="conBox_kkdj93_93">
+      
+          <img loading="lazy" width="500" height="500" style="width: 200px;" src="/assets/images/gif-crop/gif-crop.jpg" alt="Free online Gif cropper, can batch crop Gifs, ImagesTool.com Gif tool">
+      
+      
+      
+          <h2>How to batch crop Gifs online?</h2>
+          <br>
+          <p>
+            ImagesTool Cropper is a simple and easy-to-use free online Gif cropping tool that is very fast and does not lose the quality of the Gif at all. It only takes a few seconds to crop the Gif image file into a new Gif image file.
+          </p>
+          <p>
+            What's even better is that if the GIfs you import have the same dimensions, you can use the synchronized cropping feature. When importing GIFs of the same size, the "Start sync crop" button will appear below the "Start" button. After setting the cropping area of ​​the first Gif, you do not need to set it separately for each subsequent Gif. Click the "Start sync crop" button to complete the cropping of all Gifs at the same position. Double the efficiency!
+          </p>
+          <br>
+          <ul>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">1</div>
+                <h3>Import GIFs</h3>
+              </div>
+              <p class="m_t_5">
+                Click the "Select File" button and select the GIF image or drag the GIF image to this page.
+              </p>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">2</div>
+                <h3>Set the parameters of the GIF cropper</h3>
+              </div>
+              <ol class="m_t_5">
+                <li class="m_t_5">
+                  <br>
+                  <h4>
+                    <strong>Move the cropping frame</strong>
+                  </h4>
+                  <p>Hold down the left mouse button and drag the area you want to crop on the Gif.</p>
+                </li>
+                <br>
+                <li>
+                  <h4>
+                    <strong>Modify crop size</strong>
+                  </h4>
+                  <p>
+                    You can also change the size of the cropping box by holding down the left mouse button on the control points around it. Or click the pen icon button below the preview image to output the specific width and height (in pixels).
+                  </p>
+                </li>
+      
+                <br>
+                <li>
+                  <h4>
+                    <strong>Modify the proportion of the cropping frame</strong>
+                  </h4>
+                  <p>
+                    You can choose one of the predefined aspect ratios: 16:9, 9:16, 4:3, 3:2, 1:1. When you select a certain ratio, the cropping frame will remain enlarged or reduced at the set ratio. If you need to customize the ratio, click the "plus" icon button and enter the value of the aspect ratio you need.
+                  </p>
+                  <p>After selecting "Free", you can freely select the area to be cropped.</p>
+                  <img loading="lazy" width="738" height="218" style="max-width: 460px; margin-bottom: 0" src="/assets/images/gif-crop/Customize the cropping frame ratio.jpg" alt="Customize the cropping frame ratio">
+      
+      
+                </li>
+                <br>
+                <li class="m_t_5">
+                  <h4>
+                    <strong>Rotate and flip Gif</strong>
+                  </h4>
+                  <p>
+                    Click the button of the rotation icon to rotate the entire Gif by 0 degrees, 90 degrees, 180 degrees and 270 degrees.
+                  </p>
+                  <p>Click the flip horizontal icon and flip vertical icon to flip the entire GIf.</p>
+                </li>
+                <br>
+              </ol>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">3</div>
+                <h3>Export cropped GIF</h3>
+              </div>
+              <p class="m_t_5">
+                Click the "Start" button in the lower right corner, wait for the processing to complete, and then click the "Download zip" button.
+              </p>
+            </li>
+          </ul>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">GIF cropper demo</h2>
+          <br>
+          <p>
+            imagesTool GIF Cropper is designed to help you quickly complete the cropping of GIF image files, and the cropping maintains the original image quality.
+          </p>
+          <p>The following video demonstrates the complete workflow of GIF cropping using the ImagesTool Gif Cropper. It takes 2 seconds to crop 2 Gifs.</p>
+          <p>
+            <video class="video_lazy_css92893" controls="" width="1000" height="450" preload="metadata">
+              <source src="/assets/images/gif-crop/imagesTool-com-split-images-gif-crop-operation-demonstration.mp4" type="video/mp4">
+            </video>
+            </p><p>
+              Image source: (Use
+               <a target="_blank" href="/video-to-gif">Video to GIF</a> 
+              and
+               <a target="_blank" href="/video-clips-to-gif">edit the video and then convert to GIF</a> 
+              to create original high-definition GIF,)
+            </p>
+            <code>
+              Video Source: reddit cat
+              <br>
+              <a target="_blank" href="https://www.reddit.com/r/cats/comments/11k18s4/learning_self_control/">https://www.reddit.com/r/cats/comments/11k18s4/learning_self_control/</a>
+              <br>
+              <a target="_blank" href="https://www.reddit.com/r/aww/comments/12drwm0/where_did_that_darn_cat_get_to/">https://www.reddit.com/r/aww/comments/12drwm0/where_did_that_darn_cat_get_to/</a>
+            </code>
+          <p></p>
+      
+      
+          <p>Data results</p>
+          
+      
+      
+      
+      
+          <table>
+            <thead>
+              <tr><th>Gif picture name</th>
+              <th>GIF before cropping</th>
+              <th><b class="tip_js0">Cropped GIF</b></th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td>cat climbing tree.gif</td>
+                <td>272x480px / 13.7MB</td>
+                <td class="tip_js0">200x200 / 8.1MB / <b>-57%</b></td>
+              </tr>
+              <tr>
+                <td>hesitant cat</td>
+                <td>230x408px / 18.8MB</td>
+                <td class="tip_js0">160x480 (2:6) / 8.4MB / <b>-39%</b></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <p>
+            After cropping the Gif, you can also use
+             <a target="_blank" href="/gif-compress">GIF Compressor</a> 
+            to batch compress the GIf.
+          </p>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">GIF batch cropper with truly lossless image quality</h2>
+          <br>
+          <p>
+            By comparing the two Gif examples in the video just now, we can find that the image quality of GIf before and after cropping remains completely unchanged.
+          </p>
+      
+          <img loading="lazy" width="988" height="520" style="max-width: 600px; margin-bottom: 0" src="/assets/images/gif-crop/GIF after and before cropping.jpg" alt="Lossless GIf batch cropper - GIF after and before cropping, no loss of image quality">
+         
+        </div>
+      
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">Why can't I find the "Start sync crop" button after importing multiple GIFs?</h2>
+          <br>
+        
+          <p>
+            You need to import <strong>Gifs of the same size</strong> before the "Start synchronous cropping" button will appear, because true synchronous cropping cannot be achieved if the sizes of GIfs are different.
+          </p>
+          <p>
+            But you can still set separate cropping settings for each Gif. If you need to crop Gifs of different sizes to the same size, as shown in the figure below, you can set the specific cropping box width and height, and then click "Apply to All" Image" button. This way you can set the same cropping area size for all gifs
+          </p>
+      
+          <img loading="lazy" width="1280" height="920" src="/assets/images/gif-crop/Set the same crop area size for all gifs.jpg" alt="After setting the cropping width and height, apply it to all gifs to set the same cropping area size for all gifs">
+         
+        </div>
+      
+        
+      
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>Other tools</h2>
+      
+          <h3>Compress Pictures</h3>
+          <ul>
+            <li><a target="_blank" href="/compress-images">JPG compressor</a></li>
+            <li><a target="_blank" href="/compress-images">PNG compressor</a></li>
+            <li><a target="_blank" href="/compress-images">SVG compressor</a></li>
+          </ul>
+      
+          <h3>Convert JPG</h3>
+          <ul>
+            <li><a target="_blank" href="/convert-images">WEBP to JPG</a></li>
+            <li><a target="_blank" href="/convert-images">AVIF to JPG</a></li>
+      
+            <li><a target="_blank" href="/convert-images">HEIC to JPG</a></li>
+            <li><a target="_blank" href="/convert-images">PSD to JPG</a></li>
+            <li><a target="_blank" href="/convert-images">PDF to JPG</a></li>
+            <li><a target="_blank" href="/convert-images">SVG to JPG</a></li>
+            <li><a target="_blank" href="/convert-images">JPG to WEBP</a></li>
+            <li><a target="_blank" href="/convert-images">JPG to AVIF</a></li>
+            <li><a target="_blank" href="/convert-images">JPG to PNG</a></li>
+          </ul>
+      
+          <h3>Convert GIF</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/git-to-webp-to-apng">WEBP to GIF</a>
+            </li>
+            <li>
+              <a target="_blank" href="/git-to-webp-to-apng">APNG to GIF</a>
+            </li>
+            <li><a target="_blank" href="/video-to-gif">MP4 to GIF</a></li>
+            <li>
+              <a target="_blank" href="/video-clips-to-gif">Convert video to GIF after editing</a>
+            </li>
+          </ul>
+      
+          <h3>Convert WEBP animation</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/git-to-webp-to-apng">GIF to WEBP converter</a>
+            </li>
+            <li>
+              <a target="_blank" href="/git-to-webp-to-apng">APNG to WEBP converter</a>
+            </li>
+            <li><a target="_blank" href="/video-to-gif">MP4 to WEBP converter</a></li>
+            <li>
+              <a target="_blank" href="/video-clips-to-gif">Convert video to WEBP after editing</a>
+            </li>
+          </ul>
+      
+          <h3>Other tools</h3>
+          <ul>
+            <li><a target="_blank" href="/crop-images">picture cropper</a></li>
+            <li><a target="_blank" href="/images-watermark">Add watermark to pictures</a></li>
+            <li><a target="_blank" href="/image-exif">View image Exif information</a></li>
+            <li>
+              <a target="_blank" href="/resize-images">Image resizer</a>
+            </li>
+            <li>
+              <a target="_blank" href="/split-images">picture splitter</a>
+            </li>
+            <li>
+              <a target="_blank" href="/webp2jpg-online/splicing#/splicing">Picture stitcher</a>
+            </li>
+            <li>
+              <a target="_blank" href="/compress-images">picture compressor</a>
+            </li>
+            <li>
+              <a target="_blank" href="/convert-images">Picture converter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+
+
+
+
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

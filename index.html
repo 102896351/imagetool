@@ -1,0 +1,819 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Process images online without uploading files</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Faster and safer, 100% free and unlimited files">
+    <meta name="keywords" content=" Online image processing, batch conversion of images, batch compression of images, webp to jpg, video to gif, gif to webp ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/">
+    <meta property="og:site_name" content="Process images online without uploading files">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Process images online without uploading files">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Faster and safer, 100% free and unlimited files">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/">
+
+    <script>
+      if (window.navigator && window.navigator.language && window.navigator.language === 'zh-CN' && !localStorage.getItem('cnusertocnpage_ks92')) {
+          localStorage.setItem('cnusertocnpage_ks92', '1')
+          location.href='https://imagestool.com/zh_CN/'
+      }
+    </script>
+
+    
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Process images online without uploading files",
+  "url": "https://imagestool.com/",
+  "description": "Faster and safer, 100% free and unlimited files",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> Sorry, imagestool.com will not work properly without javascript enabled. </strong></noscript>
+    <div id="app"><header class="Header"><div class="n3 color_bg white p_t_10 p_b_10"><div class="w_100 flex_between"><div class="flex_center"><div><i class="iconfont icon-checkbox-circle-fill f_s_26 m_r_10"></i></div><div class="flex_center"><b class="f_s_16"> The browser perfectly supports the full functionality of the website! </b></div></div><button type="button" class="Button  text size1     "><i class="iconfont icon-close-circle-line f_s_26"></i></button></div></div><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> All tools </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/convert-images" target=""> Convert images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/splice-images" target=""> splice images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/images-watermark" target=""> Image watermarking </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/resize-images" target=""> Adjust image size </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/crop-images" target=""> Crop image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/compress-images" target=""> Compress image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/image-exif" target=""> Read exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/split-images" target=""> Split images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/video-to-gif" target=""> Video to gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/video-clips-to-gif" target=""> Edit video and convert to gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><main class=" "><div class="n1 w_100 flex_column"><div class="title   w_1600 flex_column"><h1 class="f_s_50 l_h_50 t_a_c titleKey" style="padding: 0px 5%;"> Process images online without uploading files </h1><p class="f_s_20 l_h_20 f_w_300 m_t_10    p_t_10 descriptionKey"> Faster and safer, 100% free and unlimited files </p><p class="keywordsKey" style="display: none;"> Online image processing, batch conversion of images, batch compression of images, webp to jpg, video to gif, gif to webp </p><div class="flex_between"><div></div></div></div><div class="hr color_bg w_300 op_2 m_t_40"></div><h2 id="anchor1" class="white f_s_30 l_h_30 m_t_20 m_b_20"> image tool </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/convert-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-arrow-left-right-line"></i></div><div><h2 class="m_b_5 m_t_15"> Convert images </h2><p class="op_6 f_s_12 l_h_14
+                 "> Support converting more than 60 formats such as pdf, psd, heic, raw, tiff to jpg, webp, png </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/splice-images" target=""><div class="appIcon purple  flex_center2"><i class="iconfont icon-layout-masonry-fill"></i></div><div><h2 class="m_b_5 m_t_15"> splice images </h2><p class="op_6 f_s_12 l_h_14
+                 "> Support long image, subtitle and grid mode </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/images-watermark" target=""><div class="appIcon red flex_center2"><i class="iconfont icon-star-smile-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Image watermarking </h2><p class="op_6 f_s_12 l_h_14
+                 "> Add text or image watermark, support tile, random, variable, banner mode </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/resize-images" target=""><div class="appIcon purple flex_center2"><i class="iconfont icon-picture-in-picture-exit-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Adjust image size </h2><p class="op_6 f_s_12 l_h_14
+                 "> Adjust the size or aspect ratio of image, support multiple sizes of output at the same time </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/crop-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-crop-line "></i></div><div><h2 class="m_b_5 m_t_15"> Crop image </h2><p class="op_6 f_s_12 l_h_14
+                 "> Supports cropping after rotation or flipping, and supports simultaneous cropping when importing images of the same size </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/compress-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compress image </h2><p class="op_6 f_s_12 l_h_14 "> Support compressed jpg, webp, png, svg, gif animation, apng animation </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/compress-jpg-and-keep-exif" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compress jpg and keep exif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Support batch compress jpg and keep exif data completely </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/compress-images-to-specified-size" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-line " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compress image to specified size </h2><p class="op_6 f_s_12 l_h_14
+                 "> Batch compress jpg, webp to specified file size </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/image-exif" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-qr-scan--line "></i></div><div><h2 class="m_b_5 m_t_15"> Read exif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Including dozens of information such as gps, altitude, camera manufacturer, exposure time, etc., supports importing jpg, heic, raw </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/split-images" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-slice-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Split images </h2><p class="op_6 f_s_12 l_h_14
+                 "> Support crop, split line, grid mode </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div><h2 id="anchor2" class="white f_s_30 l_h_30 m_t_50 m_b_30"> Gif tool </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/gif-compress" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Gif compression </h2><p class="op_6 f_s_12 l_h_14
+                 "> Batch compress gif, support to choose different compression strength </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/gif-crop" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-crop-line "></i></div><div><h2 class="m_b_5 m_t_15"> Gif crop </h2><p class="op_6 f_s_12 l_h_14
+                 "> Batch crop gif images </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/gif-extract-frame" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-stack-overflow-line " style="transform: rotate(90deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Extract frames from gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> images of all frames extracted from gif, webp, apng </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/gif-merge" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-film-line " style="margin: 5px 20px 10px 0px; transform: scale(0.8, 0.8);"></i><i class="iconfont icon-film-line  " style="transform: scale(0.5, 0.5); position: absolute; bottom: 0px; right: -10px;"></i></div><div><h2 class="m_b_5 m_t_15"> Gif merge </h2><p class="op_6 f_s_12 l_h_14
+                 "> Merge multiple gifs into one gif, drag to adjust the order, and automatically adjust the size of the merged gif. </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/gif-reverse" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-rewind-fill " style="transform: scale(0.8);"></i></div><div><h2 class="m_b_5 m_t_15"> Gif upside down </h2><p class="op_6 f_s_12 l_h_14
+                 "> Reverse the playback order of gifs </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/git-to-webp-to-apng" target=""><div class="appIcon red flex_center2"><i class="iconfont icon-arrow-left-right-line"></i></div><div><h2 class="m_b_5 m_t_15"> Gif to webp to apng </h2><p class="op_6 f_s_12 l_h_14
+                 "> Convert gif, webp, apng to each other, support to modify the size </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div><h2 id="anchor2" class="white f_s_30 l_h_30 m_t_50 m_b_30"> Video tool </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/video-to-gif" target=""><div class="appIcon  purple flex_center2"><i class="iconfont icon-video-fill "></i></div><div><h2 class="m_b_5 m_t_15"> Video to gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Batch convert video to hd gif, support output gif, webp </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/video-clips-to-gif" target=""><div class="appIcon  purple flex_center2"><i class="iconfont icon-scissors-line "></i></div><div><h2 class="m_b_5 m_t_15"> Edit video and convert to gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> After editing or cropping the video, convert it to high-definition gif, and support compressed gif, support output gif, webp </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div></div></main><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> No need to upload files, more privacy </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com all tools are implemented using browser browser technology </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> No need to upload files </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Faster with javascript </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> Files are 100% secure </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div>
+
+
+                 <style>
+                    @import url("/assets/css/newC.css");
+                  </style>
+                  <div class="newContentBox_94kd5l_93">
+                      <div class="conBox_kkdj93_93">
+                        <h2> Why is ImagesTool the best choice for converting and compressing images online? </h2>
+                        <br>
+                        <ul>
+                          <li>
+                            <div class="flex gap_5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                                <path fill="#4b9abe" d="M208 40H48a16 16 0 0 0-16 16v58.77c0 89.61 75.82 119.34 91 124.39a15.53 15.53 0 0 0 10 0c15.2-5.05 91-34.78 91-124.39V56a16 16 0 0 0-16-16Zm-34.34 69.66l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.68l50.34-50.34a8 8 0 0 1 11.32 11.32Z"></path>
+                              </svg>
+                              <h3> Free and safe </h3>
+                            </div>
+                            <p class="m_t_5"> 
+                              100% free, no file restrictions.  All of ImagesTool's online tools use browser technology for image processing. The imported files are always on your device and will not be uploaded, protecting your privacy to the greatest extent.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <div class="flex gap_5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                                <path fill="#4b9abe" d="m235.39 84.07l-28.15 24l8.43 35.73a13.09 13.09 0 0 1-5 13.58a13.25 13.25 0 0 1-14.63.7l-32-19l-32 19a13.25 13.25 0 0 1-14.63-.7a13.1 13.1 0 0 1-5-13.58l8.43-35.73l-28.16-24A13.13 13.13 0 0 1 100.1 61l37.23-3.15L151.85 24a13.24 13.24 0 0 1 24.31 0l14.52 33.87L227.9 61a13.12 13.12 0 0 1 7.49 23.06ZM85.66 114.34a8 8 0 0 0-11.32 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0 0-11.32Zm16 56a8 8 0 0 0-11.32 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0 0-11.32Zm60.69 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0-11.31-11.32Z"></path>
+                              </svg>
+                              <h3> Our unique style </h3>
+                            </div>
+                            <p class="m_t_5"> 
+                              Compared with other online image processing websites, ImagesTool.com does not need to upload your files. Instead, it uses browser technology to process images. Therefore, ImagesTool is an online website that can better protect your privacy and security and allows you to use it with peace of mind. tool.
+                               <br> 
+                              Compared with the local client software that needs to be installed, ImagesTool is more convenient and faster, and can be used by opening it in the browser.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <div class="flex gap_5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                                <path fill="#4b9abe" d="M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.07 8.07 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96ZM56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Zm16 0a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"></path>
+                              </svg>
+                              <h3> best quality </h3>
+                            </div>
+                            <p class="m_t_5"> 
+                              We use original software to ensure our tools convert and compress with the highest quality and exceptional processing speed
+                             </p>
+                          </li>
+                          <li>
+                            <div class="flex gap_5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                                <path fill="#4b9abe" d="M216 40H72a16 16 0 0 0-16 16v16H40a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16Zm-32 48v16H40V88Zm32 80h-16V88a16 16 0 0 0-16-16H72V56h144Z"></path>
+                              </svg>
+                              <h3> good compatibility </h3>
+                            </div>
+                            <p class="m_t_5"> 
+                              ImagesTool - Conversion and compression tool that runs in major browsers and supports mobile phones or tablets.  Please give priority to using Chrome browser or Chromium core browser.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <div class="flex gap_5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                                <path fill="#4b9abe" d="M128 24c-53.83 0-96 24.6-96 56v96c0 31.4 42.17 56 96 56s96-24.6 96-56V80c0-31.4-42.17-56-96-56Zm80 104c0 9.62-7.88 19.43-21.61 26.92C170.93 163.35 150.19 168 128 168s-42.93-4.65-58.39-13.08C55.88 147.43 48 137.62 48 128v-16.64c17.06 15 46.23 24.64 80 24.64s62.94-9.68 80-24.64Zm-21.61 74.92C170.93 211.35 150.19 216 128 216s-42.93-4.65-58.39-13.08C55.88 195.43 48 185.62 48 176v-16.64c17.06 15 46.23 24.64 80 24.64s62.94-9.68 80-24.64V176c0 9.62-7.88 19.43-21.61 26.92Z"></path>
+                              </svg>
+                              <h3> Auto save settings </h3>
+                            </div>
+                            <p class="m_t_5"> 
+                              The parameters you modify will remain in your browser, and when you open it next time, the parameters will be restored to your last settings, so you don't need to repeat the settings every time.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <div class="flex gap_5">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                                <path fill="#4b9abe" d="M238.64 78.62A31.9 31.9 0 0 1 216 88a32.33 32.33 0 0 1-7.64-.92l-26.63 49.46c.3.28.6.56.89.85a32 32 0 1 1-50.2 6.38l-20.18-20.18A32 32 0 0 1 96 128a32.4 32.4 0 0 1-7.65-.91l-26.63 49.44c.3.28.61.56.9.85a32 32 0 1 1-45.26 0a32 32 0 0 1 30.27-8.44l26.63-49.46c-.3-.28-.6-.56-.89-.85a32 32 0 0 1 0-45.26a32 32 0 0 1 50.2 38.89l20.18 20.18a32.19 32.19 0 0 1 23.9-3.5l26.63-49.46c-.3-.28-.61-.56-.9-.85a32 32 0 0 1 0-45.26a32 32 0 0 1 45.26 45.26Z"></path>
+                              </svg>
+                              <h3> Pipeline processing pictures </h3>
+                            </div>
+                            <p class="m_t_5"> 
+                              It supports processing images like an assembly line. For example, after you "crop" a batch of images, you can click the "Compress Image" icon on the right side of the download interface, and it will jump to the "Compress Image" interface and automatically import it. You just cropped the picture, so you don't need to import and export the file repeatedly.
+                             </p>
+                          </li>
+                        </ul>
+                      </div>
+                    
+                      <div class="conBox_kkdj93_93">
+                        <h2> Batch processing of images is our strength </h2>
+                        <p> 
+                          ImagesTool has a variety of online tools for batch processing of images to meet your needs of converting, compressing, and cropping images.
+                         </p>
+                        <br>
+                        <ul>
+                          <li>
+                            <h3> Convert pictures in batches </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/convert-images"> The convert-images </a>  
+                              online tool is a powerful image conversion tool that supports the conversion of more than 60 image formats such as webp, png, svg, avif, pdf, heic, psd, tif, etc. In addition, you can also set the converted The picture quality, size and converted picture format (jpg, png, webp, avif optional)
+                             </p>
+                          </li>
+                          <li>
+                            <h3> Convert PDF to JPG </h3>
+                            <p class="m_t_5"> 
+                              Use
+                               the  <a target="_blank" href="/convert-images"> convert-images </a>  
+                              online tool to convert your PDF files into jpg images within one minute. You can set the width of the jpg. The default is 1500px. You can set it to any width you want. There are no restrictions at all. Exporting jpg will Maintain the highest definition picture quality
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Batch compress jpg </h3>
+                            <p class="m_t_5"> 
+                              Use
+                                <a target="_blank" href="/compress-images"> the compress-images </a>  
+                              online tool to compress your JPG images in a few seconds. After our testing, using the default "lossless" parameters can reduce the file size of jpg images by 60% to 80%.  After the compression is completed, you can click on the image to view the comparison effect before and after compression. Using our "lossless" compressed jpg image, you can almost see the difference in image quality before and after compression.
+                             </p>
+                          </li>
+                          <li>
+                            <h3> Batch compress png </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/compress-images"> The compress-images </a>  
+                              online tool also supports PNG compression. After testing, the compression effect on photo PNG cutout materials is amazing. Not only is there no loss in image quality, but the PNG image file size is reduced by approximately 30% to 60%.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Batch compress jpg to specified size </h3>
+                            <p class="m_t_5"> 
+                              Sometimes we need a clear value to limit the file size of jpg, then
+                                <a target="_blank" href="/compress-images-to-specified-size"> the compress-images-to-specified-size </a>  online tool can help you solve the problem. For example, after setting no more than 320Kb, the exported jpg image will be limited to 320Kb. Within.  By analogy, you can also set it to no more than 100Kb or 200Kb according to your needs. This value can be set arbitrarily.
+                               <br> 
+                              In addition, it also supports compressing webp to a fixed size.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Compress jpg in batches and preserve exif </h3>
+                            <p class="m_t_5"> 
+                              When you publish the photos you took on the Internet, you need to retain the exif information of the photos to facilitate others to check the detailed shooting parameters of the photos. However, the original jpg file is very large in size and is not conducive to dissemination on the Internet.
+                               <br> 
+                              At this time, you can use our
+                                <a target="_blank" href="/compress-jpg-and-keep-exif"> compress-jpg-and-keep-exif</a>  online tool to compress jpg and completely retain the exif data of the photo, compressing the original jpg photo of several Mb or even dozens of Mb to hundreds of Kb.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Add watermark to batch pictures </h3>
+                            <p class="m_t_5"> 
+                              When you need to add watermarks to a batch of images,
+                                <a target="_blank" href="/images-watermark"> the images-watermark </a>  
+                              online tool is your best choice. It supports adding text watermarks, and you can also import images as watermarks.  This online tool uses a friendly interface design, and you can drag the watermark to adjust its position.  You can also set tiled watermarks to cover images and protect the copyright of your images.
+                               <br> 
+                              We especially recommend you to use "random" watermarks, which can achieve different watermark positions for each picture. In addition to the position, the transparency and rotation angle of the watermark can also be set.
+                               <br> 
+                              When you change parameters, the tool interface will also change instantly, making it easy to use what you see is what you get.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Crop pictures in batches </h3>
+                            <p class="m_t_5"> 
+                              Using
+                                <a target="_blank" href="/crop-images"> the crop-images </a>  
+                              online tool you can set individual crop settings for each image, just drag the crop box.  At the same time, you can also rotate and flip the image. If you need to limit the cropping ratio, you can click the ratio button. The default support is 16:9, 9:16, 4:3, 3:2, 1:1, or click the plus button. Add your proportions however you want.
+                               <br> 
+                              The biggest feature of this tool is that when you import pictures of the same size, you only need to set the cropping frame of the first picture, and then click "Synchronized Cropping" to achieve true batch cropping of pictures.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Batch resize images </h3>
+                            <p class="m_t_5"> 
+                              Using
+                                <a target="_blank" href="/resize-images"> the resize-images </a>  
+                              online image resizing tool, you can set "width", "height", "proportional scaling" or "width and height".  When you set the "Width and Height" you can set the image background color and image layout mode.
+                               <br> 
+                              You can add multiple resizing configurations, for example, import a 1000x1000px image, and then set two resizing plans of 600x400px and scaling 50%, then two images of 600x400px and 500x500px will be exported.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Read exif information of JPG </h3>
+                            <p class="m_t_5"> 
+                              Use
+                                <a target="_blank" href="/image-exif"> image-exif </a>  
+                              to view the exif information of jpg online, supporting reading the geographical location information (GPS), camera information, time information, altitude, speed, longitude, latitude, camera model, manufacturer, image shooting time, flash, and shutter of the image Time, aperture value, focal length, lens model and other information.
+                               <br> 
+                              In addition to jpg, multiple formats are also supported:  <span style="font-size: 12px"> HEIC, HEIF, CR2, RW2, NEF, ARW, SR2, ORF, PEF, RAF, SRW, MRW, DCR, DNG, ERF, 3FR, ARI SRF, BAY, CRW, CAP , IIQ, EIP, DCS, DRF, K25, KDC, FFF, MEF, MOS, NRW, PTX, PXN, R3D, RWL, RWZ, X3F, MDC, </span>
+                            </p>
+                          </li>
+                        </ul>
+                        <br>
+                        <br>
+                    
+                        <h2> GIF online tool </h2>
+                        <br>
+                    
+                        <ul style="display: flex; flex-direction: column; gap: 20px; text-align: left">
+                          <li>
+                            <h3> Convert GIF to webp in batches </h3>
+                            <p class="m_t_5"> 
+                              Use
+                                <a target="_blank" href="/git-to-webp-to-apng"> the git-to-webp-to-apng </a>  
+                              online tool to convert gif animations into webp animated pictures. In addition, you can also set the image quality of webp to compress webp. The converted webp will be larger than the original gif file size. Shrink 50% to 90%.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Batch compress GIFs </h3>
+                            <p class="m_t_5"> 
+                              Use
+                                <a target="_blank" href="/gif-compress"> the gif-compress </a>  
+                              online tool to compress your animated GIF images in a few seconds. After our testing, using the default "lossless" parameters can reduce the file size of GIF images by 50% to 80%.  After the compression is completed, you can click on the picture to view the comparison effect before and after compression.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Convert MP4 to GIF in batches </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/video-to-gif"> The video-to-gif </a>  
+                              online tool supports converting videos to GIF and resizing GIFs.  After checking "Compress GIF", you can compress the GIF while converting. You can set the playback frame rate of the GIF. The default is 16 frames per second. Generally speaking, we recommend a maximum of no more than 24 fps/s.
+                               <br> 
+                              We use high-definition image optimization technology for the image quality of the converted gif. The converted gif image will remain clear and will not produce grid lines.  The following is our test data.
+                               <br>
+                              <b> Case 01, uncompressed gif, takes 2 seconds </b>
+                              <br>  
+                              to import the file: video shot by mobile phone IMG_0672.mov 30FPS/s 1440x1080px 2.5MB
+                                <br> 
+                              converted gif: 12FPS/s 300x225px 1.5MB
+                                <br>
+                              <b> Case 02, compressed gif, takes 1.8 seconds </b>
+                              <br>  
+                              to import the file : Video downloaded on social media animated...medium202.mp4 123.2KB 800x600px
+                                <br> 
+                              converted gif: 800x600px 12FPS/s 625.6KB
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Convert MP4 to WEBP animation in batches </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/video-to-gif"> The video-to-gif </a>  
+                              online tool supports converting videos into webp images and can set the webp image quality (1-100%). We recommend that you set it to 86%, which will lose a little bit of image quality but greatly compress the webp file size.  The following is our test data.
+                               <br>
+                              <b> Case 01, image quality 69% </b>
+                              <br>  
+                              Imported file: video shot by mobile phone IMG_0672.mov 30FPS/s 1440x1080px 2.5MB
+                                <br> 
+                              Converted webp-01: 400x300px 16FPS/s 487.0KB
+                                <br> 
+                              Converted webp-02 which took 2 seconds: 1440x1080px 16FPS /s 2.1MB takes 10 seconds
+                                <br>
+                              <b> Case 02, image quality 86% takes 6 seconds </b>
+                              <br>  
+                              Imported file: video downloaded from social media cat...Twitte.mp4 27FPS/s 720x1280px 1MB
+                                <br> 
+                              converted webp: 360x640px 16FPS/s 2.6MB
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Clip MP4 clips and convert to GIF </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/video-clips-to-gif"> Edit video and convert to gif </a>  online tool is a powerful tool for converting long video or mp4 movie files into gif.
+                               <br> 
+                              Sometimes when we want to convert a few seconds of a movie into a gif, a simple video to gif tool does not meet the actual needs.  Because when you need to convert a relatively long video into a gif, it will take a very long time, and most of the time we don't need the entire video content, but a few small fragments in the video.
+                               <br> 
+                              So I added this online tool that can edit video clips.  You can drag to select one or several clips in the video, and then convert this clip into a gif or webp.
+                               <br> 
+                              The steps are as follows:
+                                <br> 
+                              01. Import video files, within 1GB, depending on the memory size of your computer.
+                               <br> 
+                              02. Drag the clip selection box to select the video range you need
+                                <br> 
+                              03. Crop the selected clip (optional)
+                                <br> 
+                              04. Click the pink "Start Export" button to complete
+                                <br> 
+                              In general, this is a video editing tool that combines , all-in-one online tool for cropping videos, converting videos and compressing GIFs.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Crop GIF images in batches </h3>
+                            <p class="m_t_5"> 
+                              Using
+                                <a target="_blank" href="/gif-crop"> the gif-crop </a>  
+                              online tool, you can make individual cropping settings for gif images, just drag the cropping box.  The default supports proportional cropping of 16:9, 9:16, 4:3, 3:2, 1:1, or click the plus button to add the ratio you want.
+                               <br> 
+                              The cropping speed is extremely fast and the cropped GIF will not lose any quality.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Extract all frames of GIF </h3>
+                            <p class="m_t_5"> 
+                              Using
+                                <a target="_blank" href="/gif-extract-frame"> the gif-extract-frame </a>  
+                              online tool, you can convert all frames of gif into png images. In addition, webp animated images and apng animated images are also supported.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Combine multiple GIFs into 1 GIF </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/gif-merge"> The gif-merge </a>  
+                              online tool can merge multiple gifs into one gif. You can drag the gifs to adjust the playback order of each gif.
+                               <br> 
+                              When the imported gifs have different sizes, you can set the width and height, and then set the layout mode to "covered width" to preserve the consistency of the screen.
+                             </p>
+                          </li>
+                    
+                          <li>
+                            <h3> Play GIF in reverse </h3>
+                            <p class="m_t_5">
+                              <a target="_blank" href="/gif-reverse"> The gif-reverse </a>  
+                              online tool can reverse the playback order of gifs and achieve the effect of playing gifs backwards.
+                             </p>
+                          </li>
+                        </ul>
+                      </div>
+                    
+                      <div class="conBox_kkdj93_93">
+                        <div class="acc_ksl93ms">
+                          <div class="acc_ksl9302">
+                            <span>&gt;</span>
+                            <h2> Does ImagesTool have a limit on the number of files? </h2>
+                          </div>
+                          <div class="accb_93jsk9">
+                            <div>
+                              <p> 
+                                There is no file limit, it depends on your computer performance, we recommend processing up to 300 pictures at a time, each picture within 20Mb.  psd, tiff and psd are recommended to be within 100Mb.  The video is recommended to be within 1000Mb.
+                               </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acc_ksl93ms">
+                          <div class="acc_ksl9302">
+                            <span> &gt; </span>
+                            <h2> Does ImagesTool support importing folders?  Can the folder structure be restored? </h2>
+                          </div>
+                          <div class="accb_93jsk9">
+                            <div>
+                              <p> 
+                                Yes, you can click the "Import Folder" button, or drag the folder onto this page. When prompted, drag the folder to the "Drag Folder Here" area below.
+                                 <br> 
+                                When the processing is completed, the original folder structure will be maintained in the exported zip.
+                               </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acc_ksl93ms">
+                          <div class="acc_ksl9302">
+                            <span> &gt; </span>
+                            <h2> Do I need to set the parameters repeatedly every time? </h2>
+                          </div>
+                          <div class="accb_93jsk9">
+                            <div>
+                              <p> 
+                                There is no need to repeat settings. Every time you modify the parameters, they will be saved in the browser. When you open it next time, ImagesTool will read the last set parameters.
+                               </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acc_ksl93ms">
+                          <div class="acc_ksl9302">
+                            <span> &gt; </span>
+                            <h2> Can I use ImagesTool on my phone or tablet? </h2>
+                          </div>
+                          <div class="accb_93jsk9">
+                            <div>
+                              <p> 
+                                Most of the time it is possible, we make a responsive design for the web page.  If you need to process a large number of images, we recommend using it on a computer (PC), and giving priority to the Chrome browser or the Chromium core browser.
+                                 <br>
+                                <br> 
+                                If you are currently using the Chrome browser, you can right-click in a blank space and click "Generate QR code for this page", and then scan the QR code with your mobile phone to access the mobile version of ImagesTool.com
+                               </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="conBox_kkdj93_93 abTls83_93">
+                        <h2> Related tools </h2>
+                    
+                        <h3> Compress Pictures </h3>
+                        <ul>
+                          <li><a target="_blank" href="/compress-images"> Compress JPG </a></li>
+                          <li><a target="_blank" href="/compress-images"> Compress PNG </a></li>
+                          <li><a target="_blank" href="/compress-images"> Compress SVG </a></li>
+                        </ul>
+                    
+                        <h3> Convert JPG </h3>
+                        <ul>
+                          <li><a target="_blank" href="/convert-images"> WEBP to JPG </a></li>
+                          <li><a target="_blank" href="/convert-images"> AVIF to JPG </a></li>
+                    
+                          <li><a target="_blank" href="/convert-images"> HEIC to JPG </a></li>
+                          <li><a target="_blank" href="/convert-images"> PSD to JPG </a></li>
+                          <li><a target="_blank" href="/convert-images"> PDF to JPG </a></li>
+                          <li><a target="_blank" href="/convert-images"> SVG to JPG </a></li>
+                          <li><a target="_blank" href="/convert-images"> JPG to WEBP </a></li>
+                          <li><a target="_blank" href="/convert-images"> JPG to AVIF </a></li>
+                          <li><a target="_blank" href="/convert-images"> JPG to PNG </a></li>
+                        </ul>
+                    
+                        <h3> Convert GIF </h3>
+                        <ul>
+                          <li><a target="_blank" href="/git-to-webp-to-apng"> WEBP to GIF </a></li>
+                          <li><a target="_blank" href="/git-to-webp-to-apng"> APNG to GIF </a></li>
+                          <li><a target="_blank" href="/video-to-gif"> MP4 to GIF </a></li>
+                          <li>
+                            <a target="_blank" href="/video-clips-to-gif"> Convert video to GIF after editing </a>
+                          </li>
+                        </ul>
+                    
+                        <h3> Convert WEBP animation </h3>
+                        <ul>
+                          <li><a target="_blank" href="/git-to-webp-to-apng"> GIF to WEBP </a></li>
+                          <li><a target="_blank" href="/git-to-webp-to-apng"> APNG to WEBP </a></li>
+                          <li><a target="_blank" href="/video-to-gif"> MP4 to WEBP </a></li>
+                          <li>
+                            <a target="_blank" href="/video-clips-to-gif"> Convert video to WEBP after editing </a>
+                          </li>
+                        </ul>
+                    
+                        <h3> Other tools </h3>
+                        <ul>
+                          <li><a target="_blank" href="/crop-images"> Crop picture </a></li>
+                          <li><a target="_blank" href="/images-watermark"> Add watermark to pictures </a></li>
+                          <li><a target="_blank" href="/image-exif"> View image Exif information </a></li>
+                          <li>
+                            <a target="_blank" href="/resize-images"> Resize image </a>
+                          </li>
+                          <li>
+                            <a target="_blank" href="/split-images"> Split picture </a>
+                          </li>
+                          <li>
+                            <a target="_blank" href="/webp2jpg-online/splicing#/splicing"> Stitch pictures </a>
+                          </li>
+                          <li>
+                            <a target="_blank" href="/compress-images"> Compress Pictures </a>
+                          </li>
+                          <li>
+                            <a target="_blank" href="/convert-images"> Convert pictures </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  
+
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Online Free Image Cropper, Efficiently Crop JPG/PNG/WEBP/AVIF Images, No Login Required | No Upload Required</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Efficient Image Cropper: Apply different crops to each image. Features include synchronous cropping, rotation and flipping, and custom aspect ratios. Fast processing speed, and the ability to extract multiple images from a single photo. Supports cropping after rotation or flipping, and supports simultaneous cropping when importing images of the same size">
+    <meta name="keywords" content=" Batch crop images, online crop images, free crop images ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/crop-images">
+    <meta property="og:site_name" content="Crop image">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Crop image">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Supports cropping after rotation or flipping, and supports simultaneous cropping when importing images of the same size">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/crop-images">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/crop-images">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/crop-images">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/crop-images">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/crop-images">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/crop-images">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/crop-images">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/crop-images">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crop image",
+  "url": "https://imagestool.com/crop-images",
+  "description": "Efficient Image Cropper: Apply different crops to each image. Features include synchronous cropping, rotation and flipping, and custom aspect ratios. Fast processing speed, and the ability to extract multiple images from a single photo. Supports cropping after rotation or flipping, and supports simultaneous cropping when importing images of the same size",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> Sorry, imagestool.com will not work properly without javascript enabled. </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> All tools </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/convert-images" target=""> Convert images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/splice-images" target=""> splice images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/images-watermark" target=""> Image watermarking </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/resize-images" target=""> Adjust image size </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/crop-images" target=""> Crop image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/compress-images" target=""> Compress image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/image-exif" target=""> Read exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/split-images" target=""> Split images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/video-to-gif" target=""> Video to gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/video-clips-to-gif" target=""> Edit video and convert to gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon blue flex_center2"><i class="iconfont icon-crop-line "></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> Crop image </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> Supports cropping after rotation or flipping, and supports simultaneous cropping when importing images of the same size </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> Drag file here </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> Select the file </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> Select folder </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> Paste image (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> About this tool </h2><div class="catImg"><img alt="" src="/images/about/4.webp"></div><br><h3 class="m_b_10"> List of supported formats </h3><div class="m_r_5 size2 m_b_5 Tag color">jpg</div><div class="m_r_5 size2 m_b_5 Tag color">jpeg</div><div class="m_r_5 size2 m_b_5 Tag color">png</div><div class="m_r_5 size2 m_b_5 Tag color">gif</div><div class="m_r_5 size2 m_b_5 Tag color">webp</div><div class="m_r_5 size2 m_b_5 Tag color">avif</div><div class="m_r_5 size2 m_b_5 Tag color">ico</div><div class="m_r_5 size2 m_b_5 Tag color">bmp</div><div class="m_r_5 size2 m_b_5 Tag color">svg</div><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> No need to upload files, more privacy </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com all tools are implemented using browser browser technology </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> No need to upload files </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Faster with javascript </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> Files are 100% secure </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0 p_r_20"><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round  disabled    "><i class="iconfont icon-arrow-left-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-right-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-delete-bin--line5 f_s_18 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_10 "> Crop image </h3><div><div class="flex_column"><p class="m_b_5"> Preview <button type="button" class="Button  size1     "><i class="iconfont icon-download--line f_s_14"></i></button></p><div class="flex_center2 czi" style="height: 150px; width: 100%;"><div class="img-preview fs0"></div></div></div><div class="NormalOutputConfig m_t_10"><div class="PopupContentMini" pos="2" islight="" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  sub  t2 w_100   flex_between  p_l_25 p_r_20     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-file-settings-line t2 m_r_10 f_s_18"></i><span class="f_s_14"> jpg 96% </span></span><i class="iconfont icon-arrow-down-s-fill f_s_18 blackA4"></i></button></div></div></div></div><div class="f_s_12 m_t_10 m_t_10 b_r_6 greenA3_bg p_10 green" style="display: none;"><div class="flex_between"><i class="iconfont icon-lightbulb-flash-line fs0 p_10 f_s_20"></i><span> All images are the same size, you can click "start synchronous cropping" to make all images output using the cropping configuration of the current image. </span><button type="button" class="Button  size round      "><i class="iconfont icon-close-line fs0 p_10 f_s_20"></i></button></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2      "> Start <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> File drag here </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Can read multiple files </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> Folder drag here </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Read one folder at a time </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+  <style>
+    @import url("/assets/css/newC.css");
+  </style>
+
+
+    <div class="newContentBox_94kd5l_93">
+    <div class="conBox_kkdj93_93 abTls83_93">
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Related tools</font></font></h2>
+      <br>
+
+      <ul>
+        <li>
+          <a target="_blank" href="https://to.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">New version of image cropper</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./gif-crop"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">GIF Cutter</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://to.imagestool.com/heic-to-jpg"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">HEIC to JPG</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://tiny.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Compress images</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://pdf.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PDF Toolbox</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="https://ai.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Remove image background</font></font></a>
+        </li>
+      </ul>
+    </div>
+    <div class="conBox_kkdj93_93">
+
+      <img loading="lazy" width="500" height="500" style="width: 200px;" src="/assets/images2/crop-images/Free batch cropping of images online.webp" alt="Free online batch cropping of images, supports jpg, webp, png, ImagesTool.com Gif tool">
+
+
+
+
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">How to batch crop images (jpg, webp, png, avif) online?</font></font></h2>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        ImagesTool is a free online image cropping tool that is very fast and does not lose any image quality. It only takes a few seconds to crop multiple images.
+      </font></font></p>
+      <br>
+
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">You can set a different cropping frame for each imported image, allowing you to efficiently crop multiple images at will.</font></font></p>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        Even better, when you import multiple images of the same size, a </font></font><b><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">"Start Synchronous Cropping"</font></font></b><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> button will appear. Once you've set the cropping area for the first image, you don't need to do it separately for each subsequent image. Just click the "Start Synchronous Cropping" button to crop all the images to the same position. Double your efficiency!
+      </font></font></p>
+
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        Our tool runs in the browser and does not upload your images to the server, fully protecting your privacy. It supports importing images in jpg, jpeg, png, gif (please use </font></font><a target="_blank" href="./gif-crop"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">a GIF cropper</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> ), webp, avif, ico, bmp, and svg formats.
+      </font></font></p>
+
+
+       <br>
+        <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Click the play video button below to see a demonstration of the Image Cropper's functionality.</font></font></p>
+
+        <video class="video_lazy_css92893" controls="" width="1000" height="450" preload="none" poster="/assets/images2/crop-images/Batch image cropper interface for JPG, PNG, and Webp images.webp">
+          <source src="/assets/images2/crop-images/Batch image cropper interface for JPG, PNG, and Webp images.mp4" type="video/mp4">
+        </video>
+  
+      <br>
+      <ul>
+        <li>
+          <div class="flex gap_5">
+            <div class="dot_9s9dk3">1</div>
+            <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Importing images</font></font></h3>
+          </div>
+          <p class="m_t_5"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            Click the "Choose File" button and select an image or drag an image to this page.
+          </font></font></p>
+        </li>
+        <li>
+          <div class="flex gap_5">
+            <div class="dot_9s9dk3">2</div>
+            <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Setting up the image cropper</font></font></h3>
+          </div>
+          <ol class="m_t_5">
+            <li class="m_t_5">
+              <br>
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Move the cropping frame</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Hold down the left button on the cropping frame to drag the position of the cropping frame. Slide the mouse wheel to zoom in and out of the image.</font></font></p>
+            </li>
+            <br>
+            <li>
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Modify the crop size</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                You can also hold down the left mouse button on the control points around the crop box to change the size of the crop box.
+                
+              </font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">If you need to set the crop size precisely, you can click the pen icon button below the preview image and enter the specific width and height (in pixels).</font></font></p>
+               <img loading="lazy" width="440" height="394" style="max-width: 250px; margin-bottom: 0" src="/assets/images2/crop-images/Set the width and height of the cropping box.webp" alt="Set the width and height of the cropping boxImageTool.com Crop Image Tool">
+            </li>
+
+            <br>
+            <li>
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Modify the crop frame ratio</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                You can select one of the predefined aspect ratios: 16:9, 9:16, 4:3, 3:2, and 1:1. Once you select a ratio, the cropping frame will lock into that ratio and scale up or down. If you need a custom ratio, click the button with the "plus" icon and enter the desired aspect ratio.
+              </font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">After selecting "Free", you can freely select the area to be cropped.</font></font></p>
+
+
+            </li>
+            <br>
+
+            <li class="m_t_5">
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Rotate and flip images</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                Click the button of the rotation icon to rotate the entire image by 0 degrees, 90 degrees, 180 degrees and 270 degrees.
+              </font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Click the Flip Horizontal icon and the Flip Vertical icon to flip the entire image.</font></font></p>
+            </li>
+            <img loading="lazy" width="662" height="228" style="max-width: 460px; margin-bottom: 0" src="/assets/images2/crop-images/Customize cropping ratio, rotation, and flipping.webp" alt="Customize cropping ratio, rotation, and flipping ImagesTool.com Image Crop Tool">
+            <br>
+
+          </ol>
+        </li>
+        <li>
+          <div class="flex gap_5">
+            <div class="dot_9s9dk3">3</div>
+            <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Export the cropped image</font></font></h3>
+          </div>
+          <p class="m_t_5"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            Click the "Start" button in the lower right corner, wait for the processing to complete, and then click the "Download zip" button.
+          </font></font></p>
+
+          <br>
+          <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            The default output format is jpg with 100% quality, but you can also choose png or webp format. Generally, no modification is required.
+          </font></font></p>
+          <br>
+          <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">If you </font></font><strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">are cropping a PNG image</font></font></strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> , please change the output format to PNG so that the transparent area of ​​the PNG will be retained after cropping.</font></font></p>
+          <img loading="lazy" width="436" height="216" style="max-width: 260px; margin-bottom: 0" src="/assets/images2/crop-images/If you are cropping PNG images, please change the output format to PNG.webp" alt="If you are cropping a PNG image, please change the output format to PNG, ImagesTool.com cropping tool">
+          <br>
+          <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            After cropping, if you need to compress the image losslessly, you can use
+             </font></font><a target="_blank" href="https://tiny.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">an image compressor</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> .
+          </font></font></p>
+          <br>
+          <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            Our image resizing tool is very fast. In my tests, it only takes 5 seconds to crop 80 1000x1500px images to 800x500px, and only 15 seconds to crop 60 large-size images of 5120x2880px.
+          </font></font></p>
+
+        </li>
+      </ul>
+    </div>
+
+
+       <div class="conBox_kkdj93_93">
+      <h2 id="crop_mode_id9293"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">How to quickly crop multiple different areas of an image?</font></font></h2>
+      <br>
+
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        Adjust the size and position of the cropping box at will, then click the download icon button above the preview image (it's not very conspicuous, please see the demonstration video below) to download the cropped image, and then continue to adjust the cropping box. Repeat this process to crop multiple images from one image.
+      </font></font></p>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Click the play button in the video below to see how to crop multiple images on one picture.</font></font></p>
+
+        <video class="video_lazy_css92893" controls="" width="1000" height="450" preload="none" poster="/assets/images2/crop-images/Crop multiple images of different sizes.webp">
+          <source src="/assets/images2/crop-images/Crop multiple images of different sizes.mp4" type="video/mp4">
+        </video>
+
+   
+    </div>
+
+
+    <div class="conBox_kkdj93_93">
+      <h2 id="crop_mode_id9293"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Why doesn't the "Start Synchronous Cropping" button appear after importing multiple images?</font></font></h2>
+      <br>
+
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        You need to import </font></font><strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">pictures of the same size</font></font></strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> before the "Start Synchronous Cropping" button will appear, because true synchronous cropping cannot be achieved if the pictures are of different sizes.
+      </font></font></p>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        If you need to crop images of different sizes to the same size, as shown in the figure below, you can set the specific cropping box width and height, and then click the "Apply to All Images" button. This will set the same cropping size for all images.
+      </font></font></p>
+
+      <img loading="lazy" width="1516" height="798" style="padding: 3px;" src="/assets/images2/crop-images/Set the same cropping frame size for all images simultaneously.webp" alt="Set the same cropping box size for all images at the same time, ImagesTool.com Crop Image Size Tool">
+
+    </div>
+
+
+
+      <div class="conBox_kkdj93_93">
+
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Frequently Asked Questions</font></font></h2>
+      <br>
+
+
+      <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span>&gt;</span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Does it support cropping of webp and png transparent images?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                Of course you can. Please change the output format to png or webp before exporting so that the cropped image retains the transparent areas. If you choose jpg format for export, the transparent areas will turn white.
+              </font></font></p>
+            </div>
+          </div>
+        </div>
+        <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Is the cropped image clear?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                Very clear, the default output is jpg with the highest quality, of course you can also set the output format to webp or png.
+              </font></font></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Do I need to be logged in to use the crop tool?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">No login required, 100% free to use. No limit on the number of images.</font></font></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Are my images safe when using the Crop Image Size tool?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                Of course it's safe. We use browser technology to achieve the cropping function of the image size. No upload is required. Everything happens in the browser of your device. 100% privacy protection.
+              </font></font></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Is there a limit on the number of files that ImagesTool can crop?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                There is no file limit, it depends on your computer performance. It is recommended to process no more than 300 pictures at a time, and each picture should be within 30MB.
+              </font></font></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Does ImagesTool support importing folders? Can the folder structure be restored?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                Yes, you can click the "Import Folder" button or drag a folder onto this page. When prompted, please note that you should drag the folder into
+                 </font><font dir="auto" style="vertical-align: inherit;">
+                the "Drop Folders Here" area
+                 </font></font><b><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">below</font></font></b><font dir="auto" style="vertical-align: inherit;"></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> . 
+                When the process is complete, the exported zip file will retain the original folder structure.
+              </font></font></p>
+            </div>
+          </div>
+        </div>
+        <div class="acc_ksl93ms">
+          <div class="acc_ksl9302">
+            <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Can I use ImagesTool on my phone or tablet?</font></font></h2>
+          </div>
+          <div class="accb_93jsk9">
+            <div>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                We recommend using it on a computer (PC), and preferably using the Chrome browser or Chromium-based browser.
+              </font></font></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="conBox_kkdj93_93 abTls83_93">
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Other Tools</font></font></h2>
+      <br>
+
+      <img loading="lazy" width="1800" height="852" style="width: 100%; max-width: 650px; padding: 3px" src="https://to.imagestool.com/a/images/ui/image-converter.webp" alt="New version of image converter, ImagesTool.com image cropping tool">
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        Want to resize, format, watermark, crop, add borders, background colors, or round corners to many images at once? Try our </font></font><a target="_blank" href="https://to.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">new Image Converter (converts 60 image formats)</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> and easily process 1,000 images in batches.
+
+        </font></font><br>
+
+        <br>
+      </p>
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Compress images</font></font></h3>
+      <ul>
+        <li><a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">JPG Compressor</font></font></a></li>
+        <li><a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PNG Compressor</font></font></a></li>
+        <li><a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">SVG Compressor</font></font></a></li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert JPG</font></font></h3>
+      <ul>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">WEBP to JPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">AVIF to JPG</font></font></a></li>
+
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">HEIC to JPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert PSD to JPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert PDF to JPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">SVG to JPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert JPG to WEBP</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert JPG to AVIF</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert JPG to PNG</font></font></a></li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert GIF</font></font></h3>
+      <ul>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">WEBP to GIF</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">APNG to GIF</font></font></a>
+        </li>
+        <li><a target="_blank" href="./video-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert MP4 to GIF</font></font></a></li>
+        <li>
+          <a target="_blank" href="./video-clips-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert video to GIF after editing</font></font></a>
+        </li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Convert WEBP animation</font></font></h3>
+      <ul>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">GIF to WEBP Converter</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">APNG to WEBP Converter</font></font></a>
+        </li>
+        <li><a target="_blank" href="./video-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">MP4 to WEBP Converter</font></font></a></li>
+        <li>
+          <a target="_blank" href="./video-clips-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Edit the video and convert it to WEBP</font></font></a>
+        </li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Other Tools</font></font></h3>
+      <ul>
+        <li><a target="_blank" href="./crop-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image Cropper</font></font></a></li>
+        <li><a target="_blank" href="./images-watermark"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image watermarking</font></font></a></li>
+        <li><a target="_blank" href="./image-exif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">View image Exif information</font></font></a></li>
+        <li>
+          <a target="_blank" href="./resize-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image Resizer</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./split-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image Splitter</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="/webp2jpg-online/splicing#/splicing"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image stitcher</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image compressor</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Image Converter</font></font></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

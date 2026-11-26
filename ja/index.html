@@ -1,0 +1,809 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="utf-8">
+    <title>ファイルをアップロードせずにオンラインで画像を処理する</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="より速く、より安全で、100％無料で無制限のファイル">
+    <meta name="keywords" content=" オンライン画像処理、画像のバッチ変換、画像のバッチ圧縮、webpからjpg、ビデオからgif、gifからwebp ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/ja/">
+    <meta property="og:site_name" content="ファイルをアップロードせずにオンラインで画像を処理する">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="ファイルをアップロードせずにオンラインで画像を処理する">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="より速く、より安全で、100％無料で無制限のファイル">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/ja/">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ファイルをアップロードせずにオンラインで画像を処理する",
+  "url": "https://imagestool.com/ja/",
+  "description": "より速く、より安全で、100％無料で無制限のファイル",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> 申し訳ありませんが、javascriptを有効にしないとimagestool.comは正しく機能しません。 </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/ja/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> すべてのツール </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/ja/convert-images" target=""> 写真を変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/splice-images" target=""> 写真をステッチする </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/images-watermark" target=""> 画像透かし </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/resize-images" target=""> 画像サイズを調整する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/crop-images" target=""> 写真を切り抜く </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/compress-images" target=""> 画像を圧縮する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/image-exif" target=""> Exifを読む </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/split-images" target=""> 写真を分割する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-to-gif" target=""> Gifへのビデオ </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-clips-to-gif" target=""> ビデオを編集してgifに変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><main class=" "><div class="n1 w_100 flex_column"><div class="title   w_1600 flex_column"><h1 class="f_s_50 l_h_50 t_a_c titleKey" style="padding: 0px 5%;"> ファイルをアップロードせずにオンラインで画像を処理する </h1><p class="f_s_20 l_h_20 f_w_300 m_t_10    p_t_10 descriptionKey"> より速く、より安全で、100％無料で無制限のファイル </p><p class="keywordsKey" style="display: none;"> オンライン画像処理、画像のバッチ変換、画像のバッチ圧縮、webpからjpg、ビデオからgif、gifからwebp </p><div class="flex_between"><div></div></div></div><div class="hr color_bg w_300 op_2 m_t_40"></div><h2 id="anchor1" class="white f_s_30 l_h_30 m_t_20 m_b_20"> 画像ツール </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/ja/convert-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-arrow-left-right-line"></i></div><div><h2 class="m_b_5 m_t_15"> 写真を変換する </h2><p class="op_6 f_s_12 l_h_14
+                 "> Pdf、psd、heic、raw、tiffなどの60を超える形式のjpg、webp、pngへの変換をサポート </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/splice-images" target=""><div class="appIcon purple  flex_center2"><i class="iconfont icon-layout-masonry-fill"></i></div><div><h2 class="m_b_5 m_t_15"> 写真をステッチする </h2><p class="op_6 f_s_12 l_h_14
+                 "> 長い画像、字幕、グリッドモードをサポート </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/images-watermark" target=""><div class="appIcon red flex_center2"><i class="iconfont icon-star-smile-fill"></i></div><div><h2 class="m_b_5 m_t_15"> 画像透かし </h2><p class="op_6 f_s_12 l_h_14
+                 "> テキストまたは画像の透かしを追加し、タイル、ランダム、可変、バナーモードをサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/resize-images" target=""><div class="appIcon purple flex_center2"><i class="iconfont icon-picture-in-picture-exit-fill"></i></div><div><h2 class="m_b_5 m_t_15"> 画像サイズを調整する </h2><p class="op_6 f_s_12 l_h_14
+                 "> 画像のサイズまたはアスペクト比を調整し、同時に複数のサイズの出力をサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/crop-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-crop-line "></i></div><div><h2 class="m_b_5 m_t_15"> 写真を切り抜く </h2><p class="op_6 f_s_12 l_h_14
+                 "> 回転または反転後のトリミングをサポートし、同じサイズの画像をインポートするときの同時トリミングをサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/compress-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> 画像を圧縮する </h2><p class="op_6 f_s_12 l_h_14 "> 圧縮されたjpg、webp、png、svg、gifアニメーション、apngアニメーションをサポート </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/compress-jpg-and-keep-exif" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Jpgを圧縮してexifを維持する </h2><p class="op_6 f_s_12 l_h_14
+                 "> Jpgのバッチ圧縮をサポートし、exifデータを完全に保持します </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/compress-images-to-specified-size" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-line " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> 画像を指定されたサイズに圧縮します </h2><p class="op_6 f_s_12 l_h_14
+                 "> Jpg、webpを指定されたファイルサイズにバッチ圧縮します </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/image-exif" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-qr-scan--line "></i></div><div><h2 class="m_b_5 m_t_15"> Exifを読む </h2><p class="op_6 f_s_12 l_h_14
+                 "> Gps、高度、カメラメーカー、露出時間などの数十の情報を含み、jpg、heic、rawのインポートをサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/split-images" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-slice-fill"></i></div><div><h2 class="m_b_5 m_t_15"> 写真を分割する </h2><p class="op_6 f_s_12 l_h_14
+                 "> 切り抜き、分割線、グリッドモードをサポート </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div><h2 id="anchor2" class="white f_s_30 l_h_30 m_t_50 m_b_30"> Gifツール </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/ja/gif-compress" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Gif圧縮 </h2><p class="op_6 f_s_12 l_h_14
+                 "> バッチ圧縮gif、異なる圧縮強度を選択するためのサポート </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/gif-crop" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-crop-line "></i></div><div><h2 class="m_b_5 m_t_15"> Gif作物 </h2><p class="op_6 f_s_12 l_h_14
+                 "> Gif画像のバッチトリミング </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/gif-extract-frame" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-stack-overflow-line " style="transform: rotate(90deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Gifからフレームを抽出する </h2><p class="op_6 f_s_12 l_h_14
+                 "> Gif、webp、apngから抽出されたすべてのフレームの写真 </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/gif-merge" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-film-line " style="margin: 5px 20px 10px 0px; transform: scale(0.8, 0.8);"></i><i class="iconfont icon-film-line  " style="transform: scale(0.5, 0.5); position: absolute; bottom: 0px; right: -10px;"></i></div><div><h2 class="m_b_5 m_t_15"> Gifマージ </h2><p class="op_6 f_s_12 l_h_14
+                 "> 複数のgifを1つのgifにマージし、ドラッグして順序を調整し、マージされたgifのサイズを自動的に調整します。 </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/gif-reverse" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-rewind-fill " style="transform: scale(0.8);"></i></div><div><h2 class="m_b_5 m_t_15"> 逆さまのgif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Gifの再生順序を逆にします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/git-to-webp-to-apng" target=""><div class="appIcon red flex_center2"><i class="iconfont icon-arrow-left-right-line"></i></div><div><h2 class="m_b_5 m_t_15"> Gif to webp to apng </h2><p class="op_6 f_s_12 l_h_14
+                 "> Gif、webp、apngを相互に変換し、サイズの変更をサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div><h2 id="anchor2" class="white f_s_30 l_h_30 m_t_50 m_b_30"> ビデオツール </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/ja/video-to-gif" target=""><div class="appIcon  purple flex_center2"><i class="iconfont icon-video-fill "></i></div><div><h2 class="m_b_5 m_t_15"> Gifへのビデオ </h2><p class="op_6 f_s_12 l_h_14
+                 "> ビデオをhdgifにバッチ変換し、出力gif、webpをサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/ja/video-clips-to-gif" target=""><div class="appIcon  purple flex_center2"><i class="iconfont icon-scissors-line "></i></div><div><h2 class="m_b_5 m_t_15"> ビデオを編集してgifに変換する </h2><p class="op_6 f_s_12 l_h_14
+                 "> ビデオを編集またはトリミングした後、高解像度gifに変換し、圧縮gifをサポートし、出力gif、webpをサポートします </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div></div></main><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> ファイルをアップロードする必要がなく、プライバシーが強化されます </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.comすべてのツールは、ブラウザブラウザテクノロジを使用して実装されています </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> ファイルをアップロードする必要はありません </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Javascriptでより速く </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> ファイルは100％安全です </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div>
+
+
+                 <style>
+                    @import url("/assets/css/newC.css");
+                  </style>
+                  <div class="newContentBox_94kd5l_93">
+                    <div class="conBox_kkdj93_93">
+                      <h2> オンラインで画像を変換および圧縮する場合、ImagesTool が最適な選択肢であるのはなぜですか? </h2>
+                      <br>
+                      <ul>
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M208 40H48a16 16 0 0 0-16 16v58.77c0 89.61 75.82 119.34 91 124.39a15.53 15.53 0 0 0 10 0c15.2-5.05 91-34.78 91-124.39V56a16 16 0 0 0-16-16Zm-34.34 69.66l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.68l50.34-50.34a8 8 0 0 1 11.32 11.32Z"></path>
+                            </svg>
+                            <h3> 無料で安全 </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            完全に無料で、ファイル制限はありません。 ImagesTool のオンライン ツールはすべて、画像処理にブラウザ テクノロジーを使用しており、インポートされたファイルは常にデバイス上にあり、アップロードされることはないため、プライバシーが最大限に保護されます。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="m235.39 84.07l-28.15 24l8.43 35.73a13.09 13.09 0 0 1-5 13.58a13.25 13.25 0 0 1-14.63.7l-32-19l-32 19a13.25 13.25 0 0 1-14.63-.7a13.1 13.1 0 0 1-5-13.58l8.43-35.73l-28.16-24A13.13 13.13 0 0 1 100.1 61l37.23-3.15L151.85 24a13.24 13.24 0 0 1 24.31 0l14.52 33.87L227.9 61a13.12 13.12 0 0 1 7.49 23.06ZM85.66 114.34a8 8 0 0 0-11.32 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0 0-11.32Zm16 56a8 8 0 0 0-11.32 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0 0-11.32Zm60.69 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0-11.31-11.32Z"></path>
+                            </svg>
+                            <h3> 私たちのユニークなスタイル </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            他のオンライン画像処理 Web サイトと比較して、ImagesTool.com はファイルをアップロードする必要がありません。代わりに、ブラウザー技術を使用して画像を処理します。したがって、ImagesTool は、プライバシーとセキュリティをより適切に保護し、使用できるオンライン Web サイトです。安心のツールです。
+                             <br> 
+                            インストールが必要なローカル クライアント ソフトウェアと比較して、ImagesTool は便利で高速であり、ブラウザで開くだけで使用できます。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.07 8.07 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96ZM56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Zm16 0a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"></path>
+                            </svg>
+                            <h3> 最高品質 </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            当社のツールは最高の品質と優れた処理速度で変換および圧縮できるよう、オリジナルのソフトウェアを使用しています。
+                           </p>
+                        </li>
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M216 40H72a16 16 0 0 0-16 16v16H40a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16Zm-32 48v16H40V88Zm32 80h-16V88a16 16 0 0 0-16-16H72V56h144Z"></path>
+                            </svg>
+                            <h3> 良い互換性 </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            ImagesTool - 主要なブラウザで実行され、携帯電話やタブレットをサポートする変換および圧縮ツール。 Chrome ブラウザまたは Chromium コア ブラウザの使用を優先してください。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M128 24c-53.83 0-96 24.6-96 56v96c0 31.4 42.17 56 96 56s96-24.6 96-56V80c0-31.4-42.17-56-96-56Zm80 104c0 9.62-7.88 19.43-21.61 26.92C170.93 163.35 150.19 168 128 168s-42.93-4.65-58.39-13.08C55.88 147.43 48 137.62 48 128v-16.64c17.06 15 46.23 24.64 80 24.64s62.94-9.68 80-24.64Zm-21.61 74.92C170.93 211.35 150.19 216 128 216s-42.93-4.65-58.39-13.08C55.88 195.43 48 185.62 48 176v-16.64c17.06 15 46.23 24.64 80 24.64s62.94-9.68 80-24.64V176c0 9.62-7.88 19.43-21.61 26.92Z"></path>
+                            </svg>
+                            <h3> 自動保存設定 </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            変更したパラメーターはブラウザーに残り、次回ブラウザーを開くと、パラメーターは最後の設定に復元されるため、毎回設定を繰り返す必要はありません。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M238.64 78.62A31.9 31.9 0 0 1 216 88a32.33 32.33 0 0 1-7.64-.92l-26.63 49.46c.3.28.6.56.89.85a32 32 0 1 1-50.2 6.38l-20.18-20.18A32 32 0 0 1 96 128a32.4 32.4 0 0 1-7.65-.91l-26.63 49.44c.3.28.61.56.9.85a32 32 0 1 1-45.26 0a32 32 0 0 1 30.27-8.44l26.63-49.46c-.3-.28-.6-.56-.89-.85a32 32 0 0 1 0-45.26a32 32 0 0 1 50.2 38.89l20.18 20.18a32.19 32.19 0 0 1 23.9-3.5l26.63-49.46c-.3-.28-.61-.56-.9-.85a32 32 0 0 1 0-45.26a32 32 0 0 1 45.26 45.26Z"></path>
+                            </svg>
+                            <h3> パイプライン処理の画像 </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            組み立てラインのような画像の処理をサポートします。たとえば、画像のバッチを「トリミング」した後、ダウンロード インターフェイスの右側にある「画像の圧縮」アイコンをクリックすると、「画像の圧縮」にジャンプします。画像をトリミングしただけなので、ファイルを繰り返しインポートおよびエクスポートする必要はありません。
+                           </p>
+                        </li>
+                      </ul>
+                    </div>
+                  
+                    <div class="conBox_kkdj93_93">
+                      <h2> 画像の一括処理が当社の強み </h2>
+                      <p> 
+                        ImagesTool には、画像の変換、圧縮、トリミングのニーズを満たす、画像のバッチ処理用のさまざまなオンライン ツールがあります。
+                       </p>
+                      <br>
+                      <ul>
+                        <li>
+                          <h3> 画像をバッチで変換する </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/convert-images"> Convert-images </a> 
+                            オンライン ツールは、webp、png、svg、avif、pdf、heic、psd、tif などの 60 を超える画像形式の変換をサポートする強力な画像変換ツールです。また、変換後の画質、サイズ、変換後の画像形式（jpg、png、webp、avif オプション）
+                           </p>
+                        </li>
+                        <li>
+                          <h3> PDFをJPGに変換 </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/convert-images"> Convert-images </a> オンライン ツール
+                            を使用すると
+                             
+                            、1 分以内に PDF ファイルを jpg 画像に変換できます。jpg の幅を設定できます。デフォルトは 1500 ピクセルです。任意の幅に設定できます。制限はまったくありません。 jpg をエクスポートすると、最高解像度の画質が維持されます
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> jpgを一括圧縮 </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/compress-images"> compress-images </a> オンライン ツールを
+                            使用して
+                             
+                            、数秒で JPG 画像を圧縮します。テストの結果、デフォルトの「ロスレス」パラメータを使用すると、jpg 画像のファイル サイズを 60% ～ 80% 削減できます。 圧縮が完了したら、画像をクリックして圧縮前と圧縮後の比較効果を確認できます。「ロスレス」圧縮された jpg 画像を使用すると、圧縮前と圧縮後の画質の違いがほとんどわかります。
+                           </p>
+                        </li>
+                        <li>
+                          <h3> PNGを一括圧縮 </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/compress-images"> 画像圧縮 </a> 
+                            オンライン ツールは PNG 圧縮もサポートしています。テストした結果、写真 PNG 切り抜き素材の圧縮効果は驚くべきものでした。画質の低下がないだけでなく、PNG 画像ファイル サイズは約 30% ～ 60% 削減されます。 。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> jpgを指定したサイズに一括圧縮 </h3>
+                          <p class="m_t_5"> 
+                            jpg のファイル サイズを制限するための明確な値が必要な場合は、
+                             <a target="_blank" href="/ja/compress-images-to-specified-size"> 画像を指定したサイズに圧縮する </a> オンライン ツールを使用すると問題の解決に役立ちます。たとえば、320Kb 以下に設定すると、エクスポートされた jpg 画像は次のようになります。 320Kb 以内に制限されます。 同様に、必要に応じて 100Kb または 200Kb 以下に設定することもでき、この値は任意に設定できます。
+                             <br> 
+                            さらに、webp を固定サイズに圧縮することもサポートします。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> jpgをバッチで圧縮し、exifを保存します </h3>
+                          <p class="m_t_5"> 
+                            撮影した写真をインターネット上に公開する場合、写真の詳細な撮影条件を他の人が確認できるように、写真のexif情報を保持する必要がありますが、元のjpgファイルはサイズが非常に大きいため、公開することはできません。インターネット上での拡散。
+                             <br> 
+                            現時点では、
+                             <a target="_blank" href="/ja/compress-jpg-and-keep-exif"> compress-jpg-and-keep-exif</a> オンライン ツールを使用して jpg を圧縮し、写真の exif データを完全に保持して、数 Mb、場合によっては数十 Mb の元の jpg 写真を数百 Kb に圧縮できます。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> バッチ画像に透かしを追加する </h3>
+                          <p class="m_t_5"> 
+                            画像のバッチに透かしを追加する必要がある場合は、
+                              <a target="_blank" href="/ja/images-watermark"> images-watermark </a> 
+                            オンライン ツールが最適です。テキスト透かしの追加をサポートしており、画像を透かしとしてインポートすることもできます。 このオンライン ツールはフレンドリーなインターフェイス デザインを使用しており、透かしをドラッグして位置を調整できます。 また、タイル状の透かしを設定して画像をカバーし、画像の著作権を保護することもできます。
+                             <br> 
+                            特に、画像ごとに異なるウォーターマークの位置を実現できる「ランダム」ウォーターマークの使用をお勧めします。位置に加えて、ウォーターマークの透明度や回転角度も設定できます。
+                             <br> 
+                            パラメータを変更すると、ツールのインターフェースも瞬時に変化するため、見たままを使いやすくなります。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> 写真をバッチでトリミングする </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/crop-images"> 画像切り抜き </a> オンライン ツール
+                            を使用すると、
+                             
+                            切り抜きボックスをドラッグするだけで、画像ごとに個別の切り抜き設定を行うことができます。 同時に、画像を回転および反転することもできます。トリミング比率を制限する必要がある場合は、比率ボタンをクリックしてください。デフォルトのサポートは 16:9、9:16、4:3、3:2、 1:1、またはプラスボタンをクリックして、必要に応じて比率を追加します。
+                             <br> 
+                            このツールの最大の特徴は、同じサイズの写真をインポートする場合、最初の写真のクロップ枠を設定し、「同期クロップ」をクリックするだけで、写真の完全な一括クロップが実現できることです。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> 画像のバッチサイズ変更 </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/resize-images"> オンライン画像サイズ変更ツール「resize-images」 </a> 
+                            を使用すると
+                             
+                            、「幅」、「高さ」、「比例拡大縮小」、または「幅と高さ」を設定できます。 「幅と高さ」を設定すると、画像の背景色や画像のレイアウトモードを設定できます。
+                             <br> 
+                            複数のサイズ変更設定を追加できます。たとえば、1000x1000 ピクセルの画像をインポートし、600x400 ピクセルとスケーリング 50% の 2 つのサイズ変更プランを設定すると、600x400 ピクセルと 500x500 ピクセルの 2 つの画像がエクスポートされます。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> JPGのexif情報を読み取る </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/image-exif"> image-exif </a> を
+                            使用して
+                             
+                            、オンラインで jpg の exif 情報を表示し、地理的位置情報 (GPS)、カメラ情報、時間情報、高度、速度、経度、緯度、カメラのモデル、メーカー、画像撮影時間、フラッシュ、シャッターの読み取りをサポートします。画像の時刻、絞り値、焦点距離、レンズのモデルなどの情報。
+                             <br> 
+                            jpg に加えて、複数の形式もサポートされています:  <span style="font-size: 12px"> HEIC、HEIF、CR2、RW2、NEF、ARW、SR2、ORF、PEF、RAF、SRW、MRW、DCR、DNG、ERF、3FR、ARI SRF、BAY、CRW、 CAP、IIQ、EIP、DCS、DRF、K25、KDC、FFF、MEF、MOS、NRW、PTX、PXN、R3D、RWL、RWZ、X3F、MDC、 </span>
+                          </p>
+                        </li>
+                      </ul>
+                      <br>
+                      <br>
+                  
+                      <h2> GIFオンラインツール </h2>
+                      <br>
+                  
+                      <ul style="display: flex; flex-direction: column; gap: 20px; text-align: left">
+                        <li>
+                          <h3> GIF を WebP にバッチで変換する </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/git-to-webp-to-apng"> git-to-webp-to-apng </a> オンライン ツール
+                            を使用して
+                             
+                            、gif アニメーションを webp アニメーション画像に変換します。さらに、webp を圧縮するように webp の画質を設定することもできます。変換された webp は、元の gif ファイル サイズよりも大きくなります. 50% ～ 90% 縮小します。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> GIF をバッチ圧縮する </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/gif-compress"> gif-compress </a> オンライン ツール
+                            を使用すると
+                             
+                            、アニメーション GIF 画像を数秒で圧縮できます。テストの結果、デフォルトの「ロスレス」パラメータを使用すると、GIF 画像のファイル サイズを 50% ～ 80% 削減できます。 圧縮が完了したら、画像をクリックして圧縮前と後の比較効果を確認できます。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> MP4をバッチでGIFに変換 </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/video-to-gif"> video-to-gif </a> 
+                            オンライン ツールは、ビデオから GIF への変換と GIF のサイズ変更をサポートします。 「GIF を圧縮」にチェックを入れると、変換中に GIF を圧縮できます。GIF の再生フレーム レートを設定できます。デフォルトは 16 フレーム/秒です。一般的に、最大 24 fps/s 以下をお勧めします。
+                             <br> 
+                            変換されたgif画像の画質には、高解像度画像最適化技術が使用されており、変換されたgif画像は鮮明なままで、グリッド線が発生しません。 以下は弊社のテストデータです。
+                             <br>
+                            <b> ケース 01、非圧縮 gif、 </b>
+                            <br> 
+                            ファイルのインポートに 2 秒かかります: 携帯電話で撮影したビデオ IMG_0672.mov 30FPS/s 1440x1080px 2.5MB
+                             <br> 
+                            変換された gif: 12FPS/s 300x225px 1.5MB
+                             <br>
+                            <b> ケース 02、圧縮 gif、 </b>
+                            <br> 
+                            ファイルのインポートに1.8 秒かかります : ソーシャル メディアでダウンロードされたビデオのアニメーション...medium202.mp4 123.2KB 800x600px
+                             <br> 
+                            変換された gif: 800x600px 12FPS/s 625.6KB
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> MP4 アニメーションを WEBP アニメーションにバッチで変換する </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/video-to-gif"> video-to-gif </a> 
+                            オンライン ツールは、ビデオから WebP 画像への変換をサポートしており、WebP の画質を設定できます (1 ～ 100%)。86% に設定することをお勧めします。画質は少し低下しますが、大幅に圧縮されます。 WebP ファイルのサイズ。 以下は弊社のテストデータです。
+                             <br>
+                            <b> ケース 01、画質 69% </b>
+                            <br> 
+                            インポート ファイル: 携帯電話で撮影したビデオ IMG_0672.mov 30FPS/s 1440x1080px 2.5MB
+                             <br> 
+                            変換後の webp-01: 400x300px 16FPS/s 487.0KB
+                              <br> 
+                            2 秒かかった変換後の webp-02: 1440x1080px 16FPS/s 2.1MB 10 秒かかります
+                             <br>
+                            <b> ケース 02、画質 86% 6 秒かかります </b>
+                            <br> 
+                            インポートされたファイル: ソーシャル メディア cat...Twitte.mp4 からダウンロードされたビデオ 27FPS/s 720x1280px 1MB
+                             <br> 
+                            変換された webp: 360x640px 16FPS/s 2.6MB
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> MP4 クリップをクリップして GIF に変換 </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/video-clips-to-gif"> ビデオを編集して gif に変換する </a> オンライン ツールは、長いビデオまたは mp4 ムービー ファイルを gif に変換するための強力なツールです。
+                             <br> 
+                            ムービーの数秒を gif に変換したい場合、単純なビデオから gif へのツールでは実際のニーズを満たせない場合があります。 比較的長いビデオを GIF に変換する必要がある場合、非常に長い時間がかかり、ほとんどの場合、ビデオ コンテンツ全体が必要ではなく、ビデオ内のいくつかの小さなフラグメントが必要になるためです。
+                             <br> 
+                            そこで、ビデオクリップを編集できるオンラインツールを追加しました。 ドラッグしてビデオ内の 1 つまたは複数のクリップを選択し、このクリップを GIF または WebP に変換できます。
+                             <br> 
+                            手順は次のとおりです。
+                              <br> 
+                            01. コンピューターのメモリ サイズに応じて、1 GB 以内のビデオ ファイルをインポートします。
+                             <br> 
+                            02. クリップ選択ボックスをドラッグして、必要なビデオ範囲を選択します
+                             <br> 
+                            03. 選択したクリップをトリミングします (オプション)
+                              <br> 
+                            04. ピンクの「エクスポート開始」ボタンをクリックして完了します
+                             <br> 
+                            一般的に、これは、 、オールインを組み合わせたビデオ編集ツールです- ビデオのトリミング、変換、GIF の圧縮を行うための 1 つのオンライン ツール。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> GIF画像をバッチで切り抜く </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/gif-crop"> gif-crop </a> オンライン ツール
+                            を使用すると
+                             
+                            、トリミング ボックスをドラッグするだけで、gif 画像の個別のトリミング設定を行うことができます。 デフォルトでは、16:9、9:16、4:3、3:2、1:1 の比例クロップがサポートされています。または、プラス ボタンをクリックして必要な比率を追加します。
+                             <br> 
+                            トリミング速度は非常に速く、トリミングされた GIF の品質はまったく失われません。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> GIF のすべてのフレームを抽出します </h3>
+                          <p class="m_t_5"><font style="vertical-align: inherit;"></font><a target="_blank" href="/ja/gif-extract-frame"> gif-extract-frame </a> オンライン ツール
+                            を使用すると
+                             
+                            、gif のすべてのフレームを png イメージに変換できます。さらに、webp アニメーション イメージと apng アニメーション イメージもサポートされています。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> 複数の GIF を 1 つの GIF に結合します </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/gif-merge"> gif-merge </a> 
+                            オンライン ツールを使用すると、複数の gif を 1 つの gif に結合できます。gif をドラッグして、各 gif の再生順序を調整できます。
+                             <br> 
+                            インポートされた GIF のサイズが異なる場合は、幅と高さを設定し、レイアウト モードを「カバーされた幅」に設定して、画面の一貫性を保つことができます。
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> GIFを逆再生する </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/ja/gif-reverse"> gif-reverse </a> 
+                            オンライン ツールは、gif の再生順序を逆にし、gif を逆方向に再生する効果を実現できます。
+                           </p>
+                        </li>
+                      </ul>
+                    </div>
+                  
+                    <div class="conBox_kkdj93_93">
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> ImagesTool にはファイル数に制限がありますか? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              ファイル制限はありません。コンピューターのパフォーマンスに依存します。一度に最大 300 枚の写真を処理し、各写真は 20MB 以内にすることをお勧めします。 psd、tiff、psd は 100MB 以内にすることをお勧めします。 動画は 1000MB 以内にすることをお勧めします。
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> ImagesTool はフォルダーのインポートをサポートしていますか?  フォルダ構造は元に戻せるのでしょうか？ </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              はい、[フォルダーをインポート] ボタンをクリックするか、フォルダーをこのページにドラッグします。プロンプトが表示されたら、フォルダーを下の [ここにフォルダーをドラッグ] 領域にドラッグします。
+                               <br> 
+                              処理が完了すると、エクスポートされた zip には元のフォルダー構造が維持されます。
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> 毎回パラメータを繰り返し設定する必要がありますか? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              設定を繰り返す必要はありません。パラメーターを変更するたびに、そのパラメーターはブラウザーに保存され、次回ブラウザーを開くときに、ImagesTool が最後に設定したパラメーターを読み取ります。
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> 携帯電話やタブレットで ImagesTool を使用できますか? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              ほとんどの場合、Web ページのレスポンシブ デザインを作成します。 大量の画像を処理する必要がある場合は、コンピュータ（PC）での利用を推奨し、ChromeブラウザまたはChromiumコアブラウザを優先してご利用いただくことをおすすめします。
+                               <br>
+                              <br> 
+                              現在 Chrome ブラウザを使用している場合は、空白スペースを右クリックして [このページの QR コードを生成] をクリックし、携帯電話で QR コードをスキャンして、ImageTool.com のモバイル バージョンにアクセスします。
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <div class="conBox_kkdj93_93 abTls83_93">
+                      <h2> 関連ツール </h2>
+                  
+                      <h3> 画像を圧縮する </h3>
+                      <ul>
+                        <li><a target="_blank" href="/ja/compress-images"> JPGを圧縮する </a></li>
+                        <li><a target="_blank" href="/ja/compress-images"> PNG を圧縮 </a></li>
+                        <li><a target="_blank" href="/ja/compress-images"> SVGを圧縮する </a></li>
+                      </ul>
+                  
+                      <h3> JPGを変換 </h3>
+                      <ul>
+                        <li><a target="_blank" href="/ja/convert-images"> WEBPからJPGへのファイル変換 </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> AVIFからJPGへの変換 </a></li>
+                  
+                        <li><a target="_blank" href="/ja/convert-images"> HEICからJPGへの変換 </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> PSDからJPGへの変換 </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> PDFからJPGへ </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> SVGからJPGへの変換 </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> JPGからWEBPへの変換 </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> JPGからAVIFへのファイル変換 </a></li>
+                        <li><a target="_blank" href="/ja/convert-images"> JPGからPNGへ </a></li>
+                      </ul>
+                  
+                      <h3> GIFを変換 </h3>
+                      <ul>
+                        <li><a target="_blank" href="/ja/git-to-webp-to-apng"> WEBPからGIFへ </a></li>
+                        <li><a target="_blank" href="/ja/git-to-webp-to-apng"> APNGからGIFへ </a></li>
+                        <li><a target="_blank" href="/ja/video-to-gif"> MP4からGIFへ </a></li>
+                        <li>
+                          <a target="_blank" href="/ja/video-clips-to-gif"> 編集後にビデオをGIFに変換 </a>
+                        </li>
+                      </ul>
+                  
+                      <h3> WEBPアニメーションを変換する </h3>
+                      <ul>
+                        <li><a target="_blank" href="/ja/git-to-webp-to-apng"> GIFからWEBPへ </a></li>
+                        <li><a target="_blank" href="/ja/git-to-webp-to-apng"> APNGからWEBPへ </a></li>
+                        <li><a target="_blank" href="/ja/video-to-gif"> MP4からWEBPへ </a></li>
+                        <li>
+                          <a target="_blank" href="/ja/video-clips-to-gif"> 編集後にビデオをWEBPに変換 </a>
+                        </li>
+                      </ul>
+                  
+                      <h3> その他のツール </h3>
+                      <ul>
+                        <li><a target="_blank" href="/ja/crop-images"> 写真をトリミングする </a></li>
+                        <li><a target="_blank" href="/ja/images-watermark"> 写真に透かしを追加する </a></li>
+                        <li><a target="_blank" href="/ja/image-exif"> 画像のExif情報を表示する </a></li>
+                        <li>
+                          <a target="_blank" href="/ja/resize-images"> 画像のサイズを変更する </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/ja/split-images"> 分割画像 </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/webp2jpg-online/splicing#/splicing"> 写真をステッチする </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/ja/compress-images"> 画像を圧縮する </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/ja/convert-images"> 写真を変換する </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

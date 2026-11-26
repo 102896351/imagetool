@@ -1,0 +1,690 @@
+<!DOCTYPE html><html lang="zh-TW"><head>
+    <meta charset="utf-8">
+    <title>壓縮圖片到指定大小</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="批量壓縮jpg、webp到指定的檔案大小">
+    <meta name="keywords" content=" 壓縮jpg,壓縮圖片到指定大小 ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/zh_TW/compress-images-to-specified-size">
+    <meta property="og:site_name" content="壓縮圖片到指定大小">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="壓縮圖片到指定大小">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="批量壓縮jpg、webp到指定的檔案大小">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/zh_TW/compress-images-to-specified-size">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/compress-images-to-specified-size">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/compress-images-to-specified-size">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/compress-images-to-specified-size">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/compress-images-to-specified-size">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/compress-images-to-specified-size">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/compress-images-to-specified-size">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/compress-images-to-specified-size">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "壓縮圖片到指定大小",
+  "url": "https://imagestool.com/zh_TW/compress-images-to-specified-size",
+  "description": "批量壓縮jpg、webp到指定的檔案大小",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> 很抱歉，如果未啟用 javascript，imagestool.com 將無法正常工作。 </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/zh_TW/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> 所有工具 </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/zh_TW/convert-images" target=""> 轉換圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/splice-images" target=""> 拼接圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/images-watermark" target=""> 圖片加浮浮水印 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/resize-images" target=""> 調整圖片尺寸 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/crop-images" target=""> 裁剪圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/compress-images" target=""> 壓縮圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/image-exif" target=""> 讀取exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/split-images" target=""> 分割圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/video-to-gif" target=""> 視頻轉gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/video-clips-to-gif" target=""> 剪輯視頻並轉gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/git-to-webp-to-apng" target=""> Gif轉webp轉apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-line " style="transform: rotate(270deg);"></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> 壓縮圖片到指定大小 </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> 批量壓縮jpg、webp到指定的檔案大小 </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> 將檔案拖入此處 </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> 選擇檔案 </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> 選擇資料夾 </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> 粘貼圖片 (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> 關於這個工具 </h2><br><div class="catImg"><img alt="" src="/images/about/2.webp"></div><br><br><h3 class="m_b_10"> 支持的格式列表 </h3><div class="m_r_5 size2 m_b_5 Tag color">Jpg</div><div class="m_r_5 size2 m_b_5 Tag color">Jpeg</div><div class="m_r_5 size2 m_b_5 Tag color">Webp</div><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> 無需上傳檔案，保障更多隱私 </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com 所有工具均使用瀏覽器瀏覽器技術實現 </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> 無需上傳檔案 </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> 使用javascript速度更快 </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> 檔案100%安全 </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0 "><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-up-down-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div><ul class="imageList w_100 p_0 flex wrap"></ul></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_20 "> 壓縮圖片到指定大小 </h3><div class="flex_column"><div class="ConfigInputNumver in m_b_10" style="width: 100%;"><div class="PopupContentMini noArrow dark" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex"><p class="text_opt4 f_s_14"> 不超過 </p><div class="flex_center"><h4 class="f_s_20 f_w_800 ellipsis01"> 200 </h4><span class="text_opt4 m_l_5"> KB </span></div></div><div><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div><div class="ConfigSelect in w_100 p_0  m_b_10"><div class="PopupContentMini noArrow" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex"><p class="text_opt4 f_s_14"> 格式 </p><h4 class="f_s_20 f_w_800 ellipsis01"> JPG </h4></div><div><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div><div class="ConfigSelect in w_100 p_0  m_b_10 "><div class="PopupContentMini noArrow" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex"><p class="text_opt4 f_s_14"> 尺寸 </p><h4 class="f_s_20 f_w_800 ellipsis01"> Constant </h4></div><div><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2      "> 開始 <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> 檔案拖到此處 </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 可讀取多個檔案 </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> 資料夾拖到此處 </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 每次讀取一個資料夾 </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+
+    <style>
+        @import url("/assets/css/newC.css");
+      </style>
+      <div class="newContentBox_94kd5l_93">
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>其他壓縮圖片的工具</h2>
+          <br>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 壓縮JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 壓縮PNG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 壓縮SVG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 批量壓縮圖片 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/gif-compress"> 壓縮GIF </a>
+            </li>
+          </ul>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2>為什麼會有「壓縮圖片到指定大小」的要求？</h2>
+          <br>
+          <p>
+            去年的年初，我(ImagesTool.com 的開發者)的一位好友向我尋求幫助，
+            她說她在網站上提交電子護照申請的時候，看到其中1條的人像照片規格要求是必須將圖片文件體積大小限制在30Kb到80Kb之間。
+          </p>
+          <br>
+          <p>
+            這真是讓人頭大，常規的圖片壓縮工具可不會這麼剛剛好在這個範圍內，於是我花了點時候製作了這個工具，它可以很好將jpg圖片檔案大小控制在設定的上限值以內。
+          </p>
+          <br>
+          <p>
+            例如我剛剛提到的電子護照要求，只需要將「不超過」設定成80即可，壓縮的結果會非常接近80Kb並且絕對不會超過80Kb。
+          </p>
+          <br>
+          <p>
+            同樣舊規矩，免費使用並且可以批量壓縮，這款工具在瀏覽器內本地運行，保護隱私安全，支持導入
+            <br>
+            的文件類型: jpg、jpeg、png、gif、webp、avif、ico、bmp、svg
+            <br>
+            支援導出的檔案類型: jpg、webp
+          </p>
+          <br>
+          <h3>更多的範例說明</h3>
+          <br>
+          <ul>
+            <li>
+              <h4>寬413像素×高626像素,檔案大小在40K~120K位元組之間</h4>
+              <p>將「不超過」設定成120 即可</p>
+            </li>
+            <li>
+              <h4>寬354像素×高472像素,檔案大小在20KB~50KB之間</h4>
+              <p>將“不超過”設定成50 即可</p>
+            </li>
+          </ul>
+          <br>
+          <h4>結語</h4>
+          <p>
+            如果您需要同時調整圖片寬和高，可以使用
+            <a target="_blank" href="/zh_TW/resize-images"> 調整圖片尺寸 </a>
+            &gt;,
+            不過我建議使用更專業的工具（例如Photoshop）來調整人像圖片尺寸，因為很多網站（通常是政府機構網站）的照片規格會嚴格要求照片中頭像的位置，您需要更細緻的調整圖片才能符合網站提出的要求。
+          </p>
+          <p>
+            待您調整好後匯出最高品質的jpg圖片，然後回到這個頁面進行指定大小的壓縮。祝您一切順利！
+          </p>
+      
+          <br>
+          <br>
+          <div class="hr"></div>
+      
+          <br>
+          <br>
+      
+          <h2>10秒鐘即可將jpg壓縮到固定的大小以內</h2>
+          <br>
+          <ul>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">1</div>
+                <h3>導入jpg</h3>
+              </div>
+              <p class="m_t_5">
+                點擊「選擇圖片」按鈕後選擇圖片或拖曳圖片到這個頁面。
+              </p>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">2</div>
+                <h3>設定上限值</h3>
+              </div>
+              <p class="m_t_5">
+                導入jpg後，在右側找到「不超過」這個選項，設定成您需要的數值，例如20Kb、80Kb、100Kb、200Kb等等。
+              </p>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">3</div>
+                <h3>匯出圖片</h3>
+              </div>
+              <p class="m_t_5">
+                點選右下角的「開始」按鈕，等待處理完成後點選「下載zip」按鈕即可。
+              </p>
+            </li>
+          </ul>
+          <br>
+          <br>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <div>
+            <div>
+              <br>
+              <h2>為什麼頁面提示壓縮處理失敗？ （出了點問題！）</h2>
+              <br>
+              <strong class="tip_js0">
+                😊 請不用擔心，只有5%的機率下會出現這種錯誤，並且這種錯誤可以修正。
+              </strong>
+              <br>
+              <br>
+            </div>
+            <div>
+              <p>
+                大概是因為您匯入的圖片尺寸和設定「不超過」的數值過於懸殊所導致的。
+              </p>
+              <p>
+                比方說導入3000x4000的jpg後設定「不超過」為50Kb，這在大部分情況下是不可能實現的，設定成100Kb也是有可能會導致壓縮出錯。
+              </p>
+              <p>合理的值大約是在500kb到2000kb之間。</p>
+              <br>
+              <p>
+                還有一種方法可以幫助您修正這個錯誤，就是重新調整尺寸的尺寸，還是上面的例子，導入3000x4000的jpg後設定不超過為50，同時透過設定「改變寬度」將匯出的圖片寬度設定成500px，這樣的設定就比較合理。
+              </p>
+              <br>
+              <h4>測試數據</h4>
+              <p>以下是我的真實測試數據提供給您參考</p>
+              <p>設定「不超過」為50 Kb， 寬度調整成500px（可選），總耗時3秒鐘</p>
+              <br>
+              <table>
+                <thead>
+                  <tr>
+                    <th>圖片名稱</th>
+                    <th>壓縮前</th>
+                    <th>壓縮到指定大小並調整寬度後</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      iPhone 13 photo IMG_193.HEIC
+                      <a target="_blank" href="/zh_TW/convert-images">HEIC to JPG</a>
+                    </td>
+                    <td>3024x4032 / 4.5MB</td>
+                    <td>500x667 / 48.4KB</td>
+                  </tr>
+                  <tr>
+                    <td>Photo by Juli Kosolapova on Unsplash.jpg</td>
+                    <td>2848x4288 / 956.0KB</td>
+                    <td>500x753 / 48.7KB</td>
+                  </tr>
+                  <tr>
+                    <td>earth_vir_2016_lrg.jpg</td>
+                    <td>13500x6750 / 8.1MB</td>
+                    <td>500x250 / 38.8KB</td>
+                  </tr>
+                  <tr>
+                    <td>Antelope Canyon.jpg</td>
+                    <td>5120x2880 / 10.5MB</td>
+                    <td>500x281 / 49.5KB</td>
+                  </tr>
+                  <tr>
+                    <td>Moon photo.jpg</td>
+                    <td>10992x11912 / 14.5MB</td>
+                    <td>500x542 / 45.4KB</td>
+                  </tr>
+                  <tr>
+                    <td>Li_Sixun_boats.jpg</td>
+                    <td>1792x3271 / 2.4MB</td>
+                    <td>500x913 / 46.0KB</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <p>Q&amp;A</p>
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span> &gt; </span>
+              <h2>支援批量進行指定大小的圖片壓縮嗎？</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  支援的，需要提示您一點的是，進行批量壓縮到固定大小時，導入的圖片尺寸差異不要過大，例如說一批2000x3000px、1500x2200px的圖片是沒問題的，但如果導入的尺寸有大有小比如說2000x2000px、100x200px這樣的一批圖片是不適合放一起壓縮，盡量選擇尺寸相近的圖片進行批量壓縮到指定大小。
+                  <br>
+                  除非您同時設定了調整圖片尺寸，例如還是2000x2000px、100x200px的一批圖片增加了調整寬度成100px
+                  這種情況下是沒有問題的。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span> &gt; </span>
+              <h2>可以確保壓縮後的圖片畫質保持盡可能的高嗎？</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  可以的，這款工具在壓縮圖片大小時會在確保不會大於設定的「不超過」的數值，也就是說可以在指定的大小內保持盡量高的圖片畫質。例如說設定「不超過」成100Kb時，壓縮後可能是99Kb
+                  也可能是92Kb，具體的圖片檔案體積由ImagesTool 壓縮工具自動完成。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>其他工具</h2>
+      
+          <h3>壓縮圖片</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 壓縮JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 壓縮PNG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/gif-compress"> 壓縮GIF </a>
+            </li>
+          </ul>
+      
+          <h3>轉換JPG</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> WEBP轉JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> AVIF轉JPG </a>
+            </li>
+      
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> HEIC轉JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> PSD轉JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> PDF轉JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> SVG轉JPG </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> JPG轉WEBP </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> JPG轉AVIF </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> JPG轉PNG </a>
+            </li>
+          </ul>
+      
+          <h3>轉換GIF</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng"> WEBP轉GIF </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng"> APNG轉GIF </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/video-to-gif"> MP4轉GIF </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/video-clips-to-gif">
+                編輯影片後轉GIF
+              </a>
+            </li>
+          </ul>
+      
+          <h3>轉換WEBP動畫</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng"> GIF轉WEBP </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng"> APNG轉WEBP </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/video-to-gif"> MP4轉WEBP </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/video-clips-to-gif">
+                編輯影片後轉WEBP
+              </a>
+            </li>
+          </ul>
+      
+          <h3>其他工具</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/crop-images"> 裁切圖片 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/images-watermark"> 圖片加浮水印 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/image-exif"> 看圖片Exif訊息 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/resize-images"> 調整圖片尺寸 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/split-images"> 分割圖片 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/webp2jpg-online/splicing#/splicing">
+                拼接圖片
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images"> 壓縮圖片 </a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images"> 轉換圖片 </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

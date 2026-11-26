@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="utf-8">
+    <title>Leer exif</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Incluyendo docenas de información como gps, altitud, fabricante de la cámara, tiempo de exposición, etc., admite la importación de jpg, heic, raw">
+    <meta name="keywords" content=" Leer exif, leer exif ​​de jpg, leer exif ​​de raw ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/es/image-exif">
+    <meta property="og:site_name" content="Leer exif">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Leer exif">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Incluyendo docenas de información como gps, altitud, fabricante de la cámara, tiempo de exposición, etc., admite la importación de jpg, heic, raw">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/es/image-exif">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/image-exif">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/image-exif">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/image-exif">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/image-exif">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/image-exif">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/image-exif">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/image-exif">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Leer exif",
+  "url": "https://imagestool.com/es/image-exif",
+  "description": "Incluyendo docenas de información como gps, altitud, fabricante de la cámara, tiempo de exposición, etc., admite la importación de jpg, heic, raw",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> Lo sentimos, imagestool.com no funcionará correctamente sin javascript habilitado. </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/es/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> Todas las herramientas </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/es/convert-images" target=""> Convertir imágenes </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/splice-images" target=""> Imágenes de costura </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/images-watermark" target=""> Marca de agua de imagen </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/resize-images" target=""> Ajustar el tamaño de la imagen </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/crop-images" target=""> Recortar la imagen </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/compress-images" target=""> Comprimir imagen </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/image-exif" target=""> Leer exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/split-images" target=""> Dividir imágenes </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/video-to-gif" target=""> Vídeo a gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/video-clips-to-gif" target=""> Editar video y convertir a gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/es/git-to-webp-to-apng" target=""> Gif a webp a apng </a></div></ul></div></div></div></header><div class="InputFile ImageExif ImageTool" value=""><main></main><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  flex_center2"><i class="iconfont icon-qr-scan--line "></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> Leer exif </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> Incluyendo docenas de información como gps, altitud, fabricante de la cámara, tiempo de exposición, etc., admite la importación de jpg, heic, raw </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> Arrastre el archivo aquí </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> Seleccione el archivo </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> Seleccione la carpeta </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> Pegar imagen (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> Acerca de esta herramienta </h2><div class="catImg"><img alt="" src="/images/about/5.webp"></div><br><h3 class="m_b_10"> Lista de formatos soportados </h3><div class="m_r_5 size2 m_b_5 Tag orange">jpg</div><div class="m_r_5 size2 m_b_5 Tag orange">jpeg</div><div class="m_r_5 size2 m_b_5 Tag orange">heic/heif</div><div class="m_r_5 size2 m_b_5 Tag color">CR2</div><div class="m_r_5 size2 m_b_5 Tag color">RW2</div><div class="m_r_5 size2 m_b_5 Tag color">NEF</div><div class="m_r_5 size2 m_b_5 Tag color">ARW</div><div class="m_r_5 size2 m_b_5 Tag color">SR2</div><div class="m_r_5 size2 m_b_5 Tag color">ORF</div><div class="m_r_5 size2 m_b_5 Tag color">PEF</div><div class="m_r_5 size2 m_b_5 Tag color">RAF</div><div class="m_r_5 size2 m_b_5 Tag color">SRW</div><div class="m_r_5 size2 m_b_5 Tag color">MRW</div><div class="m_r_5 size2 m_b_5 Tag color">DCR</div><div class="m_r_5 size2 m_b_5 Tag color">DNG</div><div class="m_r_5 size2 m_b_5 Tag color">ERF</div><div class="m_r_5 size2 m_b_5 Tag color">3FR</div><div class="m_r_5 size2 m_b_5 Tag color">ARI</div><div class="m_r_5 size2 m_b_5 Tag color">SRF</div><div class="m_r_5 size2 m_b_5 Tag color">bay</div><div class="m_r_5 size2 m_b_5 Tag color">crw</div><div class="m_r_5 size2 m_b_5 Tag color">cap</div><div class="m_r_5 size2 m_b_5 Tag color">iiq</div><div class="m_r_5 size2 m_b_5 Tag color">eip</div><div class="m_r_5 size2 m_b_5 Tag color">dcs</div><div class="m_r_5 size2 m_b_5 Tag color">drf</div><div class="m_r_5 size2 m_b_5 Tag color">k25</div><div class="m_r_5 size2 m_b_5 Tag color">kdc</div><div class="m_r_5 size2 m_b_5 Tag color">FFF</div><div class="m_r_5 size2 m_b_5 Tag color">MEF</div><div class="m_r_5 size2 m_b_5 Tag color">MOS</div><div class="m_r_5 size2 m_b_5 Tag color">NRW</div><div class="m_r_5 size2 m_b_5 Tag color">PTX</div><div class="m_r_5 size2 m_b_5 Tag color">PXN</div><div class="m_r_5 size2 m_b_5 Tag color">R3D</div><div class="m_r_5 size2 m_b_5 Tag color">rwl</div><div class="m_r_5 size2 m_b_5 Tag color">rwz</div><div class="m_r_5 size2 m_b_5 Tag color">X3F</div><div class="m_r_5 size2 m_b_5 Tag color">MDC</div><br><br><div class="flex_column2"><button type="button" class="Button   color  t2 p_l_20 p_r_20 m_b_10     "><i class="iconfont icon-download--line  m_r_10"></i> cow.jpg </button><button type="button" class="Button   color  t2 p_l_20 p_r_20 m_b_10     "><i class="iconfont icon-download--line  m_r_10"></i> cow.jpg </button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> Arrastre el archivo aquí </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Puede leer varios archivos </div><input accept="" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> Arrastrar carpeta aquí </p><div class="f_s_14 m_t_5 op_6 f_w_300"> Leer una carpeta a la vez </div><input accept="" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> No es necesario subir archivos, más privacidad </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com todas las herramientas se implementan utilizando la tecnología del navegador del navegador. </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> No es necesario cargar archivos </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Más rápido con javascript </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> Los archivos son 100% seguros </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div>
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/es/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/es/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/es/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/es/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

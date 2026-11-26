@@ -1,0 +1,714 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="utf-8">
+    <title>画像に一括でテキストまたは画像の透かしを追加 | 無料 | オンライン | ログイン不要</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="ImagesToolは、画像に一括で透かしを追加する無料のオンラインツールです。テキスト、画像、全画面タイル透かしに対応。ログイン不要でプライバシー保護。多様なパラメータ設定、複数形式の画像対応、高速かつ高品質な出力。">
+    <meta name="keywords" content=" バッチ透かし、オンライン画像透かし、無料画像透かし、画像透かし ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/ja/images-watermark">
+    <meta property="og:site_name" content="画像透かし">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="画像透かし">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="テキストまたは画像の透かしを追加し、タイル、ランダム、可変、バナーモードをサポートします">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/ja/images-watermark">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/images-watermark">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/images-watermark">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/images-watermark">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/images-watermark">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/images-watermark">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/images-watermark">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/images-watermark">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "画像透かし",
+  "url": "https://imagestool.com/ja/images-watermark",
+  "description": "ImagesToolは、画像に一括で透かしを追加する無料のオンラインツールです。テキスト、画像、全画面タイル透かしに対応。ログイン不要でプライバシー保護。多様なパラメータ設定、複数形式の画像対応、高速かつ高品質な出力。",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> 申し訳ありませんが、javascriptを有効にしないとimagestool.comは正しく機能しません。 </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/ja/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> すべてのツール </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/ja/convert-images" target=""> 写真を変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/splice-images" target=""> 写真をステッチする </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/images-watermark" target=""> 画像透かし </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/resize-images" target=""> 画像サイズを調整する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/crop-images" target=""> 写真を切り抜く </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/compress-images" target=""> 画像を圧縮する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/image-exif" target=""> Exifを読む </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/split-images" target=""> 写真を分割する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-to-gif" target=""> Gifへのビデオ </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-clips-to-gif" target=""> ビデオを編集してgifに変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon red flex_center2"><i class="iconfont icon-star-smile-fill"></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> 画像透かし </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> テキストまたは画像の透かしを追加し、タイル、ランダム、可変、バナーモードをサポートします </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> ここにファイルをドラッグします </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> ファイルを選択します </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> フォルダーを選択 </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> 画像を貼り付ける (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> このツールについて </h2><div class="catImg"><img alt="" src="/images/about/6.webp"></div><br><h3 class="m_b_10"> サポートされている形式のリスト </h3><div class="m_r_5 size2 m_b_5 Tag color">jpg</div><div class="m_r_5 size2 m_b_5 Tag color">jpeg</div><div class="m_r_5 size2 m_b_5 Tag color">png</div><div class="m_r_5 size2 m_b_5 Tag color">gif</div><div class="m_r_5 size2 m_b_5 Tag color">webp</div><div class="m_r_5 size2 m_b_5 Tag color">avif</div><div class="m_r_5 size2 m_b_5 Tag color">ico</div><div class="m_r_5 size2 m_b_5 Tag color">bmp</div><div class="m_r_5 size2 m_b_5 Tag color">svg</div><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> ファイルをアップロードする必要がなく、プライバシーが強化されます </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.comすべてのツールは、ブラウザブラウザテクノロジを使用して実装されています </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> ファイルをアップロードする必要はありません </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Javascriptでより速く </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> ファイルは100％安全です </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0 "><div class="p_t_15 p_b_10 fs0 flex_center"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div><div class="m_l_15"></div><div class="flex_center2 w_100 p_0"></div></div><div class="p_t_10 p_b_10 flex_center fs0"><button type="button" class="Button  sub round      "><i class="iconfont icon-download--line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round  disabled    "><i class="iconfont icon-arrow-left-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-right-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="configView"><div class="view1"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_10 "> 画像透かし </h3><div class="flex_column2"><button type="button" class="Button  sub  t2 w_100  flex_between p_l_25     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-image-fill f_s_20 t2 m_r_10"></i><b class="f_s_14"> 新しい画像透かしを作成する </b></span><i class="iconfont icon-add-circle-fill f_s_20  m_r_10 color"></i></button><button type="button" class="Button  sub  t2 w_100 m_t_5 flex_between p_l_25     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-text f_s_20 t2 m_r_10"></i><b class="f_s_14"> 新しいテキスト透かし </b></span><i class="iconfont icon-add-circle-fill f_s_20  m_r_10 color"></i></button><div class="hr m_t_10 m_b_5  "></div><div class="hr m_t_15 m_b_10  "></div><div class="PopupContentMini" pos="2" islight="" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  sub  t2 w_100   flex_between  p_l_25 p_r_20     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-file-settings-line t2 m_r_10 f_s_18"></i><span class="f_s_14"> jpg 96% </span></span><i class="iconfont icon-arrow-down-s-fill f_s_18 blackA4"></i></button></div></div></div><div class=" m_b_50  "></div></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2  disabled    "><span> 最初に透かしを追加してください </span><i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> ここにファイルをドラッグ </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 複数のファイルを読み取ることができます </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> ここにフォルダをドラッグ </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 一度に1つのフォルダを読み取る </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+
+
+
+
+
+  <style>
+    @import url("/assets/css/newC.css");
+  </style>
+<div class="newContentBox_94kd5l_93">
+    <div class="conBox_kkdj93_93 abTls83_93">
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">関連ツール</font></font></h2>
+      <br>
+      <ul>
+        <li><a target="_blank" href="https://to.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">60種類の画像形式を変換</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">WEBPからJPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PDFをJPGに変換する</font></font></a></li>
+        <li><a target="_blank" href="https://tiny.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像を圧縮する</font></font></a></li>
+        <li><a target="_blank" href="https://pdf.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PDFを結合する</font></font></a></li>
+        <li>
+          <a target="_blank" href="https://ai.imagestool.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像の背景を削除する</font></font></a>
+        </li>
+      </ul>
+    </div>
+    <div class="conBox_kkdj93_93">
+
+      <img loading="lazy" width="500" height="500" style="width: 200px;" src="/assets/images2/images-watermark/Online free batch watermarking for images.webp" alt="画像用の無料オンライン一括透かし入れツール、ImagesTool.com">
+
+
+
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">オンラインで画像に一括して透かしを追加するにはどうすればいいですか?</font></font></h2>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ImagesToolは、画像に一括で透かしを入れることができる無料のオンラインツールです。高機能で、複数のパラメータ設定をサポートし、最高品質の画像を出力します。ログインなしでもご利用いただけます。</font></font></p>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        画像にテキストや画像の透かしを追加できます。テキストまたは画像の透かしは最大10個まで同時に追加できます。複数の透かしを追加する場合は、スイッチをクリックして各透かしの表示/非表示を切り替えられます。
+      </font></font></p>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        当ツールはブラウザ内で動作し、画像をサーバーにアップロードしないため、プライバシーを完全に保護します。jpg、jpeg、png、gif、webp、avif、ico、bmp、svg形式の画像のインポートに対応しています。
+      </font></font></p>
+ <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">機能のデモを見るには、下の再生ボタンをクリックしてください。</font></font></p>
+
+      <video class="video_lazy_css92893" controls="" width="1000" height="450" preload="none" poster="/assets/images2/images-watermark/The main function of imagestool.com to add watermarks to images.webp">
+        <source src="/assets/images2/images-watermark/The main function of imagestool.com to add watermarks to images.mp4" type="video/mp4">
+      </video>
+
+
+      <br>
+
+      <br>
+      <ul>
+        <li>
+          <div class="flex gap_5">
+            <div class="dot_9s9dk3"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1</font></font></div>
+            <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像のインポート</font></font></h3>
+          </div>
+          <p class="m_t_5"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            「ファイルを選択」ボタンをクリックして画像を選択するか、画像をこのページに直接ドラッグします。
+          </font></font></p>
+        </li>
+        <li>
+          <div class="flex gap_5">
+            <div class="dot_9s9dk3"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2</font></font></div>
+            <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">透かしの種類を選択する</font></font></h3>
+
+
+          </div>
+          <img loading="lazy" width="466" height="166" style="width: 320px;" src="/assets/images2/images-watermark/Select watermark type.webp" alt="透かしの種類を選択します。テキスト透かしまたは画像透かしを選択できます。ImagesTool.com 画像透かしツール">
+
+          <ol class="m_t_5">
+
+            <li>
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像の透かし</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                「新しい画像透かし」ボタンをクリックし、デバイス上の画像を透かし画像として選択します。
+              </font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">「画像を選択」ボタンをクリックすると、jpg、jpeg、png、gif、webp、avif 形式の画像がサポートされます。</font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">「追加を確認」ボタンをクリックして画像の透かしを追加します</font></font></p>
+            </li>
+            <br>
+            <li class="m_t_5">
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">テキスト透かし</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">「テキスト透かしを作成」をクリックし、画像に対応するテキスト透かしを生成するために必要なテキストを入力します。複数行のテキストもサポートされています。</font></font></p>
+            </li>
+            <br>
+
+
+            <br>
+            <li>
+              <h4>
+                <strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">透かしの位置</font></font></strong>
+              </h4>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">マウスの左ボタンで画像上の透かしをクリックした後、左ボタンを押したまま透かしを任意の位置にドラッグするだけです。</font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">または、インターフェース右側の「透かしの位置」をクリックし、左上隅、中央上隅、右上隅、左中隅、中央隅、右中隅、左下隅、中央下隅、右下隅の9つの位置から1つを選択して、正確な位置を調整します。クリックすると、透かしが対応する位置に移動します。以下の図をご覧ください。</font></font></p>
+              <img loading="lazy" width="454" height="378" style="width: 320px;" src="/assets/images2/images-watermark/Watermark location.webp" alt="透かしの位置を選択し、9つの正確な位置決め位置を提供する、ImagesTool.com画像透かしツール">
+
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                透かしのサイズ、不透明度、境界線、影のプロパティを変更することもできます。
+              </font></font></p>
+              <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+                テキスト透かしの場合、色、フォント間隔、行間、太字、斜体などのプロパティも変更できます。また、透かしのテキスト内容はいつでも変更できます。
+              </font></font></p>
+
+
+            </li>
+            <br>
+          </ol>
+        </li>
+        <li>
+          <div class="flex gap_5">
+            <div class="dot_9s9dk3"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">3</font></font></div>
+            <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">輸出</font></font></h3>
+          </div>
+          <p class="m_t_5"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            右下にある「開始」ボタンをクリックし、処理が完了するのを待ってから、「zip をダウンロード」ボタンをクリックして透かし入り画像を取得します。
+          </font></font></p>
+          <br>
+          <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            デフォルトの出力形式はjpgですが、pngまたはwebpも選択できます。出力画像の品質と幅も選択できますが、通常は変更する必要はありません。
+
+          </font></font></p>
+          <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            当社の画像透かしツールは非常に高速です。私のテストによると、5000x3000ピクセルの大きなサイズの画像60枚を処理するのに約25秒、1000x1000ピクセルの中サイズの画像80枚を処理するのに約12秒しかかかりません。
+
+          </font></font></p>
+
+          <img loading="lazy" width="464" height="362" style="width: 320px;" src="/assets/images2/images-watermark/Set the output format, quality, and width of the image after adding a watermark.webp" alt="透かし入り画像の出力形式、品質、幅を設定するImagesTool.com画像透かしツール">
+
+
+
+        </li>
+      </ul>
+    </div>
+
+
+
+    <div class="conBox_kkdj93_93">
+      <h2 id="crop_mode_id9293"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像に全画面タイル状の透かしを追加するにはどうすればいいですか?</font></font></h2>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        画像全体を覆うフルスクリーンのタイル透かしを追加する場合は、「タイル透かし」機能を使用し、右側の「タイル」を選択します。
+      </font></font></p>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">全画面タイル透かしの回転角度、サイズ、間隔、透明度のパラメータを設定できます。</font></font></p>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">機能のデモを見るには、下の再生ボタンをクリックしてください。</font></font></p>
+
+      <video class="video_lazy_css92893" controls="" width="1000" height="450" preload="none" poster="/assets/images2/images-watermark/Add a fullscreen tiled watermark that covers the entire image.webp">
+        <source src="/assets/images2/images-watermark/Add a fullscreen tiled watermark that covers the entire image.mp4" type="video/mp4">
+      </video>
+
+    </div>
+
+
+    <div class="conBox_kkdj93_93">
+      <h2 id="crop_mode_id9293"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像にランダムな透かしを追加するにはどうすればいいですか?</font></font></h2>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        写真を追加したら、右側の「ランダム」を選択します。
+      </font></font></p>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        位置、回転角度、スケール、透明度などのランダム要素を設定できます。透かしは各画像にランダムに配置されます。
+      </font></font></p>
+      <br>
+      <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">機能のデモを見るには、下の再生ボタンをクリックしてください。</font></font></p>
+
+      <video class="video_lazy_css92893" controls="" width="1000" height="450" preload="none" poster="/assets/images2/images-watermark/Demonstrating how imagestool.com adds watermarks to images with random positions, sizes, and transparency.webp">
+        <source src="/assets/images2/images-watermark/Demonstrating how imagestool.com adds watermarks to images with random positions, sizes, and transparency.mp4" type="video/mp4">
+
+    </video></div>
+
+
+
+
+
+
+    <div class="conBox_kkdj93_93">
+
+
+
+        <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">透かし入り画像は鮮明ですか?</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              非常に分かりやすく、デフォルトの出力は元の画像サイズと最高品質です。もちろん、出力画像の幅と品質も設定できます。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+
+
+
+         <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像の透かしを使用するにはログインする必要がありますか?</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              ログイン不要、完全に無料でご利用いただけます。機能制限もありません。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+
+  <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">透かし機能を使用すると画像は安全になりますか?</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              もちろん安全です。ブラウザ技術を使用して画像に透かしを入れ、サーバーにアップロードしないため、プライバシーは完全に保護されます。imagesTool.comのウェブサイト全体は純粋なJavaScriptで記述されており、ファイルをアップロードする必要はありません。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ImagesTool で透かしを追加できるファイルの数に制限はありますか?</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              ファイル数に制限はありませんが、お使いのパソコンの性能によって異なります。一度に処理できる画像は最大300枚までで、各画像のサイズは20MB以内とすることを推奨します。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+      <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ImagesTool はフォルダーのインポートをサポートしていますか？フォルダー構造を復元できますか？</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              はい、「フォルダをインポート」ボタンをクリックするか、このページにフォルダをドラッグし、プロンプトが表示されたら下の「フォルダをここにドロップ」エリアにドラッグしてください。
+              </font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              処理が完了すると、エクスポートされたzipファイルは元のフォルダ構造を維持します。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+      <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">毎回透かしを再度設定する必要がありますか?</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              再度設定する必要はありません。透かしを変更するたびにブラウザに保存されます。次回ImagesToolを開いたときに、前回設定した透かしが読み込まれます。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+      <div class="acc_ksl93ms">
+        <div class="acc_ksl9302">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></span>
+          <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ImagesTool をスマートフォンやタブレットで使用できますか?</font></font></h2>
+        </div>
+        <div class="accb_93jsk9">
+          <div>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+              コンピューター (PC) で使用することをお勧めします。Chrome ブラウザまたは Chromium ベースのブラウザを使用することをお勧めします。
+            </font></font></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="conBox_kkdj93_93 abTls83_93">
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">その他のツール</font></font></h2>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像を圧縮する</font></font></h3>
+      <ul>
+        <li><a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">JPGコンプレッサー</font></font></a></li>
+        <li><a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PNG 圧縮ツール</font></font></a></li>
+        <li><a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">SVG コンプレッサー</font></font></a></li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">JPG変換</font></font></h3>
+      <ul>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">WEBPからJPG</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">AVIFからJPGへ</font></font></a></li>
+
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">HEICからJPGへ</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PSDをJPGに変換する</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">PDFをJPGに変換する</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">SVGからJPGへ</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">JPGをWEBPに変換する</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">JPGをAVIFに変換する</font></font></a></li>
+        <li><a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">JPGをPNGに変換する</font></font></a></li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">GIFを変換</font></font></h3>
+      <ul>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">WEBPからGIFへ</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">APNGからGIFへ</font></font></a>
+        </li>
+        <li><a target="_blank" href="./video-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">MP4をGIFに変換する</font></font></a></li>
+        <li>
+          <a target="_blank" href="./video-clips-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">編集後にビデオをGIFに変換する</font></font></a>
+        </li>
+      </ul>
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">WEBPアニメーションを変換する</font></font></h3>
+      <ul>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">GIFからWEBPへのコンバーター</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./git-to-webp-to-apng"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">APNGからWEBPへのコンバーター</font></font></a>
+        </li>
+        <li><a target="_blank" href="./video-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">MP4からWEBPへのコンバーター</font></font></a></li>
+        <li>
+          <a target="_blank" href="./video-clips-to-gif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ビデオを編集してWEBPに変換する</font></font></a>
+        </li>
+      </ul>
+
+
+
+
+
+
+      <h3><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">その他のツール</font></font></h3>
+      <ul>
+        <li><a target="_blank" href="./crop-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像クロッパー</font></font></a></li>
+        <li><a target="_blank" href="./images-watermark"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像透かし</font></font></a></li>
+        <li><a target="_blank" href="./image-exif"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像のExif情報を表示</font></font></a></li>
+        <li>
+          <a target="_blank" href="./resize-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像リサイズツール</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./split-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像分割ツール</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="/webp2jpg-online/splicing#/splicing"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像スティッチャー</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./compress-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像圧縮ツール</font></font></a>
+        </li>
+        <li>
+          <a target="_blank" href="./convert-images"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">画像コンバーター</font></font></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

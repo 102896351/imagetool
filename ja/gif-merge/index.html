@@ -1,0 +1,565 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="utf-8">
+    <title>Gifマージ</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="複数のgifを1つのgifにマージし、ドラッグして順序を調整し、マージされたgifのサイズを自動的に調整します。">
+    <meta name="keywords" content=" 複数のgifをマージ、オンラインgifマージ ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/ja/gif-merge">
+    <meta property="og:site_name" content="Gifマージ">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Gifマージ">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="複数のgifを1つのgifにマージし、ドラッグして順序を調整し、マージされたgifのサイズを自動的に調整します。">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/ja/gif-merge">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/gif-merge">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/gif-merge">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/gif-merge">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/gif-merge">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/gif-merge">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/gif-merge">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/gif-merge">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gifマージ",
+  "url": "https://imagestool.com/ja/gif-merge",
+  "description": "複数のgifを1つのgifにマージし、ドラッグして順序を調整し、マージされたgifのサイズを自動的に調整します。",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> 申し訳ありませんが、javascriptを有効にしないとimagestool.comは正しく機能しません。 </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/ja/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> すべてのツール </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/ja/convert-images" target=""> 写真を変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/splice-images" target=""> 写真をステッチする </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/images-watermark" target=""> 画像透かし </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/resize-images" target=""> 画像サイズを調整する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/crop-images" target=""> 写真を切り抜く </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/compress-images" target=""> 画像を圧縮する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/image-exif" target=""> Exifを読む </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/split-images" target=""> 写真を分割する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-to-gif" target=""> Gifへのビデオ </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-clips-to-gif" target=""> ビデオを編集してgifに変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  green flex_center2"><i class="iconfont icon-film-line " style="margin: 5px 20px 10px 0px; transform: scale(0.8, 0.8);"></i><i class="iconfont icon-film-line  " style="transform: scale(0.5, 0.5); position: absolute; bottom: 0px; right: -10px;"></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> Gifマージ </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> 複数のgifを1つのgifにマージし、ドラッグして順序を調整し、マージされたgifのサイズを自動的に調整します。 </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> ここにファイルをドラッグします </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> ファイルを選択します </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> フォルダーを選択 </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> 画像を貼り付ける (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> このツールについて </h2><div><div class="p_10 flex_center2"><img alt="" src="blob:http://localhost:3001/3769acff-d6d4-47d4-bcaf-ecae46434f37"><b class="p_20 f_s_36">+</b><img alt="" src="blob:http://localhost:3001/dcc711c5-4d62-4832-9cee-407173dda5e2"><b class="p_20 f_s_36">=</b><img alt="" src="blob:http://localhost:3001/f7218385-2188-4350-9169-214a9ded3bb8"></div></div><br><br><h3 class="m_b_10"> サポートされている形式のリスト </h3><div class="m_r_5 size2 m_b_5 Tag red">Gif</div><br><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> ファイルをアップロードする必要がなく、プライバシーが強化されます </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.comすべてのツールは、ブラウザブラウザテクノロジを使用して実装されています </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> ファイルをアップロードする必要はありません </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Javascriptでより速く </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> ファイルは100％安全です </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0  "><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-up-down-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div><ul class="imageList w_100 p_0 flex wrap" style="max-width: 600px;"></ul></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_20 "> Gifマージ </h3><div class="flex_column2"><p class="f_s_14 l_h_16 blackA6 m_b_5"> 合わせたサイズ </p><button type="button" class="Button  normal configBox h      " style="height: auto !important; min-height: 64px;"><div><div class="flex_center"><div><i class="iconfont icon-checkbox-circle-fill f_s_28 color fs0 m_r_10"></i></div><div><h3 class="f_s_20"> 写真から選択 </h3><p class="f_s_12 l_h_12 "> 左の写真にチェックを入れてください </p></div></div></div></button><button type="button" class="Button  normal configBox h m_t_10     " style="height: auto !important; min-height: 64px;"><div><div class="flex_center"><div><i class="iconfont icon-checkbox-blank-circle-line blackA4 f_s_28 fs0 m_r_10"></i></div><div><h3 class="f_s_20"> カスタマイズ </h3></div></div></div></button><div class="hr m_t_10 m_b_10"></div><p class="f_s_14 l_h_16 blackA6 m_b_5"> レイアウトモード </p><button type="button" class="Button  normal configBox h      " style="height: auto !important; min-height: 64px;"><div><div class="flex_center"><div><i class="iconfont icon-checkbox-circle-fill f_s_28 color fs0 m_r_10"></i></div><div><h3 class="f_s_16"> で覆われた </h3></div></div></div></button><button type="button" class="Button  normal configBox h m_t_10     " style="height: auto !important; min-height: 64px;"><div><div class="flex_center"><div><i class="iconfont icon-checkbox-blank-circle-line blackA4 f_s_28 fs0 m_r_10"></i></div><div><h3 class="f_s_16"> 全体 </h3></div></div></div></button></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2      "> 始める <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> ここにファイルをドラッグ </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 複数のファイルを読み取ることができます </div><input accept=".gif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> ここにフォルダをドラッグ </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 一度に1つのフォルダを読み取る </div><input accept=".gif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+
+    <style>
+        @import url("/assets/css/newC.css");
+      </style>
+      <div class="newContentBox_94kd5l_93">
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>関連ツール</h2>
+          <br>
+          <ul>
+            <li><a target="_blank" href="/ja/gif-compress">GIF 圧縮</a></li>
+            <li><a target="_blank" href="/ja/gif-crop">GIF クロップ</a></li>
+            <li>
+              <a target="_blank" href="/ja/git-to-webp-to-apng">GIF を WEBP に変換</a>
+            </li>
+          </ul>
+        </div>
+        <div class="conBox_kkdj93_93">
+          <h2>複数のGIFを1つのGIFにオンラインで結合する方法</h2>
+          <p>
+            このツールを使用すると、複数のGIFを1つのGIFに結合できます。ImagesToolのGIFコンバイナーでは、GIFのサイズをカスタマイズでき、GIFの再生順序と結合されたGIFのレイアウトを調整できます。
+          </p>
+          <br>
+          <ul>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">1</div>
+                <h3>GIFのインポート</h3>
+              </div>
+              <p class="m_t_5">
+                "画像を選択"ボタンをクリックしてGIF画像を選択するか、このページにGIF画像をドラッグします。
+              </p>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">2</div>
+                <h3>結合のパラメータを設定する</h3>
+              </div>
+              <ol class="m_t_5">
+                <li class="m_t_5">
+                  <br>
+                  <h4>
+                    a.
+                    <strong>GIFの再生順序</strong>
+                  </h4>
+                  <p>
+                    マウスの左ボタンを押しながらアイコンをドラッグしてGIFの順序を変更します。
+                    <img loading="lazy" width="38" height="34" style="display: inline; margin: 0; height: 22px; width: auto" src="/assets/images/gif-merge/move-icon.jpg" alt="GIFの再生順序を調整するためのアイコン - オンラインGIF分割ツール - クロップモード">
+                  </p>
+                </li>
+                <br>
+                <li class="m_t_5">
+                  <h4>
+                    a.
+                    <strong>GIFのサイズ</strong>
+                  </h4>
+                  <p>
+                    最初のGIFのサイズを結合サイズとして使用するか、カスタムの幅と高さを選択できます。
+                  </p>
+                </li>
+                <br>
+                <li>
+                  <h4>
+                    b.
+                    <strong>レイアウト</strong>
+                  </h4>
+                  <p>
+                    インポートされたGIFのサイズは異なる場合があります。これを解決するために、「レイアウト」を設定してGIFの一貫性を保持できます。ImagesToolは、「重ねる」および「完全表示」の2つのレイアウトオプションを提供します。
+                    "重ねる"は、GIFのアスペクト比を保ち、画面を最大限にカバーします。
+                    "完全表示"は、GIFを完全に表示します。
+                  </p>
+                </li>
+                <br>
+              </ol>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">3</div>
+                <h3>結合されたGIFをエクスポートする</h3>
+              </div>
+              <p class="m_t_5">
+                右下の「開始」ボタンをクリックし、処理が完了するのを待ってから「Zipをダウンロード」ボタンをクリックします。
+              </p>
+            </li>
+          </ul>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">GIFコンバイナー</h2>
+          <br>
+          <p>
+            ビデオでのデモでは、異なるサイズの猫のGIFを4つ組み合わせて、サイズ320x260pxのGIFに組み合わせる方法を示しています。処理には4秒かかります。
+          </p>
+          <video class="video_lazy_css92893" controls="" width="1000" height="480">
+            <source preload="none" src="/assets/images/gif-merge/imagesTool-com-split-images-gif-merge-operation-demonstration.mp4" type="video/mp4">
+          </video>
+      
+          <br>
+      
+          <p>サンプル画像</p>
+          <p>
+            <code>
+              569.1KB / 212x200px、66.3KB / 233x200px、1.8MB / 166x200px、7.3MB /
+              384x480px
+              <br>
+              画像ソース：GIPHY Clips
+              <br>
+              <a target="_blank" href="https://giphy.com/search/cat">https://giphy.com/search/cat</a>
+            </code>
+          </p>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>2つのGIFを1つのGIFに結合する最良 の方法</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  2つのGIFをドラッグし、「開始」ボタンをクリックし、数秒待って完了します。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>GIFコンバイナーでのGIFの順序の調整方法</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  左マウスボタンを押しながらアイコンをドラッグしてGIFの再生順序を調整します。
+                  <img loading="lazy" width="902" height="520" style="max-width: 500px" src="/assets/images/gif-merge/how-to-move-gif.jpg" alt="ImagesTool GIFコンバイナーを使用してGIFの再生順序を調整する方法">
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>その他のツール</h2>
+      
+          <h3>画像の圧縮</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/compress-images">JPG 圧縮</a></li>
+            <li><a target="_blank" href="/ja/compress-images">PNG 圧縮</a></li>
+            <li><a target="_blank" href="/ja/compress-images">SVG 圧縮</a></li>
+          </ul>
+      
+          <h3>JPGの変換</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/convert-images">WEBP への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">AVIF への変換</a></li>
+      
+            <li><a target="_blank" href="/ja/convert-images">HEIC への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">PSD への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">PDF への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">SVG への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">JPG への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">JPG への変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">JPG への変換</a></li>
+          </ul>
+      
+          <h3>GIFの変換</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/ja/git-to-webp-to-apng">WEBP への変換</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/git-to-webp-to-apng">APNG への変換</a>
+            </li>
+            <li><a target="_blank" href="/ja/video-to-gif">MP4 への変換</a></li>
+            <li>
+              <a target="_blank" href="/ja/video-clips-to-gif">ビデオの編集からの変換</a>
+            </li>
+          </ul>
+      
+          <h3>WEBPアニメーションの変換</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/ja/git-to-webp-to-apng">GIF への変換</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/git-to-webp-to-apng">APNG への変換</a>
+            </li>
+            <li><a target="_blank" href="/ja/video-to-gif">MP4 への変換</a></li>
+            <li>
+              <a target="_blank" href="/ja/video-clips-to-gif">ビデオの編集からの変換</a>
+            </li>
+          </ul>
+      
+          <h3>その他のツール</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/crop-images">画像のクロップ</a></li>
+            <li>
+              <a target="_blank" href="/ja/images-watermark">画像にウォーターマークを追加</a>
+            </li>
+            <li><a target="_blank" href="/ja/image-exif">画像のExif情報を表示</a></li>
+            <li>
+              <a target="_blank" href="/ja/resize-images">画像サイズの調整</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/split-images">画像の分割</a>
+            </li>
+            <li>
+              <a target="_blank" href="/webp2jpg-online/splicing#/splicing">画像の結合</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/compress-images">画像の圧縮</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/convert-images">画像の変換</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

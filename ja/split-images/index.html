@@ -1,0 +1,671 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="utf-8">
+    <title>写真を分割する</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="切り抜き、分割線、グリッドモードをサポート">
+    <meta name="keywords" content=" 写真を分割、オンラインで写真を分割、無料で写真を分割 ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/ja/split-images">
+    <meta property="og:site_name" content="写真を分割する">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="写真を分割する">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="切り抜き、分割線、グリッドモードをサポート">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/ja/split-images">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/split-images">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/split-images">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/split-images">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/split-images">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/split-images">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/split-images">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/split-images">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "写真を分割する",
+  "url": "https://imagestool.com/ja/split-images",
+  "description": "切り抜き、分割線、グリッドモードをサポート",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> 申し訳ありませんが、javascriptを有効にしないとimagestool.comは正しく機能しません。 </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/ja/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> すべてのツール </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/ja/convert-images" target=""> 写真を変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/splice-images" target=""> 写真をステッチする </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/images-watermark" target=""> 画像透かし </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/resize-images" target=""> 画像サイズを調整する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/crop-images" target=""> 写真を切り抜く </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/compress-images" target=""> 画像を圧縮する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/image-exif" target=""> Exifを読む </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/split-images" target=""> 写真を分割する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-to-gif" target=""> Gifへのビデオ </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/video-clips-to-gif" target=""> ビデオを編集してgifに変換する </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/ja/git-to-webp-to-apng" target=""> Gif to webp to apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  flex_center2"><i class="iconfont icon-slice-fill"></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> 写真を分割する </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> 切り抜き、分割線、グリッドモードをサポート </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> ここにファイルをドラッグします </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> ファイルを選択します </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> フォルダーを選択 </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> 画像を貼り付ける (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> このツールについて </h2><div class="catImg"><img alt="" src="/images/about/8.webp"></div><br><h3 class="m_b_10"> サポートされている形式のリスト </h3><div class="m_r_5 size2 m_b_5 Tag color">jpg</div><div class="m_r_5 size2 m_b_5 Tag color">jpeg</div><div class="m_r_5 size2 m_b_5 Tag color">png</div><div class="m_r_5 size2 m_b_5 Tag color">gif</div><div class="m_r_5 size2 m_b_5 Tag color">webp</div><div class="m_r_5 size2 m_b_5 Tag color">avif</div><div class="m_r_5 size2 m_b_5 Tag color">ico</div><div class="m_r_5 size2 m_b_5 Tag color">bmp</div><div class="m_r_5 size2 m_b_5 Tag color">svg</div><br><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> ファイルをアップロードする必要がなく、プライバシーが強化されます </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.comすべてのツールは、ブラウザブラウザテクノロジを使用して実装されています </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> ファイルをアップロードする必要はありません </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Javascriptでより速く </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> ファイルは100％安全です </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0 "><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><button type="button" class="Button  full     "> test </button><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round  disabled    "><i class="iconfont icon-arrow-left-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-right-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_10"></div><button type="button" class="Button  sub round      "><i class="iconfont icon-delete-bin--line5 f_s_18 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="configView"><div class="view1"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_10 "> 写真を分割する </h3><div class="flex_column2"><p class="f_s_14 blackA6 m_b_10 m_t_10"> 最初に分割モードを選択してください </p><button type="button" class="Button  sub size3 t2 w_100  flex_between p_l_25     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-shape--fill f_s_20 t2 m_r_10"></i><b class="f_s_16"> クロップモード </b></span><i class="iconfont icon-arrow-right-circle-fill f_s_26  m_r_10 color"></i></button><button type="button" class="Button  sub size3  t2 w_100 m_t_10 flex_between p_l_25     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-slice-fill f_s_20 t2 m_r_10"></i><b class="f_s_16"> スプリットラインモード </b></span><i class="iconfont icon-arrow-right-circle-fill f_s_26  m_r_10 color"></i></button><button type="button" class="Button  sub size3  t2 w_100 m_t_10 flex_between p_l_25     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-grid-line f_s_20 t2 m_r_10"></i><b class="f_s_16"> グリッドパターン </b></span><i class="iconfont icon-arrow-right-circle-fill f_s_26  m_r_10 color"></i></button><button type="button" class="Button  sub size3  t2 w_100 m_t_10 flex_between p_l_25     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-function-line f_s_20 t2 m_r_10"></i><b class="f_s_16"> 固定サイズモード </b></span><i class="iconfont icon-arrow-right-circle-fill f_s_26  m_r_10 color"></i></button><div class="hr m_t_10 m_b_5  "></div><div class=" m_b_50  "></div></div></div></div></div><div class="start " style="display: none;"><div class="NormalOutputConfig m_b_10"><div class="PopupContentMini" pos="2" islight="" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  sub  t2 w_100   flex_between  p_l_25 p_r_20     " style="--blackA1:var(--colorA1);"><span class="flex_center"><i class="iconfont icon-file-settings-line t2 m_r_10 f_s_18"></i><span class="f_s_14"> jpg 96% </span></span><i class="iconfont icon-arrow-down-s-fill f_s_18 blackA4"></i></button></div></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2  disabled    "> 最初にモードを選択してください <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> ここにファイルをドラッグ </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 複数のファイルを読み取ることができます </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> ここにフォルダをドラッグ </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 一度に1つのフォルダを読み取る </div><input accept=".jpg,.jpeg,.png,.gif,.webp,.avif,.ico,.bmp,.svg,.psd,.hdr,.tiff,.tif,.psb,.tga,.xcf,.miff,.dcm,.xpm,.pcx,.fits,.ppm,.pgm,.pfm,.mng,.dds,.otb,.heic,.heif,.pdf,.CR2,.RW2,.NEF,.ARW,.SR2,.ORF,.PEF,.RAF,.SRW,.MRW,.DCR,.DNG,.ERF,.3FR,.ARI,.SRF,.bay,.crw,.cap,.iiq,.eip,.dcs,.drf,.k25,.kdc,.FFF,.MEF,.MOS,.NRW,.PTX,.PXN,.R3D,.rwl,.rwz,.X3F,.MDC,.jpe,.jfif,.jfi,.jif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+
+
+    <style>
+        @import url("/assets/css/newC.css");
+      </style>
+      <div class="newContentBox_94kd5l_93">
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>関連ツール</h2>
+          <br>
+          <ul>
+            <li><a target="_blank" href="/ja/crop-images">写真をバッチでトリミングする</a></li>
+            <li><a target="_blank" href="/ja/gif-crop">トリミングGIF</a></li>
+            <li>
+            <a target="_blank" href="/ja/video-clips-to-gif">ビデオをトリミングしてGIFに変換</a>
+      
+            </li>
+          </ul>
+        </div>
+        <div class="conBox_kkdj93_93">
+          <h2>オンラインで写真をカットするにはどうすればよいですか?</h2>
+          <p>
+            このツールは、大きな画像を複数の小さな画像に切り取ることができます。ImagesTool には、さまざまな画像切り取りモードが用意されています。
+          </p>
+          <br>
+          <ul>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">1</div>
+                <h3>写真をインポートする</h3>
+              </div>
+              <p class="m_t_5">「画像を選択」ボタンをクリックして画像を選択するか、このページに画像をドラッグします。</p>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">2</div>
+                <h3>画像を分割するモードを選択します</h3>
+              </div>
+              <ol class="m_t_5">
+                <li class="m_t_5">
+                  <h4>
+                    a.
+                    <a class="normal_a203l" href="#crop_mode_id9293"><strong>トリミングモード</strong></a><a class="normal_a203l" href="#crop_mode_id9293">
+                      <strong></strong>
+                    </a>
+                  </h4>
+                  <p>
+                    読み込んだ画像に複数のクロップ枠を追加することができ、画像上で左ボタンを押したままドラッグするだけで選択枠を追加できます。
+                  </p>
+                </li>
+                <li>
+                  <h4>
+                    b.
+                    <strong>分割線モード</strong>
+                  </h4>
+                  <p>
+                    画像をハサミのように切り取り、画面右側の「水平線を追加」または「垂直線を追加」ボタンをクリックして、水平線と垂直線を追加します。
+                  </p>
+                </li>
+      
+                <li>
+                  <h4>
+                    c.グリッド
+                    <a class="normal_a203l" href="#crop_mode_id92932"><strong>モード</strong></a><a class="normal_a203l" href="#crop_mode_id92932">
+                      <strong></strong>
+                    </a>
+                  </h4>
+                  <p>
+                    画像を横線、縦線、間隔に応じて均等に分割し、分割した画像のサイズは同じで単位はpxです。
+                  </p>
+                </li>
+                <li>
+                  <h4>
+                    d.
+                    <strong>固定サイズモード</strong>
+                  </h4>
+                  <p>
+                    「グリッドモード」と同様ですが、唯一の違いは「グリッドモード」は画像のサイズに比例してカットし、単位がパーセント（%）であることです。 「固定サイズモード」は絶対サイズで切り出し、単位はピクセル（px）です。
+                  </p>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">3</div>
+                <h3>写真のエクスポート</h3>
+              </div>
+              <p class="m_t_5">
+                右下隅の「開始」ボタンをクリックし、処理が完了するまで待ってから、「zip をダウンロード」ボタンをクリックします。
+              </p>
+            </li>
+          </ul>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">クロップモード</h2>
+          <br>
+      
+          <p>
+            画像をインポートした後、右側の「トリミングモード」ボタンをクリックして、トリミングによる画像の分割を開始します。 Photoshop の<a class="normal_a203l" href="https://helpx.adobe.com/photoshop/using/slicing-web-pages.html" target="_blank">
+              「スライス」
+            </a>機能の簡易版と考えることができます
+            
+            。
+          </p>
+          <p>
+            トリミング モードでは、画像に複数のトリミング ボックスを追加できます。画像上でマウスの左ボタンを押したまま任意の方向にドラッグするだけで、選択ボックスを追加できます。
+          </p>
+          <br>
+      
+          <video class="video_lazy_css92893" controls="" width="1000" height="480" poster="/assets/images/split-image/imagesTool-com-split-images-crop-mode.jpg">
+            <source preload="none" src="/assets/images/split-image/imagesTool-com-split-images-crop-mode-operation-demonstration.mp4" type="video/mp4">
+          </video>
+          <br>
+          <p>
+            ビデオでは、巨大な世界地図から 6 つのエリアを切り出す方法が示されています。各領域を個別の画像ファイルとして保存
+          </p>
+      
+          <br>
+      
+          <p>サンプル画像</p>
+          <p>
+            <code>
+              13500x6750px 8.1MB
+              <br>
+              Image Source:Night Light Maps Open Up New Applications
+              <br>
+              <a target="_blank" href="https://earthobservatory.nasa.gov/images/90008/night-light-maps-open-up-new-applications">https://earthobservatory.nasa.gov/images/90008/night-light-maps-open-up-new-applications</a>
+            </code>
+          </p>
+      
+          <br>
+      
+          <h3>クロップ枠を操作する</h3>
+          <p>
+            トリミング ボックスを追加した後、トリミング ボックスをクリックしてその他の操作を選択します。
+            <br>
+            <img loading="lazy" width="200" height="92" src="/assets/images/split-image/imagesTool-com-split-images-crop-mode.gif" alt="オンラインで写真を分割 - トリミング ボックスを追加した後、トリミング ボックスをクリックしてその他の操作を選択します">
+            <code>
+              8332x6571px 11.2MB
+              <br>
+              By Unidentified painter - Current version: Palace of Versailles; direct
+              link to the image: [1]Original version: L’Histoire par l’image, Public
+              Domain
+              <br>
+              <a target="_blank" href="https://commons.wikimedia.org/w/index.php?curid=6882732">https://commons.wikimedia.org/w/index.php?curid=6882732</a>
+            </code>
+          </p>
+      
+          <p>
+            トリミング ボックスのサイズを変更する:<b>周囲の小さな正方形をクリックしてドラッグし、トリミング ボックスのサイズを変更します。</b>
+          </p>
+          <p>
+            クロップボックスをコピーする：<b>クロップボックスの左下隅にある「コピー」アイコンをクリックします。</b>
+            <img loading="lazy" width="38" height="34" style="display: inline; margin: 0; height: 22px; width: auto" src="/assets/images/split-image/copy-icon.png" alt="クロップボックスの「コピー」アイコン - オンラインで画像を分割 - クロップモード">
+          </p>
+          <p>
+            クロップボックスを削除する:<b>クロップボックスの右上隅にある「削除」アイコンをクリックします。</b>
+            <img loading="lazy" width="38" height="34" style="display: inline; margin: 0; height: 22px; width: auto" src="/assets/images/split-image/delete-icon.png" alt="クロップボックスの「コピー」アイコン - オンラインで画像を分割 - クロップモード">
+          </p>
+          <br>
+          <p>トリミング ボックスを移動する:<b>トリミング ボックスをクリックしてドラッグします。</b></p>
+          <p>
+            トリミング ボックスの現在のサイズを取得します。<b>トリミング ボックスを選択した後の上の黒い数字は幅と高さで、単位はピクセル (px) です。</b>
+          </p>
+          <p>トリミング ボックスのドラッグ可能な範囲:<b>トリミング ボックスは画像に制限されます。</b></p>
+          <br>
+      
+          <h3>ショートカット キーを使用する</h3>
+      
+          <p>
+            <img loading="lazy" width="200" height="161" src="/assets/images/split-image/imagesTool-com-split-images-crop-mode2.gif" alt="オンラインで画像を分割 - クロップ枠のショートカットキー操作">
+          </p>
+          <p>
+            <b>ズーム100%と自動ズーム切り替え：</b>画像の空白部分でマウスの左ボタンをダブルクリックすると、画像が素早くズームされます<br>
+            <b>フリーズーム：</b>マウスホイールをスライドして画像がズームされます<br>
+            <b>視野角位置の移動：長</b>押しスペースバーを押しながらマウスの左ボタンを押したまま画像を移動します<br>
+            <b>クロップボックスの削除：</b>クロップ枠を選択した後、削除キーを押すとクロップ枠が削除されます<br>
+          </p>
+          <br>
+      
+          <h3>写真のエクスポート</h3>
+          <p>[スタート ボタン] の上で、エクスポートする画像の種類を選択できます。jpg、webp、png 画像のエクスポートをサポートしています。</p>
+          <p>
+            クロップフレームを追加して調整したら、インターフェース右下の「開始」ボタンをクリックし、処理が完了したら（ビデオ内のクロップフレームは6つあり、2秒かかります）、「ZIPをダウンロード」をクリックします。ボタンをクリックして zip を解凍すると、クロップ フレームのスクリーンショットが利用可能になります。
+          </p>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id92932">グリッドパターン</h2>
+          <br>
+          <p>
+            このモードは、均等に配置されたグリッドレイアウトで大きな画像を分割するのに非常に適しており、横線、縦線、間隔の値を調整して画像を分割すると、分割された小さな画像は同じサイズになります。
+          </p>
+          <p>画像をインポートした後、右側の「グリッドモード」ボタンをクリックして、画像をグリッド内に均等に分割し始めます。</p>
+      
+          <video class="video_lazy_css92893" controls="" width="1000" height="463" poster="/assets/images/split-image/imagesTool-com-split-images-grid-pattern.jpg">
+            <source preload="none" src="/assets/images/split-image/imagesTool-com-split-images-grid-pattern-operation-demonstration.mp4" type="video/mp4">
+          </video>
+          <br>
+      
+          <p>ビデオでは、Dota2 ヒーロー コレクションの画像を各ヒーローの小さな画像に分割する方法が示されています。</p>
+          <ol>
+            <li>01. まずは「分割線モード」で大まかな部分を切り抜きます</li>
+            <li>02. 次に、「グリッド モード」を使用して、一般的な領域をより慎重にセグメント化します。</li>
+          </ol>
+          <br>
+      
+          <p>サンプル画像</p>
+          <p>
+            <code>
+              1547x832px 1.3MB
+              <br>
+              Image Source:Custom hero grids [updated to 7.33c]
+              <br>
+              <a target="_blank" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2376415279">https://steamcommunity.com/sharedfiles/filedetails/?id=2376415279</a>
+            </code>
+          </p>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>分割した画像は最高の品質を保っていますか？</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>はい、画像タイプを png のままにすることをお勧めします</p>
+              </div>
+            </div>
+          </div>
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>「グリッドモード」を使用してWeChatの9マスグリッドをカットするにはどうすればよいですか?</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  画像をインポートし、「グリッドモード」を選択し、「水平線」と「垂直線」を「3」に設定して、適切な「間隔」を調整します。
+                </p>
+                <img loading="lazy" width="1200" height="536" src="/assets/images/split-image/jiugongge.jpg" alt="ImgaesTool を使用して WeChat 九公歌写真をオンラインで作成する">
+              </div>
+            </div>
+          </div>
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>画像を 200x200px の小さな画像に分割するにはどうすればよいですか?</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>画像をインポートし、「固定サイズモード」を選択し、幅と高さを200に設定します</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>その他のツール</h2>
+      
+          <h3>画像を圧縮する</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/compress-images">JPGを圧縮する</a></li>
+            <li><a target="_blank" href="/ja/compress-images">PNG を圧縮</a></li>
+            <li><a target="_blank" href="/ja/compress-images">SVGを圧縮する</a></li>
+          </ul>
+      
+          <h3>JPGを変換</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/convert-images">WEBPからJPGへのファイル変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">AVIFからJPGへの変換</a></li>
+      
+            <li><a target="_blank" href="/ja/convert-images">HEICからJPGへの変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">PSDからJPGへの変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">PDFからJPGへ</a></li>
+            <li><a target="_blank" href="/ja/convert-images">SVGからJPGへの変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">JPGからWEBPへの変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">JPGからAVIFへのファイル変換</a></li>
+            <li><a target="_blank" href="/ja/convert-images">JPGからPNGへ</a></li>
+          </ul>
+      
+          <h3>GIFを変換</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/git-to-webp-to-apng">WEBPからGIFへ</a></li>
+            <li><a target="_blank" href="/ja/git-to-webp-to-apng">APNGからGIFへ</a></li>
+            <li><a target="_blank" href="/ja/video-to-gif">MP4からGIFへ</a></li>
+            <li>
+              <a target="_blank" href="/ja/video-clips-to-gif">編集後にビデオをGIFに変換</a>
+            </li>
+          </ul>
+      
+          <h3>WEBPアニメーションを変換する</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/git-to-webp-to-apng">GIFからWEBPへ</a></li>
+            <li><a target="_blank" href="/ja/git-to-webp-to-apng">APNGからWEBPへ</a></li>
+            <li><a target="_blank" href="/ja/video-to-gif">MP4からWEBPへ</a></li>
+            <li>
+              <a target="_blank" href="/ja/video-clips-to-gif">編集後にビデオをWEBPに変換</a>
+            </li>
+          </ul>
+      
+          <h3>その他のツール</h3>
+          <ul>
+            <li><a target="_blank" href="/ja/crop-images">写真をトリミングする</a></li>
+            <li><a target="_blank" href="/ja/images-watermark">写真に透かしを追加する</a></li>
+            <li><a target="_blank" href="/ja/image-exif">画像のExif情報を表示する</a></li>
+            <li>
+              <a target="_blank" href="/ja/resize-images">画像のサイズを変更する</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/split-images">分割画像</a>
+            </li>
+            <li>
+              <a target="_blank" href="/webp2jpg-online/splicing#/splicing">写真をステッチする</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/compress-images">画像を圧縮する</a>
+            </li>
+            <li>
+              <a target="_blank" href="/ja/convert-images">写真を変換する</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      
+      
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/ja/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

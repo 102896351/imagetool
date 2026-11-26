@@ -1,0 +1,810 @@
+<!DOCTYPE html><html lang="fr"><head>
+    <meta charset="utf-8">
+    <title>Traitez les images en ligne sans télécharger de fichiers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Fichiers plus rapides et plus sûrs, 100% gratuits et illimités">
+    <meta name="keywords" content=" Traitement d'images en ligne, conversion d'images par lots, compression d'images par lots, webp en jpg, vidéo en gif, gif en webp ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/fr/">
+    <meta property="og:site_name" content="Traitez les images en ligne sans télécharger de fichiers">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Traitez les images en ligne sans télécharger de fichiers">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Fichiers plus rapides et plus sûrs, 100% gratuits et illimités">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/fr/">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Traitez les images en ligne sans télécharger de fichiers",
+  "url": "https://imagestool.com/fr/",
+  "description": "Fichiers plus rapides et plus sûrs, 100% gratuits et illimités",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> Désolé, imagestool.com ne fonctionnera pas correctement si javascript n'est pas activé. </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/fr/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> Tous les outils </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/fr/convert-images" target=""> Convertir des images </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/splice-images" target=""> Images de couture </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/images-watermark" target=""> Filigrane d'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/resize-images" target=""> Ajuster la taille de l'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/crop-images" target=""> Recadrer l'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/compress-images" target=""> Compresser l'image </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/image-exif" target=""> Lire exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/split-images" target=""> Images fractionnées </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/video-to-gif" target=""> Vidéo en gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/video-clips-to-gif" target=""> Modifier la vidéo et convertir en gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/fr/git-to-webp-to-apng" target=""> Gif à webp à apng </a></div></ul></div></div></div></header><main class=" "><div class="n1 w_100 flex_column"><div class="title   w_1600 flex_column"><h1 class="f_s_50 l_h_50 t_a_c titleKey" style="padding: 0px 5%;"> Traitez les images en ligne sans télécharger de fichiers </h1><p class="f_s_20 l_h_20 f_w_300 m_t_10    p_t_10 descriptionKey"> Fichiers plus rapides et plus sûrs, 100% gratuits et illimités </p><p class="keywordsKey" style="display: none;"> Traitement d'images en ligne, conversion d'images par lots, compression d'images par lots, webp en jpg, vidéo en gif, gif en webp </p><div class="flex_between"><div></div></div></div><div class="hr color_bg w_300 op_2 m_t_40"></div><h2 id="anchor1" class="white f_s_30 l_h_30 m_t_20 m_b_20"> Outil d'image </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/fr/convert-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-arrow-left-right-line"></i></div><div><h2 class="m_b_5 m_t_15"> Convertir des images </h2><p class="op_6 f_s_12 l_h_14
+                 "> Prise en charge de la conversion de plus de 60 formats tels que pdf, psd, heic, raw, tiff en jpg, webp, png </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/splice-images" target=""><div class="appIcon purple  flex_center2"><i class="iconfont icon-layout-masonry-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Images de couture </h2><p class="op_6 f_s_12 l_h_14
+                 "> Prend en charge les images longues, les sous-titres et les modes grille </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/images-watermark" target=""><div class="appIcon red flex_center2"><i class="iconfont icon-star-smile-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Filigrane d'image </h2><p class="op_6 f_s_12 l_h_14
+                 "> Ajouter un filigrane de texte ou d'image, prendre en charge les mosaïques, aléatoire, variable, mode bannière </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/resize-images" target=""><div class="appIcon purple flex_center2"><i class="iconfont icon-picture-in-picture-exit-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Ajuster la taille de l'image </h2><p class="op_6 f_s_12 l_h_14
+                 "> Ajustez la taille ou le rapport d'aspect de l'image, prenez en charge plusieurs tailles de sortie en même temps </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/crop-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-crop-line "></i></div><div><h2 class="m_b_5 m_t_15"> Recadrer l'image </h2><p class="op_6 f_s_12 l_h_14
+                 "> Prend en charge le recadrage après rotation ou retournement, et prend en charge le recadrage simultané lors de l'importation d'images de même taille </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/compress-images" target=""><div class="appIcon blue flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compresser l'image </h2><p class="op_6 f_s_12 l_h_14 "> Prise en charge des fichiers jpg, webp, png, svg, animation gif, animation apng compressés </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/compress-jpg-and-keep-exif" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compressez jpg et conservez exif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Prend en charge la compression par lots jpg et conserve complètement les données exif </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/compress-images-to-specified-size" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-quill-pen-line " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compresser l'image à la taille spécifiée </h2><p class="op_6 f_s_12 l_h_14
+                 "> Compresser par lots jpg, webp à la taille de fichier spécifiée </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/image-exif" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-qr-scan--line "></i></div><div><h2 class="m_b_5 m_t_15"> Lire exif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Y compris des dizaines d'informations telles que le gps, l'altitude, le fabricant de l'appareil photo, le temps d'exposition, etc., prend en charge l'importation de jpg, heic, raw </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/split-images" target=""><div class="appIcon  flex_center2"><i class="iconfont icon-slice-fill"></i></div><div><h2 class="m_b_5 m_t_15"> Images fractionnées </h2><p class="op_6 f_s_12 l_h_14
+                 "> Prise en charge du recadrage, de la ligne fractionnée, du mode grille </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div><h2 id="anchor2" class="white f_s_30 l_h_30 m_t_50 m_b_30"> Outil gif </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/fr/gif-compress" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Compression gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Batch compress gif, support pour choisir différentes forces de compression </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/gif-crop" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-crop-line "></i></div><div><h2 class="m_b_5 m_t_15"> Recadrage gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Images gif de recadrage par lots </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/gif-extract-frame" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-stack-overflow-line " style="transform: rotate(90deg);"></i></div><div><h2 class="m_b_5 m_t_15"> Extraire des images de gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Images de tous les cadres extraits de gif, webp, apng </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/gif-merge" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-film-line " style="margin: 5px 20px 10px 0px; transform: scale(0.8, 0.8);"></i><i class="iconfont icon-film-line  " style="transform: scale(0.5, 0.5); position: absolute; bottom: 0px; right: -10px;"></i></div><div><h2 class="m_b_5 m_t_15"> Fusion de gifs </h2><p class="op_6 f_s_12 l_h_14
+                 "> Fusionnez plusieurs gifs en un seul gif, faites glisser pour ajuster l'ordre et ajustez automatiquement la taille du gif fusionné. </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/gif-reverse" target=""><div class="appIcon  green flex_center2"><i class="iconfont icon-rewind-fill " style="transform: scale(0.8);"></i></div><div><h2 class="m_b_5 m_t_15"> Gif à l'envers </h2><p class="op_6 f_s_12 l_h_14
+                 "> Inverser l'ordre de lecture des gifs </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/git-to-webp-to-apng" target=""><div class="appIcon red flex_center2"><i class="iconfont icon-arrow-left-right-line"></i></div><div><h2 class="m_b_5 m_t_15"> Gif à webp à apng </h2><p class="op_6 f_s_12 l_h_14
+                 "> Convertir gif, webp, apng entre eux, prise en charge pour modifier la taille </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div><h2 id="anchor2" class="white f_s_30 l_h_30 m_t_50 m_b_30"> Outil vidéo </h2><div class="appMune w_1600 p_0"><ul><li><div class="AppIcon"><a href="/fr/video-to-gif" target=""><div class="appIcon  purple flex_center2"><i class="iconfont icon-video-fill "></i></div><div><h2 class="m_b_5 m_t_15"> Vidéo en gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Conversion par lots de vidéos en gif hd, prise en charge de la sortie gif, webp </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li><li><div class="AppIcon"><a href="/fr/video-clips-to-gif" target=""><div class="appIcon  purple flex_center2"><i class="iconfont icon-scissors-line "></i></div><div><h2 class="m_b_5 m_t_15"> Modifier la vidéo et convertir en gif </h2><p class="op_6 f_s_12 l_h_14
+                 "> Après avoir édité ou recadré la vidéo, convertissez-la en gif haute définition et prenez en charge le gif compressé, prenez en charge la sortie gif, webp </p></div><div class="go"><i class="iconfont icon-arrow-right-line "></i></div></a></div></li></ul></div></div></main><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> Pas besoin de télécharger des fichiers, plus de confidentialité </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com tous les outils sont mis en œuvre à l'aide de la technologie du navigateur </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> Pas besoin de télécharger des fichiers </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> Plus rapide avec javascript </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> Les fichiers sont 100% sécurisés </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div>
+
+
+
+                 <style>
+                    @import url("/assets/css/newC.css");
+                  </style>
+                  <div class="newContentBox_94kd5l_93">
+                    <div class="conBox_kkdj93_93">
+                      <h2> Pourquoi ImagesTool est-il le meilleur choix pour convertir et compresser des images en ligne ? </h2>
+                      <br>
+                      <ul>
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M208 40H48a16 16 0 0 0-16 16v58.77c0 89.61 75.82 119.34 91 124.39a15.53 15.53 0 0 0 10 0c15.2-5.05 91-34.78 91-124.39V56a16 16 0 0 0-16-16Zm-34.34 69.66l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.68l50.34-50.34a8 8 0 0 1 11.32 11.32Z"></path>
+                            </svg>
+                            <h3> Gratuit et sûr </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            100% gratuit, aucune restriction de fichiers.  Tous les outils en ligne d'ImagesTool utilisent la technologie de navigateur pour le traitement des images. Les fichiers importés sont toujours sur votre appareil et ne seront pas téléchargés, protégeant ainsi au maximum votre vie privée.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="m235.39 84.07l-28.15 24l8.43 35.73a13.09 13.09 0 0 1-5 13.58a13.25 13.25 0 0 1-14.63.7l-32-19l-32 19a13.25 13.25 0 0 1-14.63-.7a13.1 13.1 0 0 1-5-13.58l8.43-35.73l-28.16-24A13.13 13.13 0 0 1 100.1 61l37.23-3.15L151.85 24a13.24 13.24 0 0 1 24.31 0l14.52 33.87L227.9 61a13.12 13.12 0 0 1 7.49 23.06ZM85.66 114.34a8 8 0 0 0-11.32 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0 0-11.32Zm16 56a8 8 0 0 0-11.32 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0 0-11.32Zm60.69 0l-56 56a8 8 0 0 0 11.32 11.32l56-56a8 8 0 0 0-11.31-11.32Z"></path>
+                            </svg>
+                            <h3> Notre style unique </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            Comparé à d'autres sites Web de traitement d'images en ligne, ImagesTool.com n'a pas besoin de télécharger vos fichiers. Au lieu de cela, il utilise la technologie du navigateur pour traiter les images. Par conséquent, ImagesTool est un site Web en ligne qui peut mieux protéger votre confidentialité et votre sécurité et vous permet de l'utiliser. en toute sérénité.
+                             <br> 
+                            Comparé au logiciel client local qui doit être installé, ImagesTool est plus pratique et plus rapide et peut être utilisé en l'ouvrant dans le navigateur.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.07 8.07 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96ZM56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Zm16 0a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"></path>
+                            </svg>
+                            <h3> meilleure qualité </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            Nous utilisons des logiciels originaux pour garantir que nos outils convertissent et compressent avec la plus haute qualité et une vitesse de traitement exceptionnelle.
+                           </p>
+                        </li>
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M216 40H72a16 16 0 0 0-16 16v16H40a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16v-16h16a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16Zm-32 48v16H40V88Zm32 80h-16V88a16 16 0 0 0-16-16H72V56h144Z"></path>
+                            </svg>
+                            <h3> bonne compatibilité </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            ImagesTool - Outil de conversion et de compression qui s'exécute dans les principaux navigateurs et prend en charge les téléphones mobiles ou les tablettes.  Veuillez donner la priorité à l'utilisation du navigateur Chrome ou du navigateur principal Chromium.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M128 24c-53.83 0-96 24.6-96 56v96c0 31.4 42.17 56 96 56s96-24.6 96-56V80c0-31.4-42.17-56-96-56Zm80 104c0 9.62-7.88 19.43-21.61 26.92C170.93 163.35 150.19 168 128 168s-42.93-4.65-58.39-13.08C55.88 147.43 48 137.62 48 128v-16.64c17.06 15 46.23 24.64 80 24.64s62.94-9.68 80-24.64Zm-21.61 74.92C170.93 211.35 150.19 216 128 216s-42.93-4.65-58.39-13.08C55.88 195.43 48 185.62 48 176v-16.64c17.06 15 46.23 24.64 80 24.64s62.94-9.68 80-24.64V176c0 9.62-7.88 19.43-21.61 26.92Z"></path>
+                            </svg>
+                            <h3> Paramètres d'enregistrement automatique </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            Les paramètres que vous modifiez resteront dans votre navigateur et lorsque vous l'ouvrirez la prochaine fois, les paramètres seront restaurés à vos derniers paramètres, vous n'aurez donc pas besoin de répéter les paramètres à chaque fois.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <div class="flex gap_5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                              <path fill="#4b9abe" d="M238.64 78.62A31.9 31.9 0 0 1 216 88a32.33 32.33 0 0 1-7.64-.92l-26.63 49.46c.3.28.6.56.89.85a32 32 0 1 1-50.2 6.38l-20.18-20.18A32 32 0 0 1 96 128a32.4 32.4 0 0 1-7.65-.91l-26.63 49.44c.3.28.61.56.9.85a32 32 0 1 1-45.26 0a32 32 0 0 1 30.27-8.44l26.63-49.46c-.3-.28-.6-.56-.89-.85a32 32 0 0 1 0-45.26a32 32 0 0 1 50.2 38.89l20.18 20.18a32.19 32.19 0 0 1 23.9-3.5l26.63-49.46c-.3-.28-.61-.56-.9-.85a32 32 0 0 1 0-45.26a32 32 0 0 1 45.26 45.26Z"></path>
+                            </svg>
+                            <h3> Images de traitement des pipelines </h3>
+                          </div>
+                          <p class="m_t_5"> 
+                            Il prend en charge le traitement des images comme une chaîne de montage. Par exemple, après avoir « recadré » un lot d'images, vous pouvez cliquer sur l'icône « Compresser l'image » sur le côté droit de l'interface de téléchargement, et il passera à « Compresser l'image ». et importez-le automatiquement. Vous venez de recadrer l'image, vous n'avez donc pas besoin d'importer et d'exporter le fichier à plusieurs reprises.
+                           </p>
+                        </li>
+                      </ul>
+                    </div>
+                  
+                    <div class="conBox_kkdj93_93">
+                      <h2> Le traitement par lots des images est notre force </h2>
+                      <p> 
+                        ImagesTool propose une variété d'outils en ligne pour le traitement par lots d'images afin de répondre à vos besoins de conversion, de compression et de recadrage d'images.
+                       </p>
+                      <br>
+                      <ul>
+                        <li>
+                          <h3> Convertir des images par lots </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/convert-images"> L' </a>  
+                            outil en ligne convert-images est un puissant outil de conversion d'images qui prend en charge la conversion de plus de 60 formats d'image tels que webp, png, svg, avif, pdf, heic, psd, tif, etc. converti La qualité de l'image, la taille et le format de l'image convertie (jpg, png, webp, avif en option)
+                           </p>
+                        </li>
+                        <li>
+                          <h3> Convertir un PDF en JPG </h3>
+                          <p class="m_t_5"> 
+                            Utilisez
+                             l'outil en ligne  <a target="_blank" href="/fr/convert-images"> convertir-images </a>  
+                            pour convertir vos fichiers PDF en images jpg en une minute. Vous pouvez définir la largeur du jpg. La valeur par défaut est de 1&nbsp;500&nbsp;px. Vous pouvez la définir à la largeur de votre choix. Il n'y a aucune restriction. L'exportation de jpg conservera la qualité d'image de la plus haute définition
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Compresser par lots jpg </h3>
+                          <p class="m_t_5"> 
+                            Utilisez
+                              <a target="_blank" href="/fr/compress-images"> l'outil en ligne compress-images </a>  
+                            pour compresser vos images JPG en quelques secondes. Après nos tests, l'utilisation des paramètres "sans perte" par défaut peut réduire la taille du fichier des images jpg de 60&nbsp;% à 80&nbsp;%.  Une fois la compression terminée, vous pouvez cliquer sur l'image pour voir l'effet de comparaison avant et après la compression. En utilisant notre image jpg compressée « sans perte », vous pouvez presque voir la différence de qualité d'image avant et après la compression.
+                           </p>
+                        </li>
+                        <li>
+                          <h3> Compresser par lots png </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/compress-images"> L' </a>  
+                            outil en ligne compress-images prend également en charge la compression PNG. Après les tests, l'effet de compression sur les matériaux de découpe photo PNG est incroyable. Non seulement il n'y a aucune perte de qualité d'image, mais la taille du fichier image PNG est réduite d'environ 30&nbsp;% à 60&nbsp;% .
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Compresser par lots le jpg à la taille spécifiée </h3>
+                          <p class="m_t_5"> 
+                            Parfois, nous avons besoin d'une valeur claire pour limiter la taille du fichier jpg, alors
+                              <a target="_blank" href="/fr/compress-images-to-specified-size"> l'outil en ligne compresser les images à la taille spécifiée </a>  peut vous aider à résoudre le problème. Par exemple, après avoir défini une taille maximale de 320 Ko, l'image jpg exportée sera limité à 320 Ko. Dans.  Par analogie, vous pouvez également la définir à 100 Ko ou 200 Ko maximum selon vos besoins. Cette valeur peut être définie arbitrairement.
+                             <br> 
+                            De plus, il prend également en charge la compression de Webp à une taille fixe.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Compresser les jpg par lots et conserver les exif </h3>
+                          <p class="m_t_5"> 
+                            Lorsque vous publiez les photos que vous avez prises sur Internet, vous devez conserver les informations exif des photos pour permettre aux autres de vérifier les paramètres de prise de vue détaillés des photos. Cependant, le fichier jpg original est très volumineux et n'est pas propice à diffusion sur Internet.
+                             <br> 
+                            À l'heure actuelle, vous pouvez utiliser notre
+                             outil en ligne  <a target="_blank" href="/fr/compress-jpg-and-keep-exif"> compress-jpg-and-keep-exif</a>  pour compresser les fichiers jpg et conserver complètement les données exif de la photo, en compressant la photo jpg originale de plusieurs Mo, voire des dizaines de Mo, à des centaines de Ko.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Ajouter un filigrane aux images par lots </h3>
+                          <p class="m_t_5"> 
+                            Lorsque vous devez ajouter des filigranes à un lot d'images,
+                              <a target="_blank" href="/fr/images-watermark"> l'outil en ligne images-watermark </a>  
+                            est votre meilleur choix. Il prend en charge l'ajout de filigranes de texte et vous pouvez également importer des images en tant que filigranes.  Cet outil en ligne utilise une conception d'interface conviviale et vous pouvez faire glisser le filigrane pour ajuster sa position.  Vous pouvez également définir des filigranes en mosaïque pour couvrir les images et protéger les droits d'auteur de vos images.
+                             <br> 
+                            Nous vous recommandons particulièrement d'utiliser des filigranes "aléatoires", qui permettent d'obtenir différentes positions du filigrane pour chaque image. En plus de la position, la transparence et l'angle de rotation du filigrane peuvent également être définis.
+                             <br> 
+                            Lorsque vous modifiez les paramètres, l'interface de l'outil change également instantanément, ce qui facilite l'utilisation de ce que vous voyez est ce que vous obtenez.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Recadrer les images par lots </h3>
+                          <p class="m_t_5"> 
+                            À l'aide
+                              <a target="_blank" href="/fr/crop-images"> de l'outil en ligne de recadrage d'images, </a>  
+                            vous pouvez définir des paramètres de recadrage individuels pour chaque image, en faisant simplement glisser la zone de recadrage.  En même temps, vous pouvez également faire pivoter et retourner l'image. Si vous devez limiter le taux de recadrage, vous pouvez cliquer sur le bouton Ratio. La prise en charge par défaut est 16:9, 9:16, 4:3, 3:2, 1:1, ou cliquez sur le bouton plus. Ajoutez vos proportions comme vous le souhaitez.
+                             <br> 
+                            La plus grande caractéristique de cet outil est que lorsque vous importez des images de la même taille, il vous suffit de définir le cadre de recadrage de la première image, puis de cliquer sur « Recadrage synchronisé » pour obtenir un véritable recadrage par lots des images.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Redimensionner les images par lots </h3>
+                          <p class="m_t_5"> 
+                            À l'aide
+                              <a target="_blank" href="/fr/resize-images"> de l'outil de redimensionnement d'images en ligne resize-images </a>  
+                            , vous pouvez définir la « largeur », la « hauteur », la « mise à l'échelle proportionnelle » ou la « largeur et hauteur ».  Lorsque vous définissez la «&nbsp;Largeur et hauteur&nbsp;», vous pouvez définir la couleur d'arrière-plan de l'image et le mode de mise en page de l'image.
+                             <br> 
+                            Vous pouvez ajouter plusieurs configurations de redimensionnement, par exemple importer une image de 1 000 x 1 000 px, puis définir deux plans de redimensionnement de 600 x 400 px et une mise à l'échelle de 50 %, puis deux images de 600 x 400 px et 500 x 500 px seront exportées.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Lire les informations exif de JPG </h3>
+                          <p class="m_t_5"> 
+                            Utilisez
+                              <a target="_blank" href="/fr/image-exif"> image-exif </a>  
+                            pour afficher les informations exif de jpg en ligne, prenant en charge la lecture des informations de localisation géographique (GPS), des informations sur l'appareil photo, des informations temporelles, de l'altitude, de la vitesse, de la longitude, de la latitude, du modèle d'appareil photo, du fabricant, de la durée de prise de vue de l'image, du flash et de l'obturateur. de l'image Temps, valeur d'ouverture, distance focale, modèle d'objectif et autres informations.
+                             <br> 
+                            En plus du jpg, plusieurs formats sont également pris en charge :  <span style="font-size: 12px"> HEIC, HEIF, CR2, RW2, NEF, ARW, SR2, ORF, PEF, RAF, SRW, MRW, DCR, DNG, ERF, 3FR, ARI SRF, BAY, CRW, CAP, IIQ, EIP, DCS, DRF, K25, KDC, FFF, MEF, MOS, NRW, PTX, PXN, R3D, RWL, RWZ, X3F, MDC, </span>
+                          </p>
+                        </li>
+                      </ul>
+                      <br>
+                      <br>
+                  
+                      <h2> Outil en ligne GIF </h2>
+                      <br>
+                  
+                      <ul style="display: flex; flex-direction: column; gap: 20px; text-align: left">
+                        <li>
+                          <h3> Convertir GIF en webp par lots </h3>
+                          <p class="m_t_5"> 
+                            Utilisez
+                              <a target="_blank" href="/fr/git-to-webp-to-apng"> l'outil en ligne git-to-webp-to-apng </a>  
+                            pour convertir des animations gif en images animées webp. De plus, vous pouvez également définir la qualité d'image de webp pour compresser webp. Le webp converti sera plus grand que la taille du fichier gif d'origine. .Rétrécir de 50 % à 90 %.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Compresser par lots des GIF </h3>
+                          <p class="m_t_5"> 
+                            Utilisez
+                              <a target="_blank" href="/fr/gif-compress"> l' </a>  
+                            outil en ligne gif-compress pour compresser vos images GIF animées en quelques secondes. Après nos tests, l'utilisation des paramètres par défaut « sans perte » peut réduire la taille du fichier des images GIF de 50&nbsp;% à 80&nbsp;%.  Une fois la compression terminée, vous pouvez cliquer sur l'image pour voir l'effet de comparaison avant et après la compression.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Convertir MP4 en GIF par lots </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/video-to-gif"> L'outil en ligne vidéo en gif </a>  
+                            prend en charge la conversion de vidéos en GIF et le redimensionnement des GIF.  Après avoir coché "Compresser le GIF", vous pouvez compresser le GIF pendant la conversion. Vous pouvez définir la fréquence d'images de lecture du GIF. La valeur par défaut est de 16 images par seconde. De manière générale, nous recommandons un maximum de 24 ips/s maximum.
+                             <br> 
+                            Nous utilisons une technologie d'optimisation d'image haute définition pour la qualité d'image du gif converti. L'image gif convertie restera claire et ne produira pas de lignes de grille.  Voici nos données de test.
+                             <br>
+                            <b> Cas 01, gif non compressé, prend 2 secondes </b>
+                            <br>  
+                            pour importer le fichier : vidéo prise par un téléphone portable IMG_0672.mov 30FPS/s 1440x1080px 2,5 Mo
+                              <br> 
+                            gif converti : 12 FPS/s 300x225px 1,5 Mo
+                              <br>
+                            <b> Cas 02, gif compressé, prend 1,8 secondes </b>
+                            <br>  
+                            pour importer le fichier : Vidéo téléchargée sur les réseaux sociaux animée...moyen202.mp4 123,2 Ko 800x600px
+                              <br> 
+                            gif converti : 800x600px 12FPS/s 625,6 Ko
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Convertir MP4 en animation WEBP par lots </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/video-to-gif"> L'outil en ligne vidéo en GIF </a>  
+                            prend en charge la conversion de vidéos en images WebP et peut définir la qualité de l'image WebP (1-100 %). Nous vous recommandons de la définir sur 86 %, ce qui entraînera une perte un peu de qualité d'image mais une compression importante. la taille du fichier webp.  Voici nos données de test.
+                             <br>
+                            <b> Cas 01, qualité d'image 69 % </b>
+                            <br>  
+                            Fichier importé : vidéo prise par téléphone portable IMG_0672.mov 30FPS/s 1440x1080px 2,5 Mo
+                              <br> 
+                            Webp-01 converti : 400 x 300 px 16 FPS/s 487,0 Ko
+                              <br> 
+                            Webp-02 converti qui a pris 2 secondes : 1440 x 1080 px 16 FPS/s 2,1 Mo prend 10 secondes
+                              <br>
+                            <b> Cas 02, qualité d'image 86 % prend 6 secondes </b>
+                            <br>  
+                            Fichier importé : vidéo téléchargée depuis le réseau social cat...Twitte.mp4 27FPS/s 720x1280px 1MB
+                              <br> 
+                            converti webp : 360x640px 16FPS/s 2,6MB
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Découpez des clips MP4 et convertissez-les en GIF </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/video-clips-to-gif"> L'outil en ligne Modifier une vidéo et la convertir en GIF </a>  est un outil puissant pour convertir de longs fichiers vidéo ou des films mp4 en GIF.
+                             <br> 
+                            Parfois, lorsque l'on souhaite convertir quelques secondes d'un film en gif, un simple outil vidéo en gif ne répond pas aux besoins réels.  Parce que lorsque vous devez convertir une vidéo relativement longue en gif, cela prendra beaucoup de temps, et la plupart du temps nous n'avons pas besoin de l'intégralité du contenu vidéo, mais de quelques petits fragments de la vidéo.
+                             <br> 
+                            J'ai donc ajouté cet outil en ligne permettant d'éditer des clips vidéo.  Vous pouvez faire glisser pour sélectionner un ou plusieurs clips dans la vidéo, puis convertir ce clip en gif ou webp.
+                             <br> 
+                            Les étapes sont les suivantes :
+                              <br> 
+                            01. Importez des fichiers vidéo, dans la limite de 1 Go, en fonction de la taille de la mémoire de votre ordinateur.
+                             <br> 
+                            02. Faites glisser la zone de sélection du clip pour sélectionner la plage vidéo dont vous avez besoin
+                              <br> 
+                            03. Recadrez le clip sélectionné (facultatif)
+                              <br> 
+                            04. Cliquez sur le bouton rose "Démarrer l'exportation" pour terminer
+                              <br> 
+                            En général, il s'agit d'un outil de montage vidéo qui combine , tout-en-un -un outil en ligne pour recadrer des vidéos, convertir des vidéos et compresser des GIF.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Recadrer les images GIF par lots </h3>
+                          <p class="m_t_5"> 
+                            À l'aide
+                              <a target="_blank" href="/fr/gif-crop"> de l'outil en ligne gif-crop </a>  
+                            , vous pouvez définir des paramètres de recadrage individuels pour les images GIF, en faisant simplement glisser la zone de recadrage.  La valeur par défaut prend en charge le recadrage proportionnel de 16:9, 9:16, 4:3, 3:2, 1:1, ou cliquez sur le bouton plus pour ajouter le rapport souhaité.
+                             <br> 
+                            La vitesse de recadrage est extrêmement rapide et le GIF recadré ne perdra aucune qualité.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Extraire toutes les images du GIF </h3>
+                          <p class="m_t_5"> 
+                            À l'aide
+                              <a target="_blank" href="/fr/gif-extract-frame"> de l'outil en ligne gif-extract-frame </a>  
+                            , vous pouvez convertir tous les cadres gif en images png. De plus, les images animées webp et les images animées apng sont également prises en charge.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Combinez plusieurs GIF en 1 GIF </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/gif-merge"> L' </a>  
+                            outil en ligne de fusion de gifs peut fusionner plusieurs gifs en un seul. Vous pouvez faire glisser les gifs pour ajuster l'ordre de lecture de chaque gif.
+                             <br> 
+                            Lorsque les gifs importés ont des tailles différentes, vous pouvez définir la largeur et la hauteur, puis définir le mode de mise en page sur « largeur couverte » pour préserver la cohérence de l'écran.
+                           </p>
+                        </li>
+                  
+                        <li>
+                          <h3> Lire le GIF à l'envers </h3>
+                          <p class="m_t_5">
+                            <a target="_blank" href="/fr/gif-reverse"> L' </a>  
+                            outil en ligne gif-reverse peut inverser l'ordre de lecture des gifs et obtenir l'effet de lire les gifs à l'envers.
+                           </p>
+                        </li>
+                      </ul>
+                    </div>
+                  
+                    <div class="conBox_kkdj93_93">
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> ImagesTool a-t-il une limite sur le nombre de fichiers ? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              Il n'y a pas de limite de fichiers, cela dépend des performances de votre ordinateur, nous vous recommandons de traiter jusqu'à 300 images à la fois, chaque image dans les 20 Mo.  Il est recommandé que les formats psd, tiff et psd soient inférieurs à 100 Mo.  Il est recommandé que la vidéo fasse moins de 1 000 Mo.
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> ImagesTool prend-il en charge l’importation de dossiers&nbsp;?  La structure des dossiers peut-elle être restaurée&nbsp;? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              Oui, vous pouvez cliquer sur le bouton "Importer le dossier" ou faire glisser le dossier sur cette page. Lorsque vous y êtes invité, faites glisser le dossier vers la zone "Faites glisser le dossier ici" ci-dessous.
+                               <br> 
+                              Une fois le traitement terminé, la structure des dossiers d'origine sera conservée dans le zip exporté.
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> Dois-je régler les paramètres à plusieurs reprises à chaque fois&nbsp;? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              Il n'est pas nécessaire de répéter les paramètres. Chaque fois que vous modifiez les paramètres, ils seront enregistrés dans le navigateur. Lorsque vous l'ouvrirez la prochaine fois, ImagesTool lira les derniers paramètres définis.
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="acc_ksl93ms">
+                        <div class="acc_ksl9302">
+                          <span> &gt; </span>
+                          <h2> Puis-je utiliser ImagesTool sur mon téléphone ou ma tablette ? </h2>
+                        </div>
+                        <div class="accb_93jsk9">
+                          <div>
+                            <p> 
+                              La plupart du temps, c'est possible, nous réalisons un design adaptatif pour la page web.  Si vous devez traiter un grand nombre d'images, nous vous recommandons de l'utiliser sur un ordinateur (PC), et de privilégier le navigateur Chrome ou le navigateur Chromium core.
+                               <br>
+                              <br> 
+                              Si vous utilisez actuellement le navigateur Chrome, vous pouvez cliquer avec le bouton droit dans un espace vide et cliquer sur « Générer un code QR pour cette page », puis scanner le code QR avec votre téléphone mobile pour accéder à la version mobile d'ImagesTool.com.
+                             </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <div class="conBox_kkdj93_93 abTls83_93">
+                      <h2> Outils associés </h2>
+                  
+                      <h3> Compresser les images </h3>
+                      <ul>
+                        <li><a target="_blank" href="/fr/compress-images"> Compresser JPG </a></li>
+                        <li><a target="_blank" href="/fr/compress-images"> Compresser PNG </a></li>
+                        <li><a target="_blank" href="/fr/compress-images"> Compresser SVG </a></li>
+                      </ul>
+                  
+                      <h3> Convertir JPG </h3>
+                      <ul>
+                        <li><a target="_blank" href="/fr/convert-images"> WEBP en JPG </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> AVIF en JPG </a></li>
+                  
+                        <li><a target="_blank" href="/fr/convert-images"> HEIC en JPG </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> PSD en JPG </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> PDF en JPG </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> SVG en JPG </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> JPG en WEBP </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> JPG en AVIF </a></li>
+                        <li><a target="_blank" href="/fr/convert-images"> JPG en PNG </a></li>
+                      </ul>
+                  
+                      <h3> Convertir GIF </h3>
+                      <ul>
+                        <li><a target="_blank" href="/fr/git-to-webp-to-apng"> WEBP en GIF </a></li>
+                        <li><a target="_blank" href="/fr/git-to-webp-to-apng"> APNG en GIF </a></li>
+                        <li><a target="_blank" href="/fr/video-to-gif"> MP4 en GIF </a></li>
+                        <li>
+                          <a target="_blank" href="/fr/video-clips-to-gif"> Convertir la vidéo en GIF après l'édition </a>
+                        </li>
+                      </ul>
+                  
+                      <h3> Convertir une animation WEBP </h3>
+                      <ul>
+                        <li><a target="_blank" href="/fr/git-to-webp-to-apng"> GIF en WEBP </a></li>
+                        <li><a target="_blank" href="/fr/git-to-webp-to-apng"> APNG vers WEBP </a></li>
+                        <li><a target="_blank" href="/fr/video-to-gif"> MP4 vers WEBP </a></li>
+                        <li>
+                          <a target="_blank" href="/fr/video-clips-to-gif"> Convertir la vidéo en WEBP après l'édition </a>
+                        </li>
+                      </ul>
+                  
+                      <h3> Autres outils </h3>
+                      <ul>
+                        <li><a target="_blank" href="/fr/crop-images"> Recadrer l'image </a></li>
+                        <li><a target="_blank" href="/fr/images-watermark"> Ajouter un filigrane aux images </a></li>
+                        <li><a target="_blank" href="/fr/image-exif"> Afficher les informations Exif de l'image </a></li>
+                        <li>
+                          <a target="_blank" href="/fr/resize-images"> Redimensionner l'image </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/fr/split-images"> Image divisée </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/webp2jpg-online/splicing#/splicing"> Images de point </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/fr/compress-images"> Compresser les images </a>
+                        </li>
+                        <li>
+                          <a target="_blank" href="/fr/convert-images"> Convertir des images </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/fr/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>

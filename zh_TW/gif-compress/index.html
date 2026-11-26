@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="zh-TW"><head>
+    <meta charset="utf-8">
+    <title>Gif 壓縮器 - 免費線上工具</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="批量壓縮GIF，支援選擇1-100的壓縮強度，還可以修改GIF的輸出大小和顏色數量。 壓縮後的 GIF 檔案大小減少了 30-80%。">
+    <meta name="keywords" content=" 批量壓縮gif,gif壓縮 ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imagestool.com/zh_TW/gif-compress">
+    <meta property="og:site_name" content="Gif 壓縮器 - 免費線上工具">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://imagestool.com/images/logo/app.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="https://imagestool.com">
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Gif 壓縮器 - 免費線上工具">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="批量壓縮GIF，支援選擇1-100的壓縮強度，還可以修改GIF的輸出大小和顏色數量。 壓縮後的 GIF 檔案大小減少了 30-80%。">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="shortcut icon" href="https://imagestool.com/images/logo/app.png">
+    <link rel="image_src" href="https://imagestool.com/images/logo/app.png">
+    <link rel="canonical" href="https://imagestool.com/zh_TW/gif-compress">
+
+    <link rel="alternate" hreflang="x-default" href="https://imagestool.com/gif-compress">
+    <link rel="alternate" hreflang="en" href="https://imagestool.com/gif-compress">
+    <link rel="alternate" hreflang="fr" href="https://imagestool.com/fr/gif-compress">
+    <link rel="alternate" hreflang="es" href="https://imagestool.com/es/gif-compress">
+    <link rel="alternate" hreflang="zh-CN" href="https://imagestool.com/zh_CN/gif-compress">
+    <link rel="alternate" hreflang="zh-TW" href="https://imagestool.com/zh_TW/gif-compress">
+    <link rel="alternate" hreflang="ja" href="https://imagestool.com/ja/gif-compress">
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8162202800743940" crossorigin="anonymous"></script>
+
+<style>
+        @keyframes loadingPage {
+
+            0%,
+            to {
+                transform: scale(1);
+            }
+
+            50%,
+            to {
+                transform: scale(0.94);
+            }
+
+            100%,
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .loadingPage {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            transition: 0.5s ease-out;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loadingPage.loaded {
+            /* top: 120%; */
+            opacity: 0;
+        }
+
+        .loadingPage.loaded .img {
+            animation-play-state: paused;
+        }
+
+        .loadingPage .img {
+            width: 40vw;
+            max-width: 512px;
+            min-width: 280px;
+            animation: loadingPage 1s ease infinite;
+        }
+
+        .loadingPage img {
+            width: 100%;
+        }
+    </style>
+    
+
+    <script>var idbKeyval = function (t) {
+            "use strict";
+            function e(t) {
+                return new Promise(((e, n) => {
+                    t.oncomplete = t.onsuccess = () => e(t.result), t.onabort = t.onerror = () => n(t.error)
+                }))
+            }
+            function n(t, n) {
+                const r = indexedDB.open(t);
+                r.onupgradeneeded = () => r.result.createObjectStore(n);
+                const o = e(r);
+                return (t, e) => o.then((r => e(r.transaction(n, t).objectStore(n))))
+            }
+            //window.asscdn='https://images-tool-com-site-cdn.pages.dev';
+            window.asscdn='https://imagestool.com';
+
+let r;
+            function o() {
+                return r || (r = n("keyval-store", "keyval")), r
+            }
+            function u(t, n) {
+                return t("readonly", (t => (t.openCursor().onsuccess = function () {
+                    this.result && (n(this.result), this.result.continue())
+                }, e(t.transaction))))
+            }
+            return t.clear = function (t = o()) {
+                return t("readwrite", (t => (t.clear(), e(t.transaction))))
+            }, t.createStore = n, t.del = function (t, n = o()) {
+                return n("readwrite", (n => (n.delete(t), e(n.transaction))))
+            }, t.entries = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push([t.key, t.value]))).then((() => e))
+            }, t.get = function (t, n = o()) {
+                return n("readonly", (n => e(n.get(t))))
+            }, t.getMany = function (t, n = o()) {
+                return n("readonly", (n => Promise.all(t.map((t => e(n.get(t)))))))
+            }, t.keys = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.key))).then((() => e))
+            }, t.promisifyRequest = e, t.set = function (t, n, r = o()) {
+                return r("readwrite", (r => (r.put(n, t), e(r.transaction))))
+            }, t.setMany = function (t, n = o()) {
+                return n("readwrite", (n => (t.forEach((t => n.put(t[1], t[0]))), e(n.transaction))))
+            }, t.update = function (t, n, r = o()) {
+                return r("readwrite", (r => new Promise(((o, u) => {
+                    r.get(t).onsuccess = function () {
+                        try {
+                            r.put(n(this.result), t), o(e(r.transaction))
+                        } catch (t) {
+                            u(t)
+                        }
+                    }
+                }))))
+            }, t.values = function (t = o()) {
+                const e = [];
+                return u(t, (t => e.push(t.value))).then((() => e))
+            }, t
+        }({});</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gif 壓縮器 - 免費線上工具",
+  "url": "https://imagestool.com/zh_TW/gif-compress",
+  "description": "批量壓縮GIF，支援選擇1-100的壓縮強度，還可以修改GIF的輸出大小和顏色數量。 壓縮後的 GIF 檔案大小減少了 30-80%。",
+  "applicationCategory": "PhotographyApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script></head>
+
+<body>
+    <div class="loadingPage ">
+        <div class="img">
+            <img src="/images/logo/logo.png" alt="">
+        </div>
+    </div>
+    <noscript><strong> 很抱歉，如果未啟用 javascript，imagestool.com 將無法正常工作。 </strong></noscript>
+    <div id="app"><header class="Header"><div class="n1"><div class="w_100 flex_between"><div class="flex_center2 wrap fs0"><a href="/zh_TW/" class="logo m_r_50 moveP5"><img width="200" alt="imagesTool.com logo" style="" src="/images/logo/logo.png"></a></div><div class="flex_between w_100 p_0"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 m_r_10 p_l_5 p_r_15 t2     "><i class="iconfont icon-apps--fill f_s_18 op_6 m_r_5 m_l_10"></i><b class="f_w_900"> 所有工具 </b><i class="iconfont icon-arrow-down-s-fill op_6 f_s_26" style="transform: scaleX(0.7); color: var(--blackA5);"></i></button></div></div></div><div class="flex_center2 wid100"><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  m_r_10 t2     "><i class="iconfont icon-translate- f_s_20"></i></button></div></div></div><div class="PopupContentMini dark" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  p_l_15 t2     "><i class="iconfont icon-menu-fill f_s_18"></i></button></div></div></div></div></div></div></div><div class="n2"><div class="w_100"><div class="flex_center"><ul class="flex_center"><div class="AppIcon"><a href="/zh_TW/convert-images" target=""> 轉換圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/splice-images" target=""> 拼接圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/images-watermark" target=""> 圖片加浮浮水印 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/resize-images" target=""> 調整圖片尺寸 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/crop-images" target=""> 裁剪圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/compress-images" target=""> 壓縮圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/image-exif" target=""> 讀取exif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/split-images" target=""> 分割圖片 </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/video-to-gif" target=""> 視頻轉gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/video-clips-to-gif" target=""> 剪輯視頻並轉gif </a></div><div class="hr_y"></div><div class="AppIcon"><a href="/zh_TW/git-to-webp-to-apng" target=""> Gif轉webp轉apng </a></div></ul></div></div></div></header><div class="InputFile " value=""><div class="xxxxx  p_t_40"><div class="AppIcon"><div><div class="flex_center2  "><div class="appIcon  green flex_center2"><i class="iconfont icon-quill-pen-fill " style="transform: rotate(270deg);"></i></div></div><div class="p_t_20 "><div class="flex_center2"><h1 class="f_s_38 l_h_38 t_a_c w_1000 titleKey"> Gif 壓縮器 - 免費線上工具 </h1></div><div class="flex_center2"><p class="f_s_18 l_h_22 f_w_n p_b_20 t_a_c p_t_10 w_600 op_6 descriptionKey"> 批量壓縮GIF，支援選擇1-100的壓縮強度，還可以修改GIF的輸出大小和顏色數量。 壓縮後的 GIF 檔案大小減少了 30-80%。 </p></div></div></div></div><div class="PasteBut"><div class="inputFileBox m_t_30 m_20"><div class="c"><div class="a1 InputFileBut_none"><i class="iconfont icon-loader--line3"></i></div><div class="a2 InputFileBut_none"><i class="iconfont icon-arrow-down-s-line"></i></div><span class="m_b_20 f_s_18 InputFileBut_none"> 將檔案拖入此處 </span><div class="InputFileBut"><button type="button" class="Button  full size2 t2 ly p_r_50 p_l_50     "><b class="f_s_24"> 選擇檔案 </b></button></div><p class="p_t_20 f_s_16 l_h_22  flex_center2 wrap InputFileBut_none"></p><div class="InputFileBut"><button type="button" class="Button  line size1 m_r_15 f_s_14 m_b_10 t2     " style="color: var(--olor);"><i class="iconfont icon-folder-add-line m_r_5"></i> 選擇資料夾 </button></div><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  line size1 f_s_14 t2 m_b_10     "><i class="iconfont icon-file-copy-line m_r_5"></i> 粘貼圖片 (Ctrl+V) </button></div></div></div><p></p></div></div></div><div class="flex_center2 p_t_20"><div class="w_800  article m_t_50 m_20"><h2 class="f_s_24  l_h_26  p_b_20"> 關於這個工具 </h2><div class="f_s_18 f_h_20 flex_column p_30"><div class="flex_center2"> Gif 壓縮效果 <div class="m_5 Tag red">無損</div></div><button type="button" class="Button  full m_10     ">查看壓縮前後效果對比</button></div><br><br><div class="f_s_18 f_h_20 flex_column p_30"><div class="flex_center2"> Gif 壓縮效果 <div class="m_5 Tag red">無損</div><div class="m_5 Tag color">改變寬度</div><div class="m_5 Tag color">200px</div></div><button type="button" class="Button  full m_10     ">查看壓縮前後效果對比</button></div><br><br><div class="f_s_18 f_h_20 flex_column p_30"><div class="flex_center2"> Gif 壓縮效果 <div class="m_5 Tag red"> 自訂 80%⬇️</div></div><button type="button" class="Button  full m_10     ">查看壓縮前後效果對比</button></div><br><br><h3 class="m_b_10"> 支持的格式列表 </h3><div class="m_r_5 size2 m_b_5 Tag red">Gif</div><br><br><br></div></div><div class="Footer"><div class="w_100 p_b_50 p_t_20" style="background-color: var(--black); color: rgb(255, 255, 255);"><div class="title2 t_a_c"><h2 class="f_s_38 l_h_36"> 無需上傳檔案，保障更多隱私 </h2><p class="f_s_20 l_h_20 f_w_300 m_t_10"> Imagestool.com 所有工具均使用瀏覽器瀏覽器技術實現 </p></div><div class="flex_center2 p_10"><div class="flex_column m_20"><i class="iconfont icon-cloud-off-fill f_s_32 p_b_20"></i><p> 無需上傳檔案 </p></div><div class="flex_column m_20"><i class="iconfont icon-code-box-line f_s_32 p_b_20"></i><p> 使用javascript速度更快 </p></div><div class="flex_column m_20"><i class="iconfont icon-lock--fill f_s_32 p_b_20"></i><p> 檔案100%安全 </p></div></div></div><div class="w_100"><div class="n2"><div></div><div class="flex_center"><p>© imagesTool.com 2020-2024</p></div></div></div></div></div><div class="w_100 flex_between2 convertImageReady " style="height: 0px; width: 0px; overflow: hidden;"><div class="left w_100 p_0"><div class="topBut flex_between  w_100 p_l_0  "><div class="p_t_15 p_b_10"><div class="PopupContentMini" pos="1" style="z-index: 1;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  round  full black_bg     "><i class="iconfont icon-arrow-left-line f_s_22 " style="color: rgb(255, 255, 255);"></i></button></div></div></div></div><div class="p_t_10 p_b_10 flex_center"><button type="button" class="Button  sub round      "><i class="iconfont icon-arrow-up-down-line f_s_20 t_3s t_r_0"></i></button><div class="m_l_20"></div><div class="InputFileBut"><button type="button" class="Button  full round      "><i class="iconfont icon-add-line f_s_24 "></i><div class="Dot pos2">0</div></button></div></div></div><ul class="imageList w_100 p_0 flex wrap"></ul></div><div class="right fs0 w_300 p_0"><div class="setBox"><div class="p_b_50"><h3 class="f_s_18 l_h_18 p_t_10 p_b_20 "> Gif壓縮 </h3><div class="flex_column"><button type="button" class="Button  normal configBox h      " style="height: auto !important; min-height: 64px;"><div><div class="flex_center"><div><i class="iconfont icon-checkbox-circle-fill f_s_28 color fs0 m_r_10"></i></div><div><h3 class="f_s_20"> 無損 </h3><p class="f_s_12 l_h_12 "> 保持畫質並最大限度的壓縮 </p></div></div></div></button><button type="button" class="Button  normal configBox h m_t_10     " style="height: auto !important; min-height: 64px;"><div style="width: 100%;"><div class="flex_center"><div><i class="iconfont icon-checkbox-blank-circle-line blackA4 f_s_28 fs0 m_r_10"></i></div><div><h3 class="f_s_20"> 自訂 </h3><p class="f_s_12 l_h_12 "> 數字越大壓縮強度越大 </p></div></div></div></button><div class="hr m_t_20 m_b_20  "></div><div class="ConfigSelect in w_100 p_0  m_b_10 "><div class="PopupContentMini noArrow" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex"><p class="text_opt4 f_s_14"> 尺寸 </p><h4 class="f_s_20 f_w_800 ellipsis01"> Constant </h4></div><div><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div><div class="ConfigSlider in w_100 p_0  m_b_10"><div class="PopupContentMini noArrow" pos="1" style="z-index: 1; width: 100%;"><div class="mcon"><div class="mconSlot"><button type="button" class="Button  normal configBox h     "><div class="flex" style="width: 100%;"><p class="text_opt4 f_s_14"> 顏色數量 </p><h4 class="f_s_20 f_w_800 ellipsis01"> Constant </h4></div><div class="fs0"><i class="iconfont icon-arrow-down-s-fill op_4 f_s_36" style="transform: scaleX(0.6) translateX(12px);"></i></div></button></div></div></div></div></div></div><div class="start "><button type="button" class="Button  full size2  w_100 ly t2      "> 開始 <i class="iconfont icon-arrow-right-circle-fill f_s_36 m_l_10 "></i></button></div></div></div></div><div class="inputBoxDom" style="display: none;"><div class="fileBox"><i class="iconfont icon-file-text-line "></i><p> 檔案拖到此處 </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 可讀取多個檔案 </div><input accept=".gif" id="inputFile" type="file" multiple="multiple" class="inputFileBoxDom"></div><div class="folderBox"><i class="iconfont icon-folder-open-fill "></i><p> 資料夾拖到此處 </p><div class="f_s_14 m_t_5 op_6 f_w_300"> 每次讀取一個資料夾 </div><input accept=".gif" id="inputFolder" type="file" webkitdirectory="" multiple="multiple" class="inputFolderBoxDom"></div></div></div></div>
+
+
+
+
+    <style>
+        @import url("/assets/css/newC.css");
+      </style>
+      <div class="newContentBox_94kd5l_93">
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>相關工具</h2>
+          <br>
+          <ul>
+            <li><a target="_blank" href="/zh_TW/gif-crop">GIF裁剪器</a></li>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng">GIF轉WEBP</a>
+            </li>
+            <li><a target="_blank" href="/zh_TW/video-to-gif">MP4轉GIF</a></li>
+            <li><a target="_blank" href="/zh_TW/gif-merge">GIF合併器</a></li>
+            <li><a target="_blank" href="/zh_TW/gif-reverse">倒放gif</a></li>
+          </ul>
+        </div>
+        <div class="conBox_kkdj93_93">
+          <h2>如何線上批次壓縮Gif？</h2>
+          <p>
+            這個線上GIF壓縮器使用先進的GIF壓縮算法，不需要上傳GIF文件，在瀏覽器中直接壓縮GIF，壓縮速度快，效率高。
+          </p>
+          <br>
+          <ul>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">1</div>
+                <h3>匯入GIFs</h3>
+              </div>
+              <p class="m_t_5">
+                點擊“選擇文件”按鈕後選擇GIF圖片或拖動GIF圖片到這個頁面。
+              </p>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">2</div>
+                <h3>設置GIF壓縮器的參數</h3>
+              </div>
+              <ol class="m_t_5">
+                <li class="m_t_5">
+                  <br>
+                  <h4>
+                    <strong>無損壓縮</strong>
+                  </h4>
+                  <p>保持畫質並最大限度的壓縮</p>
+                </li>
+                <br>
+                <li class="m_t_5">
+                  <h4>
+                    <strong>自定義壓縮強度</strong>
+                  </h4>
+                  <p>數字越大壓縮強度越大</p>
+                </li>
+                <br>
+                <li>
+                  <h4>
+                    <strong>修改GIF尺寸（可選）</strong>
+                  </h4>
+                  <p>可根據修改寬度、高度或按比例縮放GIF尺寸</p>
+                </li>
+                <br>
+                <li>
+                  <h4>
+                    <strong>修改GIF顏色數量（可選）</strong>
+                  </h4>
+                  <p>可設置1-256之間的顏色數量</p>
+                </li>
+                <br>
+              </ol>
+            </li>
+            <li>
+              <div class="flex gap_5">
+                <div class="dot_9s9dk3">3</div>
+                <h3>匯出壓縮後的GIF</h3>
+              </div>
+              <p class="m_t_5">
+                點擊右下角的“開始”按鈕，等待處理完成後點擊“下載zip”按鈕即可。
+              </p>
+            </li>
+          </ul>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">GIF 壓縮器演示</h2>
+          <br>
+          <p>
+            imagesTool GIF
+            壓縮器旨在減小GIF圖像文件大小，同時保持圖像質量。您可以通過簡單的操作將GIF文件匯入或拖放到工具中進行壓縮，支持批量處理。
+          </p>
+          <br>
+          <p>
+            接下來將演示如何從視頻文件轉換成GIF後對GIF進行壓縮的完整工作流程。當然您也可以跳過第一步的視頻轉GIF操作，對GIF直接進行壓縮。
+          </p>
+          <br>
+          <p>
+            <b> 第一步： </b>
+            使用
+            <a target="_blank" href="/zh_TW/video-to-gif">Video 轉 GIF</a>
+            或
+            <a target="_blank" href="/zh_TW/video-clips-to-gif">編輯視頻後轉GIF</a>
+            制作原始的高清GIF，這種未經壓縮的GIF文件往往比較大，壓縮效果非常明顯。
+          </p>
+          <p>
+            <video class="video_lazy_css92893" controls="" width="1000" height="480" preload="metadata">
+              <source src="/assets/images/gif-compress/demo-mp4-to-gif-imagesTool.com.mp4" type="video/mp4">
+            </video>
+            <code>
+              Video Source: twitter cat
+              <br>
+              <a target="_blank" href="https://twitter.com/search?q=cat">https://twitter .com/search?q=cat</a>
+            </code>
+            <br>
+            <b> 第二步： </b>
+            壓縮轉換後的GIF。
+          </p>
+          <p>在視頻中演示了如何壓縮2張GIF，使用“無損”方式壓縮。壓縮耗時2秒鐘</p>
+      
+          <video class="video_lazy_css92893" controls="" width="1000" height="480" preload="metadata">
+            <source src="/assets/images/gif-compress/gif-compressor-imagesTool.com.mp4" type="video/mp4">
+          </video>
+      
+          <br>
+          <br>
+      
+          <p>數據結果</p>
+          <br>
+          <table>
+            <thead>
+              <tr><th>圖片名稱</th>
+              <th>MP4</th>
+              <th>MP4轉GIF</th>
+              <th><b class="tip_js0">壓縮後的GIF</b></th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td>Fj2Oo...</td>
+                <td>200x208px / 42.5KB / 00:05</td>
+                <td>200x208px / 2.6MB</td>
+                <td class="tip_js0">200x208px / 1.8MB / <b>-32%</b></td>
+              </tr>
+              <tr>
+                <td>Dancing Cat</td>
+                <td>720x1280px / 1.0MB / 00:10</td>
+                <td>585x912px / 4.4MB</td>
+                <td class="tip_js0">585x912 / 1.9MB / <b>-56%</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <h2 id="crop_mode_id9293">GIF 壓縮器在不同壓縮強度下的對比</h2>
+          <br>
+          <p>
+            如果使用“自定義”壓縮時，壓縮強度越高，壓縮的效果越明顯。從下面的對比圖片中可以發現，壓縮強度越高噪點越明顯，一般情況下，建議設置在
+            60 以下。
+          </p>
+      
+          <img loading="lazy" width="390" height="282" style="max-width: 200px; margin-bottom: 0" src="/assets/images/gif-compress/customising.jpg" alt="自定義壓縮器的壓縮強度">
+          <video class="video_lazy_css92893" autoplay="" loop="" controls="" width="340" height="480">
+            <source preload="none" src="/assets/images/gif-compress/compare-gif-compressors.mp4" type="video/mp4">
+          </video>
+        </div>
+      
+        <div class="conBox_kkdj93_93">
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>GIF壓縮器的原理是什麼？</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  imagesTool GIF壓縮器原理是基於 “gifsicle”
+                  優化壓縮算法。它通過減少圖像中相鄰幀之間的差異、刪除重複像素以及刪除不必要的圖像元數據等方式實現壓縮。同時，您還能夠調整圖像尺寸（可選），進一步減小文件大小。通過這些技術，GIF壓縮器能夠在保持圖像質量的前提下有效減小GIF文件大小。
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="acc_ksl93ms">
+            <div class="acc_ksl9302">
+              <span>&gt;</span>
+              <h2>為什麼壓縮後的GIF有噪點</h2>
+            </div>
+            <div class="accb_93jsk9">
+              <div>
+                <p>
+                  這是壓縮算法導致的，雖然這無法避免，但是無需擔心，大部分情況下您察覺不到噪點的存在。
+                </p>
+                <p>
+                  不過，在設置了很高的壓縮強度的情況下，GIF畫面是會出現比較明顯的噪點。經過ImagesTool
+                  的測試，我們建議您使用“無損”或者“自定義”的壓縮強度設置在60以下。以避免出現明顯的噪點。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="conBox_kkdj93_93 abTls83_93">
+          <h2>其他工具</h2>
+      
+          <h3>壓縮圖片</h3>
+          <ul>
+            <li><a target="_blank" href="/zh_TW/compress-images">JPG壓縮器</a></li>
+            <li><a target="_blank" href="/zh_TW/compress-images">PNG壓縮器</a></li>
+            <li><a target="_blank" href="/zh_TW/compress-images">SVG壓縮器</a></li>
+          </ul>
+      
+          <h3>JPG轉換</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/
+      
+      zh_TW/convert-images">WEBP轉JPG</a>
+            </li>
+            <li><a target="_blank" href="/zh_TW/convert-images">AVIF轉JPG</a></li>
+      
+            <li><a target="_blank" href="/zh_TW/convert-images">HEIC轉JPG</a></li>
+            <li><a target="_blank" href="/zh_TW/convert-images">PSD轉JPG</a></li>
+            <li><a target="_blank" href="/zh_TW/convert-images">PDF轉JPG</a></li>
+            <li><a target="_blank" href="/zh_TW/convert-images">SVG轉JPG</a></li>
+            <li><a target="_blank" href="/zh_TW/convert-images">JPG轉WEBP</a></li>
+            <li><a target="_blank" href="/zh_TW/convert-images">JPG轉AVIF</a></li>
+            <li><a target="_blank" href="/zh_TW/convert-images">JPG轉PNG</a></li>
+          </ul>
+      
+          <h3>轉換GIF</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng">WEBP轉GIF</a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng">APNG轉GIF</a>
+            </li>
+            <li><a target="_blank" href="/zh_TW/video-to-gif">MP4轉GIF</a></li>
+            <li>
+              <a target="_blank" href="/zh_TW/video-clips-to-gif">編輯視頻後轉GIF</a>
+            </li>
+          </ul>
+      
+          <h3>轉換WEBP動畫</h3>
+          <ul>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng">GIF轉WEBP轉換器</a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/git-to-webp-to-apng">APNG轉WEBP轉換器</a>
+            </li>
+            <li><a target="_blank" href="/zh_TW/video-to-gif">MP4轉WEBP轉換器</a></li>
+            <li>
+              <a target="_blank" href="/zh_TW/video-clips-to-gif">編輯視頻後轉WEBP</a>
+            </li>
+          </ul>
+      
+          <h3>其他工具</h3>
+          <ul>
+            <li><a target="_blank" href="/zh_TW/crop-images">圖片裁剪器</a></li>
+            <li><a target="_blank" href="/zh_TW/images-watermark">圖片加水印</a></li>
+            <li><a target="_blank" href="/zh_TW/image-exif">查看圖片Exif信息</a></li>
+            <li>
+              <a target="_blank" href="/zh_TW/resize-images">圖片尺寸調整器</a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/split-images">圖片分割器</a>
+            </li>
+            <li>
+              <a target="_blank" href="/webp2jpg-online/splicing#/splicing">圖片拼接器</a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/compress-images">圖片壓縮器</a>
+            </li>
+            <li>
+              <a target="_blank" href="/zh_TW/convert-images">圖片轉換器</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+
+
+
+
+<div class="PdF.imagESTOOL.com">
+  <a href="https://imagestool.com" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://imagestool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>imagestool.com</b>
+      <p>
+        Image tool collection - crop, split, merge, watermark, resize, EXIF, gif
+        tools, etc.
+      </p>
+    </div> </a><a href="https://pdf.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://pdf.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>pdf.imagesTool.com</b>
+      <p>PDF Tools Collection - Merge, Split, Sort and Compress PDF</p>
+    </div> </a><a href="https://ai.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://ai.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>ai.imagesTool.com</b>
+      <p>Remove image backgrounds - batch without any limit</p>
+    </div> </a><a href="https://to.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://to.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>to.imagesTool.com</b>
+      <p>Image Converter - Supports 50 formats</p>
+    </div> </a><a href="https://tiny.imagesTool.com/zh-TW/" target="_blank">
+    <div class="PDF.IMAGeStooL.COM">
+      <img src="https://tiny.imagesTool.com/favicon.ico" alt="" class="pDf.ImAGestool.COm"><b>tiny.imagesTool.com</b>
+      <p>
+        Image compressor-supports more than 10 formats including png, jpg, gif,
+        svg, etc.
+      </p>
+    </div>
+  </a>
+</div>
+<style>
+
+  .PDF\.IMAGeStooL\.COM {
+    padding: 12px;
+    --un-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--un-bg-opacity));
+    --un-bg-opacity: 0.3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  .pDf\.ImAGestool\.COm {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+  }
+  .PdF\.imagESTOOL\.com {
+    padding: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+
+<div class="flex_between gap_10 p_l_30 p_r_30 p_t_15 p_b_15 wrap">
+  <div class="flex_between gap_10">
+    <a href="https://imagestool.com/blog/" alt="Images Tool Blog" title="Images Tool Blog">
+      Blog
+    </a>
+  </div>
+  <div class="flex_between gap_10 wrap">
+    <p class="op_6">Language:</p>
+    <a href="https://imagestool.com" alt="Switch the page language to English" title="Switch the page language to English">
+      English
+    </a>
+    <a href="https://imagestool.com/es/" alt="Switch the page language to Español" title="Switch the page language to Español">
+      Español
+    </a>
+    <a href="https://imagestool.com/ja/" alt="Switch the page language to 日本語" title="Switch the page language to 日本語">
+      日本語
+    </a>
+    <a href="https://imagestool.com/zh_CN/" alt="Switch the page language to 中文（简体）" title="Switch the page language to 中文（简体）">
+      中文（简体）
+    </a>
+    <a href="https://imagestool.com/zh_TW/" alt="Switch the page language to 中文（繁體）" title="Switch the page language to 中文（繁體）">
+      中文（繁體）
+    </a>
+    <a href="https://imagestool.com/fr/" alt="Switch the page language to français" title="Switch the page language to français">
+      français
+    </a>
+  </div>
+</div>
+
+
+<script>
+    loadingPage_start()
+    async function loadingPage_start(params) {
+        let CACHE_VERSION = '16592650711112x0129'
+        let appJs = null
+        let appJsUrl = ''
+        let ver = await idbKeyval.get('CACHE_VERSION')
+        // 
+        if (!ver || ver !== CACHE_VERSION) {
+            // await idbKeyval.clear()
+            await idbKeyval.del('appJs')
+            await loadingPage_fetch()
+            await idbKeyval.set('CACHE_VERSION', CACHE_VERSION)
+        }
+        appJs = await idbKeyval.get('appJs')
+        appJsUrl = URL.createObjectURL(appJs)
+        loadingPage_creatScript(appJsUrl, 'appJs')
+    }
+        function testCdn(url = 'https://test.imagestool.com/v1/js/gif.js') {
+        return new Promise((resolve, reject) => {
+            let set = setTimeout(() => {
+                resolve('https://imagestool.com')
+            }, 500);
+            fetch(url, {
+                method: 'HEAD'
+            }).then(d => d.blob()).then(d => {
+                clearTimeout(set)
+                resolve('https://test.imagestool.com/v1')
+            }).catch(e => {
+                clearTimeout(set)
+                resolve('https://imagestool.com')
+            })
+        })
+    }
+async function loadingPage_fetch() {
+    if (location && location.href && location.href.includes('zh_CN') && ![1,5,8,11,16].includes(new Date().getDate())) {
+        window.asscdn = await testCdn()
+    } else {
+        window.asscdn = 'https://imagestool.com'
+    }
+    let appJs = await fetch(window.asscdn + '/js/app.c004a58b.js').then(d => d.blob())
+    await idbKeyval.set('appJs', appJs)
+}
+    function loadingPage_creatScript(src) {
+        let body = document.querySelector('body')
+        let script = document.createElement('script')
+        script.src = src
+        body.appendChild(script)
+    }
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c997f8bfd4b98fff93a7e965639928b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-K5T7GB19LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-K5T7GB19LP');
+</script>
+<script src="/hook.js"></script>
+
+</body></html>
