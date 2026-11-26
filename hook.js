@@ -15,14 +15,14 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-let isSplice = location.href.includes("/splice-images");
+let isSplice = location.href.includes("/imagetool/splice-images");
 
 if (isSplice) {
-  location.href = "/webp2jpg-online/splicing.html";
+  location.href = "/imagetool/webp2jpg-online/splicing.html";
 }
 
 let IS_zh_CN = location.href.includes("zh_CN");
-if (location.href.includes("/webp2jpg-online")) {
+if (location.href.includes("/imagetool/webp2jpg-online")) {
   w2jFn();
 } else {
   mainFn_y();
@@ -33,7 +33,7 @@ if (location.href.includes("/webp2jpg-online")) {
 }
 // window.asscdn = "https://imagestool.b-cdn.net";
 // window.asscdn = "https://images-tool-com-site.vercel.app";
-// window.asscdn = "https://imagestool.com";
+// window.asscdn = "";
 
 // window.addEventListener("load", (event) => {
 
@@ -66,13 +66,13 @@ function addOtherUrl_ai() {
     let url = `https://ai.imagestool.com`
     let img = `rebg_en_icon`
     if (IS_zh_CN) {
-      url += '/zh-CN/'
+      url += '/imagetool/zh-CN/'
       img = `rebg_cn_icon`
     }
     div.id = 'mnsks281Mns_sk'
     div.innerHTML = `
   <a href="${url}" target="_blank">
-      <img class="newSiteBut_9sj2" src='/images/ui/${img}.webp' height="40" / >
+      <img class="newSiteBut_9sj2" src='/imagetool/images/ui/${img}.webp' height="40" / >
   </a>
   <style>
   .newSiteBut_9sj2{opacity:0.5;transition:0.3s;}
@@ -88,13 +88,13 @@ function addOtherUrl_ai() {
     let url = `https://pdf.imagestool.com`
     let img = `pdf_en_icon` 
     if (IS_zh_CN) {
-      url += '/zh-CN/'
+      url += '/imagetool/zh-CN/'
       img = `pdf_cn_icon`
     }
     div.id = 'mnskpdfs281Mns_sk'
     div.innerHTML = `
   <a href="${url}" target="_blank" style="margin-left:8px;">
-      <img class="newSiteBut_9sj2" src='/images/ui/${img}.webp' height="40" / >
+      <img class="newSiteBut_9sj2" src='/imagetool/images/ui/${img}.webp' height="40" / >
   </a>
   `
     tarDiv.appendChild(div)
@@ -136,7 +136,7 @@ function reward(params) {
   <div class="br15"></div>
   <div>
     <img
-      src="/assets/donate.png"
+      src="/imagetool/assets/donate.png"
       alt=""
       width="220"
       style="padding-left: 0px; flex-shrink: 0"
@@ -330,9 +330,9 @@ function w2jFn() {
     if (rt) {
       rt.remove();
       document
-        .querySelectorAll('header [href="https://imagestool.com/"]')
+        .querySelectorAll('header [href="/"]')
         .forEach((el) => {
-          el.href = "https://imagestool.com/zh_CN/";
+          el.href = "/imagetool/zh_CN/";
           console.log(el.href);
         });
       document.querySelectorAll(".l1 .logo>p").forEach((el) => el.remove());
@@ -591,7 +591,7 @@ function mainFn_x() {
   }, 1000);
 }
 function fix_watermark() {
-  if (location.href.includes("/images-watermark") && window.queryLocalFonts) {
+  if (location.href.includes("/imagetool/images-watermark") && window.queryLocalFonts) {
     function checkChinese(str) {
       var reg = /[\u4e00-\u9fa5]/;
       var result = str.match(reg);
@@ -728,7 +728,7 @@ Then turn on the "Get font permissions" switch`
   }
 }
 function fix_split() {
-  if (location.href.includes("/split-images")) {
+  if (location.href.includes("/imagetool/split-images")) {
     testS();
     async function testS(params) {
       if (idbKeyval) {
@@ -767,7 +767,7 @@ function setDownloadToast() {
       if (downloadBut) {
         clearInterval(setTimeout_8kkjsd);
         downloadBut.addEventListener("click", () => {
-          window.open("/assets/html/Downloaded");
+          window.open("/imagetool/assets/html/Downloaded");
         });
       }
     }, 500);
