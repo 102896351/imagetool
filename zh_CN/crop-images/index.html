@@ -772,4 +772,24 @@ async function loadingPage_fetch() {
 
 <script async="" src="https://fundingchoicesmessages.google.com/i/pub-8162202800743940?ers=1" nonce="TuB-56caLQfNqQ07RetL0g"></script><script nonce="TuB-56caLQfNqQ07RetL0g">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
 
+
+<!-- Pages mirror fallback: never stuck on loading overlay -->
+<script>
+(function () {
+  var overlay = document.querySelector('.loadingPage');
+  if (!overlay) return;
+  function hide() {
+    overlay.classList.add('loaded');
+    overlay.style.display = 'none';
+  }
+  // app.js normally adds .loaded; hide it ourselves if it never does
+  setTimeout(function () {
+    if (!overlay.classList.contains('loaded')) hide();
+  }, 2500);
+  window.addEventListener('error', function (e) {
+    if (e.target && e.target.tagName === 'SCRIPT' &&
+        (e.target.src || '').indexOf('app.c004a58b.js') !== -1) hide();
+  }, true);
+})();
+</script>
 </body></html>

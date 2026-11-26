@@ -551,4 +551,24 @@ async function loadingPage_fetch() {
 </script>
 <script src="/imagetool/hook.js"></script>
 
+
+<!-- Pages mirror fallback: never stuck on loading overlay -->
+<script>
+(function () {
+  var overlay = document.querySelector('.loadingPage');
+  if (!overlay) return;
+  function hide() {
+    overlay.classList.add('loaded');
+    overlay.style.display = 'none';
+  }
+  // app.js normally adds .loaded; hide it ourselves if it never does
+  setTimeout(function () {
+    if (!overlay.classList.contains('loaded')) hide();
+  }, 2500);
+  window.addEventListener('error', function (e) {
+    if (e.target && e.target.tagName === 'SCRIPT' &&
+        (e.target.src || '').indexOf('app.c004a58b.js') !== -1) hide();
+  }, true);
+})();
+</script>
 </body></html>

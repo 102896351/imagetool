@@ -339,4 +339,24 @@ async function loadingPage_fetch() {
 <script src="/imagetool/hook.js"></script>
 
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"d87f908c26634cea82ce2461c7705b27","r":1,"spa":2}' crossorigin="anonymous"></script>
+
+<!-- Pages mirror fallback: never stuck on loading overlay -->
+<script>
+(function () {
+  var overlay = document.querySelector('.loadingPage');
+  if (!overlay) return;
+  function hide() {
+    overlay.classList.add('loaded');
+    overlay.style.display = 'none';
+  }
+  // app.js normally adds .loaded; hide it ourselves if it never does
+  setTimeout(function () {
+    if (!overlay.classList.contains('loaded')) hide();
+  }, 2500);
+  window.addEventListener('error', function (e) {
+    if (e.target && e.target.tagName === 'SCRIPT' &&
+        (e.target.src || '').indexOf('app.c004a58b.js') !== -1) hide();
+  }, true);
+})();
+</script>
 </body></html>
